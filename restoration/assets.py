@@ -89,9 +89,9 @@ class Assets:
             new.append(dict(uid=unit.uid,name='Soldier '+str(unit.uid),type='Unit',properties=p))
         new.append(dict(uid=STATUS,name='RestorationStatus',type='label',properties={
             'Player Type':'label','World':self.hud,'x':4,'y':109,'Text':game.status(side),'Text Style':'Textstyle - Yellow10','z':10000}))
-        new.append(dict(uid=OBJECTIVE,name='RestorationObjective',type='PLAYER',properties={
+        new.append(dict(uid=OBJECTIVE,name='RestorationObjective',type='TerrainLabel',properties={
             'World':self.world,'x':game.objective[0],'y':game.objective[1],'Width':1,'Height':1,
-            'Text':'Control point','Text Style':'Textstyle - Yellow10','z':8000,'Image':'img - goal action'}))
+            'Player Type':'TerrainLabel','Text':'CONTROL POINT','Text Style':'Textstyle - Yellow10','z':10000}))
         # Reuse the smoke-only middle frames of the recovered explosion; no new art files.
         original_clip=self.objects['clip - exp2 action mag 8 e']['properties']
         smoke_frames={f'iFrame{i}':original_clip[f'iFrame{8+i}'] for i in range(8)}

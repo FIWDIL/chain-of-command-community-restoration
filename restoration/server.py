@@ -248,6 +248,7 @@ class MatchServer:
         peer=session['peer'];side=session['side']
         if session.get('recenter_at') and time.monotonic()>=session['recenter_at']:
             self.center(session);session['recenter_at']=0
+        peer.update(OBJECTIVE,97,self.assets.world,4)
         for u in self.game.units:
             visible=self.game.visible(side,u) and not u.carried_by
             peer.update(u.uid,97,self.assets.world if visible else 0,4)
