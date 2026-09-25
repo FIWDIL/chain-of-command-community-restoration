@@ -1,4 +1,24 @@
-# Validation through v0.2.0
+# Validation through v0.3.0
+
+## v0.3.0 tactical AI
+
+The full 29-test Python suite passed, including seven new tactical behavior tests and the fourteen-player protocol/ownership test. Tactical coverage includes divided firing/moving elements, gunner preference and rotation, directional cover, endpoint spacing, expiring observations, smoke fuse/inventory coordination, stress behavior and preserved human control.
+
+Three all-AI 7v7 matches completed on AbbeyArden, Farm Fight (fmft) and StreetFight. Each used covering fire, movement, smoke and cover-seeking roles. Results and timing samples are in [ai-validation.json](ai-validation.json). The German side won these three selected seeds; this is not evidence of faction balance.
+
+| Original map | Simulated seconds | Median step ms | p95 step ms | Maximum step ms | Smoke thrown |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| AbbeyArden | 93.4 | 5.46 | 22.87 | 33.71 | 8 |
+| fmft | 122.8 | 3.88 | 18.09 | 67.80 | 9 |
+| StreetFight | 113.6 | 5.56 | 28.87 | 46.20 | 6 |
+
+These are headless 0.2-second simulation steps on this computer, not rendering FPS. Fireteam decisions are staggered over 1.4 seconds. Local AI route checks stop after 768 visited nodes and try a bounded number of candidate destinations; player pathfinding retains its full search. Narrow passages and unusual layouts can still defeat local cover choices. The dense StreetFight sample exposed a 429 ms search burst before these bounds; its updated maximum was 46.2 ms in a separate run, not an identical-state replay.
+
+Two actual native Creation clients also ran a 7v7 loopback battle with twelve AI fireteams for 45 seconds during this update. They received movement, combat and casualties without client exits or service errors. All 505 recovered original files still match their recovery hashes. Artwork, native executable, original maps and sound archives are unchanged.
+
+The service remains authoritative for offline and direct play. A physical LAN/Internet route and fourteen full native renderers have not been tested together. The original engine's square-based collision and coarse HUD placement remain unchanged.
+
+## Earlier validation through v0.2.0
 
 Test machine: Windows x64, CPython 3.12, Frida 17.18.0. The portable client runs the original x86 Creation executable with this project's app-local WinG shim.
 

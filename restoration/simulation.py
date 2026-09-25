@@ -7,6 +7,7 @@ import math
 import random
 from .assets import UNIT_BASE
 from .roster import MAX_SLOTS, validate_size, default_pool, loadouts
+from .tactics import TacticalAI
 
 # Practical firing intervals, not cyclic rates. All unverified values are explicit here.
 WEAPONS = {
@@ -47,6 +48,11 @@ class Unit:
     smoke: int = 1
     carrying: int = 0
     carried_by: int = 0
+    ai_role: str = ''
+    ai_until: float = 0
+    ai_contact: tuple = (-1, -1)
+    ai_contact_until: float = 0
+    ai_smoke_until: float = 0
 
     @property
     def cell(self):
@@ -105,6 +111,8 @@ class Game:
                 u.direction=self.direction((x,y),self.objective)
                 u.ammo=WEAPONS[weapon]['magazine'];u.reserve=WEAPONS[weapon]['reserve'];self.units.append(u)
         self.player_identity={(side,slot):self.random.randrange(4) for side in (0,1) for slot in range(team_size)}
+        self.tactics=TacticalAI(self)
+        self.ai_deadlines={(side,slot):(side*self.team_size+slot)*1.4/(2*self.team_size) for side in (0,1) for slot in range(self.team_size)}
 
     def spawn_cells(self, origin, count, excluded):
         # Flood outward from the recovered spawn through connected walkable tiles.
@@ -136,10 +144,11 @@ class Game:
                     return p
         raise ValueError('Map has no walkable square')
 
-    def path(self, start, end):
+    def path(self, start, end, traffic=None, max_nodes=None):
         start=tuple(start);end=self.nearest_open(tuple(end))
         queue=[(math.dist(start,end),0,start)];cost={start:0};prev={};visited=set()
         while queue:
+            if max_nodes is not None and len(visited)>=max_nodes:return []
             _,g,p=heapq.heappop(queue)
             if p in visited: continue
             if p==end:
@@ -152,6 +161,7 @@ class Game:
                 if not (1<=q[0]<=98 and 1<=q[1]<=98) or q in self.blocked: continue
                 if dx and dy and ((p[0]+dx,p[1]) in self.blocked or (p[0],p[1]+dy) in self.blocked): continue
                 ng=g+math.hypot(dx,dy)*(2 if q in self.low else 1)
+                if traffic and q!=end:ng+=traffic.get(q,0)
                 if ng<cost.get(q,float('inf')):
                     cost[q]=ng;prev[q]=p;heapq.heappush(queue,(ng+math.dist(q,end),ng,q))
         return []
@@ -290,7 +300,10 @@ class Game:
                 factor=max(0,1-distance/3);u.stun=max(u.stun,5*factor);u.stress=min(1,u.stress+factor)
                 if self.random.random()<factor:self.hurt(u,150*factor*(.6 if u.stance=='prone' else 1))
         self._vision=self.visibility()
-        if self.time>=self.next_ai:self.think();self.next_ai=self.time+1.4
+        due={pair for pair in self.ai_slots if self.time>=self.ai_deadlines.get(pair,0)}
+        if due:
+            self.tactics.think(due)
+            for pair in due:self.ai_deadlines[pair]=self.time+1.4
         for u in self.units:
             if not u.active:continue
             u.stress=max(0,u.stress-dt*.025);u.stun=max(0,u.stun-dt);u.cooldown=max(0,u.cooldown-dt)
@@ -326,20 +339,7 @@ class Game:
         if self.time>=900:self.winner=0 if self.scores[0]>self.scores[1] else 1 if self.scores[1]>self.scores[0] else -1
 
     def think(self):
-        reserved={u.path[-1] if u.path else u.cell for u in self.units if u.active}
-        for u in self.units:
-            if (u.side,u.slot) not in self.ai_slots or not u.active:continue
-            enemies=[v for v in self.units if v.side!=u.side and v.active and (u.ammo or u.reserve) and self.visible(u.side,v) and self.hit_chance(u,v)>0]
-            if enemies:
-                u.path=[];u.stance='crouch' if u.cell in self.low else 'prone';continue
-            if u.path:reserved.add(u.path[-1]);continue
-            if math.dist(u.cell,self.objective)<=2.5:u.stance='prone';continue
-            ox,oy=self.objective
-            radius=3 if self.team_size<=3 else 5
-            candidates=[(ox+dx,oy+dy) for dx in range(-radius,radius+1) for dy in range(-radius,radius+1) if 1<=ox+dx<=98 and 1<=oy+dy<=98 and (ox+dx,oy+dy) not in self.blocked and (ox+dx,oy+dy) not in reserved]
-            if candidates:
-                dest=min(candidates,key=lambda p:math.dist(u.cell,p)+math.dist(p,self.objective)*1.5-(3 if p in self.low or p in self.trees else 0))
-                reserved.add(dest);u.path=self.path(u.cell,dest);u.mode='assault';u.stance='stand'
+        self.tactics.think()
 
     def image(self,u):
         faction='a' if u.side==0 else 'g'

@@ -39,7 +39,7 @@ Speeds: walk 1.35, run 2.5, assault 1.15, crawl .55 squares/second. A* uses eigh
 
 Solid cells block sight and gunfire. Windows allow a line only when both shooter and target stand. Prone soldiers cannot see or be seen through intervening low cover. Trees shorten detection distance and reduce hit chance. Detection limits are 28 squares standing, 22 crouching, and 16 prone; tree concealment multiplies the limit by .65. Visibility is shared within a side and hidden enemies are removed from that client's rendered world. This is visual concealment, not an anti-cheat guarantee.
 
-Deployment expands outward through connected walkable squares from each recovered spawn, assigning a different square to every soldier. The AI reserves distinct approach destinations across fireteams and advances toward distributed objective positions, favors nearby cover in its destination choice, and goes prone or crouches when engaging at close range. Soldiers with no ammunition continue toward the objective. It has no learned tactics or original 2AM behavior code.
+Deployment expands outward through connected walkable squares from each recovered spawn, assigning a different square to every soldier. The AI reserves separated destinations, chooses cover relative to observed threats, and coordinates finite smoke with alternating firing/moving elements. Staggered decisions and bounded local route searches limit simulation pauses. Soldiers with no ammunition continue toward the objective. See TACTICAL_AI.md; these are new heuristics, not original 2AM behavior code.
 
 ## Grenades
 
@@ -47,10 +47,14 @@ Each soldier has two fragmentation grenades and one smoke grenade. A throw has a
 
 For a fragmentation blast, `factor = max(0, 1 - distance/3)`. Damage chance equals factor; a successful roll deals `150 × factor`, reduced to 60% against prone soldiers. Stun is up to `5 × factor` seconds and stress increases by factor. Solid walls shield the blast. Friendly soldiers can be hit. Smoke lasts 30 seconds and blocks lines through its 2.5-square radius. Cloud visuals reuse the middle frames of the original explosion animation.
 
-All formulas live in `restoration/simulation.py`; the service is authoritative for both offline and direct play.
+Combat formulas live in `restoration/simulation.py`; tactical decisions are in `restoration/tactics.py`; the service is authoritative for both offline and direct play.
 
 ## Multiplayer ownership and performance
 
 The original command strip always refers to the connected player's four soldiers, even at 7v7. Native clicks, drag selection, number keys and launcher commands all apply the same server-side ownership filter. Team vision remains shared. The direct host explicitly starts the battle; gameplay timers and combat remain frozen before that. AI fills vacant slots and takes over a dropped connection. Rejoining inherits the same soldiers.
 
 Visibility is computed once per side for each broadcast, rather than independently for every viewer. Repeated grid rays use a bounded cache. Native updates are batched and sent by bounded per-client writers so a slow reader does not block the simulation. The effect pool accommodates simultaneous grenade and smoke effects from all 56 soldiers.
+
+## Tactical AI, version 0.3.0
+
+The controller now coordinates finite smoke and covering fire with short bounds, remembers observations for twelve seconds, reserves spread destinations and alternates support duties. See [TACTICAL_AI.md](TACTICAL_AI.md) for its rules and limitations. These changes apply to offline and hosted direct-connect AI without changing the preserved client or art.

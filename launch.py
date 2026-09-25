@@ -23,7 +23,7 @@ class Launcher:
         self.assets = Assets(ROOT / 'original')
         box = ttk.Frame(self.root, padding=16); box.pack(fill='both', expand=True)
         ttk.Label(box, text='CHAIN OF COMMAND', font=('Segoe UI', 21, 'bold')).pack(anchor='w')
-        ttk.Label(box, text='Original engine community restoration - experimental v0.2.0').pack(anchor='w', pady=(0, 12))
+        ttk.Label(box, text='Original engine community restoration - experimental v0.3.0').pack(anchor='w', pady=(0, 12))
         self.tabs = ttk.Notebook(box); self.tabs.pack(fill='both', expand=True)
         setup = ttk.Frame(self.tabs, padding=12); battle = ttk.Frame(self.tabs, padding=12)
         self.tabs.add(setup, text='Match setup'); self.tabs.add(battle, text='Fireteams and orders')

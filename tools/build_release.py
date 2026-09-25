@@ -34,7 +34,7 @@ def main():
     if python_license.exists():shutil.copy2(python_license,licenses/'Python-LICENSE.txt')
     manifest={str(p.relative_to(dest)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(dest.rglob('*')) if p.is_file()}
     (dest/'release-manifest.json').write_text(json.dumps(manifest,indent=2))
-    archive=output/'ChainOfCommand-OriginalEngine-v0.2.0-Windows.zip'
+    archive=output/'ChainOfCommand-OriginalEngine-v0.3.0-Windows.zip'
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as z:
         for path in sorted(dest.rglob('*')):
             if path.is_file():z.write(path,path.relative_to(output))

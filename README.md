@@ -57,6 +57,8 @@ This release supports 1v1 through 7v7 fireteams, offline allied/enemy AI, direct
 
 These rules are **reconstructed defaults**, not verified original formulas. Collision treats recovered terrain as occupied squares rather than reproducing the lost server's wall-edge geometry. Smoke reuses recovered explosion-cloud frames. The AI and weapon balance need playtesting. Native menus unrelated to the restored skirmish may remain inert. There is no saved match, persistent rank/company system, original lobby, campaign, original commander hierarchy/weapon-assignment UI, or exact corner-peeking/body-part simulation in this release. HUD labels retain some of the original engine's coarse positioning.
 
+Version 0.3.0 adds coordinated covering fire and movement, directional cover searches, smoke screens with fuse waits, and separate approach positions. Both friendly and enemy AI use these rules. [AI behavior and limits](docs/TACTICAL_AI.md) documents the changes.
+
 See [mechanics](docs/MECHANICS.md), [protocol and compatibility notes](docs/RESTORATION.md), and [validation](docs/VALIDATION.md). Report a problem with the map name, mode, and steps that produced it.
 
 ## Source and building
