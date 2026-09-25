@@ -1,9 +1,12 @@
 """Reconstructed match rules; no claim that these are the lost 2AM server rules."""
 from dataclasses import dataclass, field
+from collections import deque
+from functools import lru_cache
 import heapq
 import math
 import random
 from .assets import UNIT_BASE
+from .roster import MAX_SLOTS, validate_size, default_pool, loadouts
 
 # Practical firing intervals, not cyclic rates. All unverified values are explicit here.
 WEAPONS = {
@@ -53,9 +56,18 @@ class Unit:
     def active(self):
         return self.state == 'ready'
 
+    @property
+    def slot(self):return self.index // 4
+
+    @property
+    def number(self):return self.index % 4
+
 class Game:
-    def __init__(self, assets, map_name='AbbeyArden', ai_sides=(1,), seed=None):
+    def __init__(self, assets, map_name='AbbeyArden', ai_sides=(1,), seed=None, team_size=1, pool=None):
         self.assets=assets; self.map_name=map_name
+        self.team_size=validate_size(team_size);self.pool=dict(default_pool(team_size) if pool is None else pool)
+        self.ai_slots={(side,slot) for side in ai_sides for slot in range(team_size)}
+        self._vision=None
         self.map_objects, scenario=assets.read_map(map_name)
         self.random=random.Random(seed); self.ai_sides=set(ai_sides)
         self.time=0.; self.next_ai=0.; self.units=[]; self.grenades=[]; self.smokes=[]
@@ -85,12 +97,35 @@ class Game:
         self.objective=self.nearest_open(objectives[0] if objectives else tuple(round((a+b)/2) for a,b in zip(*self.spawns)))
         used=set()
         for side in (0,1):
-            for i in range(4):
-                x,y=self.nearest_open((self.spawns[side][0]+i%2,self.spawns[side][1]+i//2),used)
-                used.add((x,y)); weapon=('Garand' if side==0 else 'Mauser') if i<3 else ('BAR' if side==0 else 'MG42')
-                u=Unit(UNIT_BASE+side*4+i,side,i,float(x),float(y),weapon)
+            weapons=loadouts(assets,team_size,side,self.pool)
+            positions=self.spawn_cells(self.spawns[side],team_size*4,used)
+            for i,(x,y) in enumerate(positions):
+                used.add((x,y));weapon=weapons[i//4][i%4]
+                u=Unit(UNIT_BASE+side*MAX_SLOTS*4+i,side,i,float(x),float(y),weapon)
+                u.direction=self.direction((x,y),self.objective)
                 u.ammo=WEAPONS[weapon]['magazine'];u.reserve=WEAPONS[weapon]['reserve'];self.units.append(u)
-        self.player_identity=[self.random.randrange(4),self.random.randrange(4)]
+        self.player_identity={(side,slot):self.random.randrange(4) for side in (0,1) for slot in range(team_size)}
+
+    def spawn_cells(self, origin, count, excluded):
+        # Flood outward from the recovered spawn through connected walkable tiles.
+        # Never place later fireteams across a wall merely because it is nearby.
+        start=self.nearest_open(origin);pending=deque([start]);seen={start};result=[]
+        while pending and len(result)<count:
+            p=pending.popleft()
+            if p not in excluded:result.append(p)
+            for dx,dy in ((1,0),(0,1),(-1,0),(0,-1)):
+                q=(p[0]+dx,p[1]+dy)
+                if 1<=q[0]<=98 and 1<=q[1]<=98 and q not in self.blocked and q not in seen:
+                    seen.add(q);pending.append(q)
+        if len(result)<count:raise ValueError('Recovered deployment area is too small for this team size')
+        return result
+
+    def owned(self,side,slot):return [u for u in self.units if u.side==side and u.slot==slot]
+
+    @staticmethod
+    def unit_label(u,side,slot):
+        if u.side!=side:return ''
+        return str(u.number+1) if u.slot==slot else f'F{u.slot+1}.{u.number+1}'
 
     def nearest_open(self, cell, excluded=()):
         cx,cy=cell
@@ -122,19 +157,21 @@ class Game:
         return []
 
     @staticmethod
+    @lru_cache(maxsize=32768)
     def ray(a,b):
         # Dense, rounded samples include boundary-adjacent squares; diagonal corners cannot leak shots.
-        distance=math.dist(a,b); steps=max(1,math.ceil(distance*4)); seen=set();previous=tuple(a)
+        distance=math.dist(a,b); steps=max(1,math.ceil(distance*4)); seen=set();previous=tuple(a);result=[]
         for i in range(1,steps):
             p=(round(a[0]+(b[0]-a[0])*i/steps),round(a[1]+(b[1]-a[1])*i/steps))
             if p[0]!=previous[0] and p[1]!=previous[1]:
                 for q in ((p[0],previous[1]),(previous[0],p[1])):
-                    if q not in seen and q!=tuple(a) and q!=tuple(b):seen.add(q);yield q
-            if p not in seen and p!=tuple(a) and p!=tuple(b):seen.add(p);yield p
+                    if q not in seen and q!=tuple(a) and q!=tuple(b):seen.add(q);result.append(q)
+            if p not in seen and p!=tuple(a) and p!=tuple(b):seen.add(p);result.append(p)
             previous=p
+        return tuple(result)
 
     def clear_line(self, a, b, stance='stand', target_stance='stand', smoke=True):
-        cells=list(self.ray(a,b))
+        cells=self.ray(tuple(a),tuple(b))
         if any(p in self.solid for p in cells): return False
         if (stance!='stand' or target_stance!='stand') and any(p in self.windows for p in cells): return False
         if (stance=='prone' or target_stance=='prone') and any(p in self.low for p in cells): return False
@@ -142,6 +179,7 @@ class Game:
         return True
 
     def visible(self, side, target):
+        if self._vision is not None:return target.uid in self._vision[side]
         if side==target.side:return True
         if target.carried_by:return False
         for u in self.units:
@@ -151,6 +189,9 @@ class Game:
             if target.cell in self.trees: limit*=.65
             if distance<=limit and self.clear_line(u.cell,target.cell,u.stance,target.stance):return True
         return False
+
+    def visibility(self):
+        return [{u.uid for u in self.units if self.visible(side,u)} for side in (0,1)]
 
     def hit_chance(self, shooter, target):
         w=WEAPONS[shooter.weapon];distance=math.dist(shooter.cell,target.cell)
@@ -166,9 +207,9 @@ class Game:
         if target.cell in self.trees:chance*=.65
         return max(.01,min(.95,chance))
 
-    def command(self,side,indices,action,point=None):
+    def command(self,side,indices,action,point=None,slot=0):
         if self.winner is not None:return
-        selected=[u for u in self.units if u.side==side and u.index in indices and u.active and not u.carried_by]
+        selected=[u for u in self.owned(side,slot) if u.number in indices and u.active and not u.carried_by]
         if not selected:return
         self.notices[side]=''
         if point is not None:
@@ -191,7 +232,7 @@ class Game:
             for u in selected:u.direction=self.direction(u.cell,point);u.path=[]
         elif action=='fire' and point is not None:
             enemies=[u for u in self.units if u.side!=side and u.active and self.visible(side,u) and math.dist(u.cell,point)<=2]
-            if enemies and (u.ammo or u.reserve) and min(math.dist(u.cell,v.cell) for v in enemies)<=12:
+            if enemies:
                 target=min(enemies,key=lambda u:math.dist(u.cell,point))
                 for u in selected:u.target=target.uid;u.hold_fire=False;u.path=[]
             else:self.notices[side]='No visible enemy at that point'
@@ -216,7 +257,11 @@ class Game:
                 else:
                     choices=[w for w in self.units if w.side==side and w.state=='WIA' and not w.carried_by and math.dist(w.cell,u.cell)<=2]
                     if choices:w=min(choices,key=lambda w:math.dist(w.cell,u.cell));w.carried_by=u.uid;u.carrying=w.uid
-        elif action=='retreat':self.winner=1-side
+        elif action=='retreat':
+            # One player cannot concede the other six players' fireteams.
+            for u in selected:
+                u.state='Retreated';u.path=[]
+                if u.carrying:self.by_id(u.carrying).carried_by=0;u.carrying=0
 
     def by_id(self,uid):return next((u for u in self.units if u.uid==uid),None)
 
@@ -244,6 +289,7 @@ class Game:
                 if distance>3 or not self.clear_line(p,u.cell,smoke=False):continue
                 factor=max(0,1-distance/3);u.stun=max(u.stun,5*factor);u.stress=min(1,u.stress+factor)
                 if self.random.random()<factor:self.hurt(u,150*factor*(.6 if u.stance=='prone' else 1))
+        self._vision=self.visibility()
         if self.time>=self.next_ai:self.think();self.next_ai=self.time+1.4
         for u in self.units:
             if not u.active:continue
@@ -271,6 +317,7 @@ class Game:
             v.stress=min(1,v.stress+.08);self.events.append(('shot',u.uid))
             if self.random.random()<self.hit_chance(u,v):self.hurt(v,WEAPONS[u.weapon]['damage']*self.random.uniform(.65,1.3))
             if not u.ammo and u.reserve:u.reload=WEAPONS[u.weapon]['reload']*(1+u.stress)
+        self._vision=None
         active=[any(u.active and u.side==s for u in self.units) for s in (0,1)]
         if not all(active):self.winner=0 if active[0] else 1 if active[1] else -1;return
         near=[any(u.active and u.side==s and math.dist(u.cell,self.objective)<=3 for u in self.units) for s in (0,1)]
@@ -279,16 +326,17 @@ class Game:
         if self.time>=900:self.winner=0 if self.scores[0]>self.scores[1] else 1 if self.scores[1]>self.scores[0] else -1
 
     def think(self):
-        reserved=set()
+        reserved={u.path[-1] if u.path else u.cell for u in self.units if u.active}
         for u in self.units:
-            if u.side not in self.ai_sides or not u.active:continue
-            enemies=[v for v in self.units if v.side!=u.side and v.active and self.visible(u.side,v) and self.hit_chance(u,v)>0]
+            if (u.side,u.slot) not in self.ai_slots or not u.active:continue
+            enemies=[v for v in self.units if v.side!=u.side and v.active and (u.ammo or u.reserve) and self.visible(u.side,v) and self.hit_chance(u,v)>0]
             if enemies:
                 u.path=[];u.stance='crouch' if u.cell in self.low else 'prone';continue
             if u.path:reserved.add(u.path[-1]);continue
             if math.dist(u.cell,self.objective)<=2.5:u.stance='prone';continue
             ox,oy=self.objective
-            candidates=[(ox+dx,oy+dy) for dx in range(-3,4) for dy in range(-3,4) if (ox+dx,oy+dy) not in self.blocked and (ox+dx,oy+dy) not in reserved]
+            radius=3 if self.team_size<=3 else 5
+            candidates=[(ox+dx,oy+dy) for dx in range(-radius,radius+1) for dy in range(-radius,radius+1) if 1<=ox+dx<=98 and 1<=oy+dy<=98 and (ox+dx,oy+dy) not in self.blocked and (ox+dx,oy+dy) not in reserved]
             if candidates:
                 dest=min(candidates,key=lambda p:math.dist(u.cell,p)+math.dist(p,self.objective)*1.5-(3 if p in self.low or p in self.trees else 0))
                 reserved.add(dest);u.path=self.path(u.cell,dest);u.mode='assault';u.stance='stand'
@@ -308,10 +356,10 @@ class Game:
         if name.casefold() not in self.assets.objects:name=f'img - {faction}sid static'
         return name
 
-    def status(self,side):
-        own=[u for u in self.units if u.side==side]
-        ammo='  '.join(f'{u.index+1}:{u.ammo}/{u.reserve}' if u.active else f'{u.index+1}:{u.state}' for u in own)
+    def status(self,side,slot=0):
+        own=self.owned(side,slot)
+        ammo='  '.join(f'{u.number+1}:{u.ammo}/{u.reserve}' if u.active else f'{u.number+1}:{u.state}' for u in own)
         if self.winner is not None:
             result='Draw' if self.winner==-1 else 'Victory' if self.winner==side else 'Defeat'
-            return f'{result} | Player was soldier {self.player_identity[side]+1} | {ammo}'
+            return f'{result} | Fireteam {slot+1}: Player was soldier {self.player_identity[side,slot]+1} | {ammo}'
         return f'{int(self.time)//60:02}:{int(self.time)%60:02}  USA {int(self.scores[0])}/90  Germany {int(self.scores[1])}/90 | {ammo}'

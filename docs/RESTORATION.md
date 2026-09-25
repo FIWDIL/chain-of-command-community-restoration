@@ -32,3 +32,9 @@ TCP 1851 is newline-delimited JSON, capped at 4096 bytes per client message. The
 Four maps — hse, nagrsch, pst and rts — reference absent generic images. At load time `icor` maps to `iwcr`, `qcor` to `wcor`, and `wh09` to `wh01`, using original recovered art. Those substitutions preserve playability but may differ from the intended decorative corners. They are not written into the original maps.
 
 The German crouch uses the recovered crouch transition with looping disabled. Smoke holds/repeats middle cloud frames from the original explosion. No remastered or Combat on Contact assets are included.
+
+## v0.2.0 player slots
+
+The command/session protocol now requires version 2. Native Creation framing is unchanged. The control handshake returns a server-selected side and fireteam slot, plus team size and finite weapon pools. Each native snapshot maps the four-row HUD to that slot while rendering all visible soldiers. Slots range 0–6 per side; a side-local soldier index maps to `slot = index // 4` and `number = index % 4`. Soldier IDs occupy a separate range from HUD and effect objects to avoid the collisions that simply extending the old eight-soldier ID block would create.
+
+The host receives a fresh in-memory capability to start its room. Regular joiners cannot start it or command another fireteam by supplying a forged side/slot in input. The local host slot is reserved. This does not add encrypted transport or original account authentication.

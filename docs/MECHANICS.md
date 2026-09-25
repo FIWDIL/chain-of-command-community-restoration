@@ -1,10 +1,10 @@
-# Reconstructed skirmish mechanics, v0.1.0
+# Reconstructed skirmish mechanics, v0.2.0
 
 The missing server formulas could not be recovered. Values below describe this implementation, not historical fact or a claim of original-game equivalence. Distances are logical map squares, not a verified meters conversion. The recovered model does specify a maximum grenade throw of five squares; that value is retained.
 
 ## Match
 
-Each side has four soldiers. Three have Garand or Mauser rifles. The fourth has BAR/MG42, or Thompson/MP40 when that player chooses SMG before loading. The offline AI uses the German default loadout. Capturing within three squares adds one point per uncontested second. 90 points wins. Incapacitating every opposing soldier also wins. At 15 minutes, the higher capture score wins; equal scores draw. Retreat concedes. A randomly chosen soldier per side is identified as the player at match end; there is no persistent promotion score.
+Each side has 1–7 fireteams of four soldiers (4–28 soldiers). Every human controls one fireteam; unoccupied fireteams use AI, including friendly AI in offline play. Rifles are Garand or Mauser. The host configures a finite, symmetric side stockpile of BAR/MG42 and Thompson/MP40 replacements. See [the recovered caps and reconstructed defaults](WEAPON_RESTRICTIONS.md). A stockpile is shared by the entire side, not granted again to each player. Joining or reconnecting does not alter any soldier's equipment or health. Capturing within three squares adds one point per uncontested second. 90 points wins. Incapacitating every opposing soldier also wins. At 15 minutes, the higher capture score wins; equal scores draw. Retreat withdraws the selected soldiers in that player's fireteam, without conceding for their teammates. A randomly chosen soldier per fireteam is identified as the player at match end; there is no persistent promotion score.
 
 ## Weapons
 
@@ -39,7 +39,7 @@ Speeds: walk 1.35, run 2.5, assault 1.15, crawl .55 squares/second. A* uses eigh
 
 Solid cells block sight and gunfire. Windows allow a line only when both shooter and target stand. Prone soldiers cannot see or be seen through intervening low cover. Trees shorten detection distance and reduce hit chance. Detection limits are 28 squares standing, 22 crouching, and 16 prone; tree concealment multiplies the limit by .65. Visibility is shared within a side and hidden enemies are removed from that client's rendered world. This is visual concealment, not an anti-cheat guarantee.
 
-The AI advances toward distributed objective positions, favors nearby cover in its destination choice, and goes prone or crouches when engaging at close range. Soldiers with no ammunition continue toward the objective. It has no learned tactics or original 2AM behavior code.
+Deployment expands outward through connected walkable squares from each recovered spawn, assigning a different square to every soldier. The AI reserves distinct approach destinations across fireteams and advances toward distributed objective positions, favors nearby cover in its destination choice, and goes prone or crouches when engaging at close range. Soldiers with no ammunition continue toward the objective. It has no learned tactics or original 2AM behavior code.
 
 ## Grenades
 
@@ -48,3 +48,9 @@ Each soldier has two fragmentation grenades and one smoke grenade. A throw has a
 For a fragmentation blast, `factor = max(0, 1 - distance/3)`. Damage chance equals factor; a successful roll deals `150 × factor`, reduced to 60% against prone soldiers. Stun is up to `5 × factor` seconds and stress increases by factor. Solid walls shield the blast. Friendly soldiers can be hit. Smoke lasts 30 seconds and blocks lines through its 2.5-square radius. Cloud visuals reuse the middle frames of the original explosion animation.
 
 All formulas live in `restoration/simulation.py`; the service is authoritative for both offline and direct play.
+
+## Multiplayer ownership and performance
+
+The original command strip always refers to the connected player's four soldiers, even at 7v7. Native clicks, drag selection, number keys and launcher commands all apply the same server-side ownership filter. Team vision remains shared. The direct host explicitly starts the battle; gameplay timers and combat remain frozen before that. AI fills vacant slots and takes over a dropped connection. Rejoining inherits the same soldiers.
+
+Visibility is computed once per side for each broadcast, rather than independently for every viewer. Repeated grid rays use a bounded cache. Native updates are batched and sent by bounded per-client writers so a slow reader does not block the simulation. The effect pool accommodates simultaneous grenade and smoke effects from all 56 soldiers.

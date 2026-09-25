@@ -1,0 +1,156 @@
+{
+  "source": "original/cocSc.ODF",
+  "sha256": "7cd25a3ce58d4224789d33fab92766cac9650932daecd7ca6b6ae86c940a0900",
+  "note": "Values from the recovered client, which includes later community-era files; not proof of every 1999 server configuration.",
+  "weapon_caps": [
+    {
+      "object": "AW_Thompson",
+      "property": "INIT_LimitPerSquad",
+      "value": 2
+    },
+    {
+      "object": "AW_BAR",
+      "property": "INIT_LimitPerSquad",
+      "value": 1
+    },
+    {
+      "object": "GW_MP40",
+      "property": "INIT_LimitPerSquad",
+      "value": 2
+    },
+    {
+      "object": "GW_MG42",
+      "property": "INIT_LimitPerSquad",
+      "value": 1
+    }
+  ],
+  "scenario_stockpile_fields": [
+    "Am_Thompson",
+    "Am_BAR",
+    "Am_Ammunition",
+    "Gm_MP40",
+    "Gm_MG42",
+    "Gm_Ammunition"
+  ],
+  "base_loadouts": [
+    {
+      "object": "rank1",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank2",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank3",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank4",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank5",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank6",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank7",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank8",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    },
+    {
+      "object": "rank9",
+      "weapons": {
+        "Germany1weapon": "GW_MAUSER",
+        "Germany2weapon": "GW_MAUSER",
+        "Germany3weapon": "GW_MAUSER",
+        "Germany4weapon": "GW_MAUSER",
+        "USA1weapon": "AW_Garand",
+        "USA2weapon": "AW_Garand",
+        "USA3weapon": "AW_Garand",
+        "USA4weapon": "AW_Garand"
+      }
+    }
+  ],
+  "side_pool_formula_recovered": false,
+  "oix_stockpile_records": []
+}

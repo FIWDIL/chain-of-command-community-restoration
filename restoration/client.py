@@ -8,15 +8,16 @@ import threading
 import winsound
 import frida
 from .assets import Assets
+from .server import CONTROL_VERSION
 
 CLIENT_SHA256='bf817ef80d98872ffe117b9d7d11a79b4238ea616bd9a9a828a97c8db91d5ccd'
 
 class Client:
-    def __init__(self,original,host='127.0.0.1',password='',control_port=1851,support='MG'):
+    def __init__(self,original,host='127.0.0.1',password='',control_port=1851,side='auto',owner_token=''):
         self.original=Path(original).resolve();self.host=socket.gethostbyname(host.strip());self.password=password;self.control_port=control_port
         self.socket=None;self.reader=None;self.device=None;self.pid=None;self.session=None;self.script=None
         self.events=queue.Queue(maxsize=100);self.outgoing=queue.Queue(maxsize=256);self.closed=threading.Event();self.info={}
-        self.support=support
+        self.side=side;self.owner_token=owner_token
         self.sounds={}
 
     def start(self):
@@ -29,7 +30,7 @@ class Client:
             if filename.is_relative_to(self.original) and filename.is_file():self.sounds[name]=filename
         try:
             self.socket=socket.create_connection((self.host,self.control_port),timeout=10);self.reader=self.socket.makefile('rb')
-            self.socket.sendall((json.dumps(dict(version=1,password=self.password,support=self.support))+'\n').encode())
+            self.socket.sendall((json.dumps(dict(version=CONTROL_VERSION,password=self.password,side=self.side,owner_token=self.owner_token))+'\n').encode())
             self.info=json.loads(self.reader.readline(4096))
             if 'error' in self.info:raise ValueError(self.info['error'])
             self.socket.settimeout(90)

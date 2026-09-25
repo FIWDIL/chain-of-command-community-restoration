@@ -6,10 +6,13 @@ from .protocol import string
 
 ROOT_SET = 0x2000ffff
 USER = 0x20003001
-UNIT_BASE = 0x20003010
+# Leave the HUD/smoke IDs at 0x3030-0x3042 untouched when allocating 56 soldiers.
+UNIT_BASE = 0x20003200
 STATUS = 0x20003030
 OBJECTIVE = 0x20003031
-EFFECT_BASE = 0x20003100
+EFFECT_BASE = 0x20003300
+# Enough for all 56 soldiers' smoke (three clouds) and two simultaneous frag effects.
+EFFECT_COUNT = 280
 SMOKE_IMAGE = 0x20003042
 
 class Assets:
@@ -73,7 +76,7 @@ class Assets:
             result += struct.pack('<H',prop['id']) + (b'\x01' if existing else b'') + packed
         return bytes(result)+b'\xff\xff'
 
-    def model(self, username, game, side):
+    def model(self, username, game, side, slot=0):
         new = [dict(uid=0x20003000,name='UserProc '+username,type='UserProcess',properties={'ClientArena':1}),
                dict(uid=USER,name=username,type='user',properties={'Player Type':'user','New World':self.world,'New World View':0})]
         for i, source in enumerate(game.map_objects):
@@ -84,11 +87,11 @@ class Assets:
         for unit in game.units:
             p = {'OwnerObjectSet':ROOT_SET,'Player Type':'Unit','x':round(unit.x),'y':round(unit.y),
                  'World':self.world if game.visible(side,unit) else 0,'Image':game.image(unit),'Width':1,'Height':1,'Direction':unit.direction,
-                 'Helth':unit.health,'Pulses per frame':2,'Text':str(unit.index+1) if unit.side==side else '',
+                 'Helth':unit.health,'Pulses per frame':2,'Text':game.unit_label(unit,side,slot),
                  'Text Style':'Textstyle - Yellow10'}
             new.append(dict(uid=unit.uid,name='Soldier '+str(unit.uid),type='Unit',properties=p))
         new.append(dict(uid=STATUS,name='RestorationStatus',type='label',properties={
-            'Player Type':'label','World':self.hud,'x':4,'y':109,'Text':game.status(side),'Text Style':'Textstyle - Yellow10','z':10000}))
+            'Player Type':'label','World':self.hud,'x':4,'y':109,'Text':game.status(side,slot),'Text Style':'Textstyle - Yellow10','z':10000}))
         new.append(dict(uid=OBJECTIVE,name='RestorationObjective',type='TerrainLabel',properties={
             'World':self.world,'x':game.objective[0],'y':game.objective[1],'Width':1,'Height':1,
             'Player Type':'TerrainLabel','Text':'CONTROL POINT','Text Style':'Textstyle - Yellow10','z':10000}))
@@ -101,7 +104,7 @@ class Assets:
             dict(uid=0x20003041,name='LocalSmokeMag',type='MAG',properties={'e':0x20003040,'Facets':1}),
             dict(uid=SMOKE_IMAGE,name='LocalSmokeImage',type='IMAGE',properties={'mag 8':0x20003041}),
         ])
-        for i in range(32):
+        for i in range(EFFECT_COUNT):
             new.append(dict(uid=EFFECT_BASE+i,name=f'LocalEffect{i}',type='PLAYER',properties={
                 'x':0,'y':0,'Width':1,'Height':1,'z':500,'Pulses per frame':2,'Image':'img - exp2 action'}))
         lookup = dict(self.objects);lookup.update({o['name'].casefold():o for o in new})
@@ -120,7 +123,7 @@ class Assets:
                 pos = {axis:int(p.get('transfer'+axis.upper(),p.get(axis+'_static',p.get(axis,0)))) for axis in ('x','y')}
                 if obj['type']=='PromotionComponents' or obj['name'] in ('Play Again','Chat','InterfaceGroup_Promotion','InterfaceGroup_Dinamic','Reinitialize','Commander Assignment','Weapon Assignment'):
                     pos['World']=0
-                if obj['name']=='LStageName':pos['Text']='Local match'
+                if obj['name']=='LStageName':pos['Text']=f'{game.team_size}v{game.team_size}'
                 modifications.append(dict(uid=obj['uid'],type=obj['type'],properties=pos))
         for o in modifications:
             data += struct.pack('<I',o['uid'])+self.encode_properties(o,lookup,existing=True)
