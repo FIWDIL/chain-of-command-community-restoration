@@ -1,6 +1,6 @@
-# Chain of Command — original-engine community restoration
+# Chain of Command — community restoration
 
-Free experimental restoration of the recovered 2AM Chain of Command client. This runs the **original `creation.exe` 1.50.0.621**, original graphics archives, and recovered maps. It is a separate project from Combat on Contact.
+Free supported restoration of the recovered 2AM Chain of Command client. This runs the **original `creation.exe` 1.50.0.621**, original graphics archives, and recovered maps.
 
 The original online service and `zamCocSc_client.dll` were not recovered. A new local match service supplies their missing gameplay and input behavior. Offline play still uses that service on your own computer; it needs no Internet connection or 2AM account. This is not a claim to have recovered the original server source or its exact rules.
 
