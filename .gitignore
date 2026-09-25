@@ -1,0 +1,13 @@
+original/
+redistribution/
+__pycache__/
+*.pyc
+*.log
+*.dmp
+*.tmp
+*.spec
+*.lib
+*.obj
+dist/
+build/
+.venv/

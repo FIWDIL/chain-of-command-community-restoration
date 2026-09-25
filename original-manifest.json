@@ -1,0 +1,2022 @@
+{
+  "chain.ico": {
+    "bytes": 8478,
+    "sha256": "c42f9a0c04823fd8ccb817c6cb60e205ed94e42e575aea1d1aad8984abe38949"
+  },
+  "cocSc.ODF": {
+    "bytes": 931533,
+    "sha256": "7cd25a3ce58d4224789d33fab92766cac9650932daecd7ca6b6ae86c940a0900"
+  },
+  "creation.exe": {
+    "bytes": 1486848,
+    "sha256": "bf817ef80d98872ffe117b9d7d11a79b4238ea616bd9a9a828a97c8db91d5ccd"
+  },
+  "dsdll.dll": {
+    "bytes": 160768,
+    "sha256": "17a6fb6b666229a4038de9cd4914ef94db2b07a071092dbc8f26d7793367e63b"
+  },
+  "gameclub.ODF": {
+    "bytes": 251299,
+    "sha256": "295d4cc3d80f289b00616180b04b319169a1284d9b07202328598d40348fa2bc"
+  },
+  "mapedit.ico": {
+    "bytes": 10134,
+    "sha256": "101cb6264222f6e4a6c3628ef03c9fc4d510a25d4fd87ddf0ea89658ae83625c"
+  },
+  "models/cocsc/1WH17S3A.bmp": {
+    "bytes": 11078,
+    "sha256": "c7ecf540742c1749b9b3a96e6cb72755d9eb4c84aa05b3d7bbdbb65450c30d73"
+  },
+  "models/cocsc/defimg.bmp": {
+    "bytes": 361078,
+    "sha256": "46ae166a8d572daf94087b7d07371b45bade43fff544066468b0cfdf26c0adb7"
+  },
+  "models/cocsc/defpal.bmp": {
+    "bytes": 2030,
+    "sha256": "f72cc449a3481e318871f82aa48c87abf12a7c1e4e08ac70ca391b893f99510b"
+  },
+  "models/cocsc/mag1.MBm": {
+    "bytes": 2668582,
+    "sha256": "802f29e82831faa1a8e4c19a5bba2d3a05e55afe886dd0919bc495effe489746"
+  },
+  "models/cocsc/mag1.MBS": {
+    "bytes": 7354,
+    "sha256": "b896d115a79d799e63a67352d2b95b468fa0ece8c108dd0ffe40133f1ea79fda"
+  },
+  "models/cocsc/mag8.MBM": {
+    "bytes": 706018,
+    "sha256": "5375b63fb1fb485da601557826aa909b171e8e2b56add293a61f3b16a977fa03"
+  },
+  "models/cocsc/mag8.MBS": {
+    "bytes": 23560,
+    "sha256": "6cee98eec01c9059823a7fe6459e637fc93e983b9df0c53fd1b4c78ebb9e752b"
+  },
+  "models/cocsc/magall.MBm": {
+    "bytes": 14896823,
+    "sha256": "6c276ef3b3cc752592e18ef93aa6713bb464c2e0eb447baed821e99297f3e618"
+  },
+  "models/cocsc/magall.MBS": {
+    "bytes": 203791,
+    "sha256": "5ce587b907d219055eca4f590b108da774d13253ec244b44c4279492f8e9f5f0"
+  },
+  "models/cocsc/map01.bmp": {
+    "bytes": 11078,
+    "sha256": "da00bc7de687276c812d13f202c0de430fb2ad5a549e512e2c09f31f5df1750a"
+  },
+  "models/cocsc/oin/2rivest_1.OIX": {
+    "bytes": 67267,
+    "sha256": "8d3c38438795c6f2fc8f9dbe3592749aa5e387bd483896fdd3f3b49f62358d95"
+  },
+  "models/cocsc/oin/2rivest_map.OIX": {
+    "bytes": 967681,
+    "sha256": "b10b561394459ec22c27fd01b9c8a11a16a6d1bc4a24095e4438ae3244199d86"
+  },
+  "models/cocsc/oin/aaa_1.OIX": {
+    "bytes": 63613,
+    "sha256": "c66dc55f04352f2b44fc1084568a423678205c9c07a86d4ca6ea0df0f5fab626"
+  },
+  "models/cocsc/oin/aaa_2.OIX": {
+    "bytes": 63583,
+    "sha256": "f293f6cae5fd9db8e48a647ded0b68a112fb25113cb95b436cbfb28e956e9bc8"
+  },
+  "models/cocsc/oin/aaa_map.OIX": {
+    "bytes": 2995038,
+    "sha256": "10f6be871787833bcbc9e1c496dc6aeb348dc245bc066ce00d187a563d87861e"
+  },
+  "models/cocsc/oin/aab_1.OIX": {
+    "bytes": 65819,
+    "sha256": "a133cc67ade098a81a48fc3e773550043c34428d0f8674953e4cf39193946e84"
+  },
+  "models/cocsc/oin/aab_2.OIX": {
+    "bytes": 65789,
+    "sha256": "363cd3327b04d37b60ef372a00a84ef1163bd2c3bf3c46738ea78c1cdbcfe14d"
+  },
+  "models/cocsc/oin/aab_map.OIX": {
+    "bytes": 2258285,
+    "sha256": "ca76831269f8d365d8afb5fcdfa2ab9645b55625bcb3440eb06f801b3535ff58"
+  },
+  "models/cocsc/oin/AbbeyArden_1.OIX": {
+    "bytes": 42249,
+    "sha256": "5e2050e71b07ae20569f13a67a24c5b4a209f30091849f6698eef8d20bc8cfeb"
+  },
+  "models/cocsc/oin/AbbeyArden_map.OIX": {
+    "bytes": 797457,
+    "sha256": "3bf17fe1b3f30f05ab148d5218abf5e368a83581cfeb8d8e53a9bdc2975be7d9"
+  },
+  "models/cocsc/oin/AhatFactory_1.OIX": {
+    "bytes": 49617,
+    "sha256": "040f47b59d069f4d8abe61045e195ed9d83c7652218c359e8be8c062fa78ac7e"
+  },
+  "models/cocsc/oin/AhatFactory_2.OIX": {
+    "bytes": 49617,
+    "sha256": "057bc860c50591e450e6a2e004479e50ec22ad10a3afaebb7c84e9a0327bbbca"
+  },
+  "models/cocsc/oin/AhatFactory_3.OIX": {
+    "bytes": 49617,
+    "sha256": "75de310324aaee6caa7f1a2db9361221e9f2348c18a741d6cf28f2dd50899f5a"
+  },
+  "models/cocsc/oin/AhatFactory_4.OIX": {
+    "bytes": 49617,
+    "sha256": "2c23a9b1df5893b276702040a85f18a40244dc10dc6c536e63638db9b8f4130c"
+  },
+  "models/cocsc/oin/AhatFactory_5.OIX": {
+    "bytes": 49617,
+    "sha256": "b409cdc29dfb1393171a74cedb522d264f6377e8d2087e6e8efe6cf6f203f19e"
+  },
+  "models/cocsc/oin/AhatFactory_map.OIX": {
+    "bytes": 1779333,
+    "sha256": "2e06055ee9851d6f317b909aadc4c3e75951eb2fece219e6de29292f1e9c3d93"
+  },
+  "models/cocsc/oin/airfield_1.OIX": {
+    "bytes": 224301,
+    "sha256": "ca5e7f9d23f028fc1abc35ba4c20c1b6802022bf7e6fdc406a7103623db2dfdc"
+  },
+  "models/cocsc/oin/airfield_map.OIX": {
+    "bytes": 1411140,
+    "sha256": "639873c05bf4095a92f6290801dbb8c8875a149e71579396da64825c0be1635a"
+  },
+  "models/cocsc/oin/aotgcp_1.OIX": {
+    "bytes": 49179,
+    "sha256": "ff854668da7278838c4e82dcdf1c2176443b257ee40d16e75061b510c2e350e9"
+  },
+  "models/cocsc/oin/aotgcp_2.OIX": {
+    "bytes": 49209,
+    "sha256": "7d986a9e1a4235f6e2f2359b468e4672efbc28509ec670092f8d2b20f1361261"
+  },
+  "models/cocsc/oin/aotgcp_3.OIX": {
+    "bytes": 56151,
+    "sha256": "4205f3eefd81667fe19d8df8cbccbafe008dae619b1141c5d41c93b6e5a75367"
+  },
+  "models/cocsc/oin/aotgcp_4.OIX": {
+    "bytes": 49209,
+    "sha256": "3c293022497efb43bda97e2378bbab1e32b83282b9216907bfa7a13b64cfe8ff"
+  },
+  "models/cocsc/oin/aotgcp_map.OIX": {
+    "bytes": 2487341,
+    "sha256": "9ebe00addc485532fc9bdaa2cb67747fe6d2f7d791e305609637c5ce39956b0e"
+  },
+  "models/cocsc/oin/beachassault_1.OIX": {
+    "bytes": 58503,
+    "sha256": "2ac8ce92f2cea5c01cdc42fd66b230c717baebb7363f0a035e340abba4cbd12e"
+  },
+  "models/cocsc/oin/beachassault_map.OIX": {
+    "bytes": 2206272,
+    "sha256": "856ba310013d0437204fcbac9134cbfa62852f0047d8193e9faf3da814eb8b38"
+  },
+  "models/cocsc/oin/blockhaus_1.OIX": {
+    "bytes": 40997,
+    "sha256": "a29a3e8a122ed8016680227181b2dc1387a7d2d325ba0aefab7b5c39d72e7580"
+  },
+  "models/cocsc/oin/blockhaus_map.OIX": {
+    "bytes": 3435565,
+    "sha256": "f5b94cd0ca1d33ed65512f835a9ce8f3b16c7ab8e7a18992a0a087d604618fd5"
+  },
+  "models/cocsc/oin/bridgetoofar_1.OIX": {
+    "bytes": 106421,
+    "sha256": "974be7905df17602d554168bd023b682b2a0af8ac89f3d08f726d3d692a1d820"
+  },
+  "models/cocsc/oin/bridgetoofar_2.OIX": {
+    "bytes": 47780,
+    "sha256": "1ff67e86b4d2260a6ce20eb257d8850dba010b914160e1f7f48648f13686aa45"
+  },
+  "models/cocsc/oin/bridgetoofar_3.OIX": {
+    "bytes": 47780,
+    "sha256": "5d01239c9afbfd006729fe318241213aafe4f74a990debad968c44c9606b2c2a"
+  },
+  "models/cocsc/oin/bridgetoofar_4.OIX": {
+    "bytes": 51117,
+    "sha256": "1e9f4c83437976113722652a9282fa712c18f66df8e73ce437cc24656fc831bf"
+  },
+  "models/cocsc/oin/bridgetoofar_map.OIX": {
+    "bytes": 1917595,
+    "sha256": "b00c252dcf8e08e3743de57465014867dec2c2ba5a6a189c8f69708a7498230f"
+  },
+  "models/cocsc/oin/Chateau_1.OIX": {
+    "bytes": 38779,
+    "sha256": "ee63a7255753e4cc2bd636fb2dda9e0ccb07e4c4bcb63e0737f7feb3022a9538"
+  },
+  "models/cocsc/oin/Chateau_map.OIX": {
+    "bytes": 695997,
+    "sha256": "4cba9dfeeee8a7b564329af884f060815186dc8b3454ed16c6e210bad174d1ee"
+  },
+  "models/cocsc/oin/chv_1.OIX": {
+    "bytes": 70005,
+    "sha256": "c3f707fe865549578b3aeaaf5c420439e3265cfb334cb2b8acc3e98dbf139e54"
+  },
+  "models/cocsc/oin/chv_map.OIX": {
+    "bytes": 977461,
+    "sha256": "f5fec557ab4edc3a684a17e82d3d95feb2700a3de05095c8092893c099e42c3a"
+  },
+  "models/cocsc/oin/CMBTPTRL_1.OIX": {
+    "bytes": 91686,
+    "sha256": "32006aed3d9f8e92fe29b6ce26968b71537ffc45a7b73222c54975d10e53c5e0"
+  },
+  "models/cocsc/oin/CMBTPTRL_2.OIX": {
+    "bytes": 81974,
+    "sha256": "f01a5879582ae4c07831e48ecaf0f607a9053bf6f1a9b290fa889502db01bac1"
+  },
+  "models/cocsc/oin/CMBTPTRL_map.OIX": {
+    "bytes": 653752,
+    "sha256": "02f3b8f31fcbd0dbdafbd6077dd973d10f58d2f40d3b3558ad9db7a53fad13cc"
+  },
+  "models/cocsc/oin/CNTRATK_1.OIX": {
+    "bytes": 114441,
+    "sha256": "ec3ad906ee4bc1b47f896ff44db5fc398e3666cd64137841b1a67ba0d919db85"
+  },
+  "models/cocsc/oin/CNTRATK_2.OIX": {
+    "bytes": 107443,
+    "sha256": "213ef43e4132000279fadce9d1d8f6ee88bbf1b608bcf782712c20ee0c058831"
+  },
+  "models/cocsc/oin/CNTRATK_map.OIX": {
+    "bytes": 657072,
+    "sha256": "d41d6b6b0e3a66944e94b9ab5b725b41c42935fe2a8a87b26a6adfd2d4594879"
+  },
+  "models/cocsc/oin/concen_1.OIX": {
+    "bytes": 53613,
+    "sha256": "a7f9e045e206bccb56c39b2b992b43ee30cfded7368265f92465ee22cade67f2"
+  },
+  "models/cocsc/oin/concen_2.OIX": {
+    "bytes": 53613,
+    "sha256": "1e72f7df5f9d29fa606a276a345eb7a9b24af822634a1ef52ae274133bc2e6f9"
+  },
+  "models/cocsc/oin/concen_map.OIX": {
+    "bytes": 828705,
+    "sha256": "11a8d0065b8fb6a45858bfd67f3f0d054a17c4e02585e8f86b313c0cf06a8606"
+  },
+  "models/cocsc/oin/CrucifixHill_1.OIX": {
+    "bytes": 44245,
+    "sha256": "fb79775c1f04fd5afa707047f523c55113bcf2824e8c069d4fbcfe30d695c5a0"
+  },
+  "models/cocsc/oin/CrucifixHill_map.OIX": {
+    "bytes": 976330,
+    "sha256": "0177a37bc50e1472036ab529771e10ac6c09aa27061c47e0e7ff9af6756fb0c9"
+  },
+  "models/cocsc/oin/fmft2_1.OIX": {
+    "bytes": 112856,
+    "sha256": "fc301fb33fe0b96b22e5f8b56e5e8f2cff3c8226ae94ba414e3fe6bb4e5c42bf"
+  },
+  "models/cocsc/oin/fmft2_map.OIX": {
+    "bytes": 724735,
+    "sha256": "a3d227e02e13e51a6514196a8f188d18e5d9262fb35943802659670cf039001f"
+  },
+  "models/cocsc/oin/fmft_1.OIX": {
+    "bytes": 109432,
+    "sha256": "150743dc25972dcf9809b4f7f186b99cef71a5f09d8cc6d1d9d2bcb5dc95ca75"
+  },
+  "models/cocsc/oin/fmft_map.OIX": {
+    "bytes": 806178,
+    "sha256": "799fec658be7c8944fa373afb363aa1be9816cd1a2b4905a39c93b4a3f97b93b"
+  },
+  "models/cocsc/oin/fores_1.OIX": {
+    "bytes": 41101,
+    "sha256": "f3967d9f8b317d6fe26024f609d42c96f54b6856ad3eb54ca906b3a8d5ed7a85"
+  },
+  "models/cocsc/oin/fores_map.OIX": {
+    "bytes": 611454,
+    "sha256": "7eb7c510f8c3ae539b1f158a6b775807e6d40dd73786a6bd81fcb55689e6f836"
+  },
+  "models/cocsc/oin/fort_1.OIX": {
+    "bytes": 53162,
+    "sha256": "e9619ee5c773fb84d5624db81b6451430036151baf6476497ad0e4f7e573bac5"
+  },
+  "models/cocsc/oin/fort_2.OIX": {
+    "bytes": 38076,
+    "sha256": "9248550f00c705cb5c910b5575bb263daaafbfdc512ff0d444f44a08b538c8a0"
+  },
+  "models/cocsc/oin/fort_3.OIX": {
+    "bytes": 38126,
+    "sha256": "2c03af4a7b1c58907f3e4227c3d09c03e8a59acafde7ddf5e783c562f52b62b8"
+  },
+  "models/cocsc/oin/fort_4.OIX": {
+    "bytes": 35417,
+    "sha256": "967dbb47fd77ed92dc077b4b23a70ade0dc09c19d03aa5ac0b1572e5372ab49c"
+  },
+  "models/cocsc/oin/fort_5.OIX": {
+    "bytes": 38144,
+    "sha256": "7c9c174657b6f21108f123eb1717b0f2fa68ad4105809102b2ee40bffeead13f"
+  },
+  "models/cocsc/oin/fort_map.OIX": {
+    "bytes": 1487448,
+    "sha256": "e853d757d824da4301ea22a204ede98ba3c4cff6bde53d16013b20e7f9076164"
+  },
+  "models/cocsc/oin/foyer_1.OIX": {
+    "bytes": 81203,
+    "sha256": "b6fa12591d7a19b126e66b84713ce75519f893896ef99a367044f43f06d5c7ae"
+  },
+  "models/cocsc/oin/foyer_map.OIX": {
+    "bytes": 801705,
+    "sha256": "159bcc2ba74c4b02dc87f6a76fea01ac9e33dbe5348f4232ce3ccf9dbb4f2db7"
+  },
+  "models/cocsc/oin/FRONT_1.OIX": {
+    "bytes": 156609,
+    "sha256": "978b3ee325005e2fbe9deaa41ae766ae44536cff38938fa7831fdb553fe77db2"
+  },
+  "models/cocsc/oin/FRONT_2.OIX": {
+    "bytes": 139103,
+    "sha256": "6a31374b06cc13f0157db91a6632f180014c85c813da4d5e7aa66f98539322b0"
+  },
+  "models/cocsc/oin/FRONT_map.OIX": {
+    "bytes": 1884499,
+    "sha256": "25928241831d2fa821ad4c03c57af606c2577389df4424e8b4982f59eb162bc3"
+  },
+  "models/cocsc/oin/gehq_1.OIX": {
+    "bytes": 35597,
+    "sha256": "ba7ee7bafdca41a7fa511dbd6dd3fb7c8425b57ab3870318f4ea603241b5c501"
+  },
+  "models/cocsc/oin/gehq_map.OIX": {
+    "bytes": 1005964,
+    "sha256": "b55afecf85945506d6d8e54ad27c92f0ab02ae083e8e8fb0b25bef76650d32c6"
+  },
+  "models/cocsc/oin/gts_1.OIX": {
+    "bytes": 66318,
+    "sha256": "55f94e5bcc484d4c82238f77c0ad667c4940a435f76a7f71f9be1ddab22d178d"
+  },
+  "models/cocsc/oin/gts_map.OIX": {
+    "bytes": 1359444,
+    "sha256": "e75f45717c0d071a438f7336984b433880c113eea56570841fb7fd32f7c667c4"
+  },
+  "models/cocsc/oin/hldlne_1.OIX": {
+    "bytes": 159940,
+    "sha256": "70639faafec2d0adbbc2f7fea57317451aa53f8b4dfcfe3e4a719cf0ecc4f156"
+  },
+  "models/cocsc/oin/hldlne_2.OIX": {
+    "bytes": 159934,
+    "sha256": "082d1c3aff0ca312e5ba3637b81fa996260598a860b422366e2cee8b223096b1"
+  },
+  "models/cocsc/oin/hldlne_map.OIX": {
+    "bytes": 1069847,
+    "sha256": "9a96312fbb620c3cba581efa9f9a715871deabdda8703f2afe3aaa6bd248fac8"
+  },
+  "models/cocsc/oin/hlne_1.OIX": {
+    "bytes": 161060,
+    "sha256": "c7998139d6aa1e82d34fd416035296861b4736e951478020d28e622c0258c377"
+  },
+  "models/cocsc/oin/hlne_map.OIX": {
+    "bytes": 1179598,
+    "sha256": "ebb646ab7923b683c00cbf8a007520020e195bdbe8bef5d7c94784585eaef032"
+  },
+  "models/cocsc/oin/hse_1.OIX": {
+    "bytes": 74759,
+    "sha256": "86a47cbb97bb660eabe8e97f729cb0fdd36e9eac3209eee526282d8bca92ac02"
+  },
+  "models/cocsc/oin/hse_2.OIX": {
+    "bytes": 78821,
+    "sha256": "cf7202a251df22c5481a368229e8f04fc26e0c50720df0133a6462a8612ddd48"
+  },
+  "models/cocsc/oin/hse_map.OIX": {
+    "bytes": 772565,
+    "sha256": "a3fcc7c0ff69542574baaf002f00815a81c631493a6d31f0d88d6802a473772b"
+  },
+  "models/cocsc/oin/ide_1.OIX": {
+    "bytes": 34461,
+    "sha256": "5146289140abd4b5553ca88a81e708011d2efbccc4858217fe4eac094b45397b"
+  },
+  "models/cocsc/oin/ide_map.OIX": {
+    "bytes": 1126264,
+    "sha256": "e9f8212d12795c24ad867c6af37240693ebd5ac5d0ea02c3ec61f4c9f5ea6701"
+  },
+  "models/cocsc/oin/iso_1.OIX": {
+    "bytes": 67739,
+    "sha256": "eda9f4671fd4e2ea02e818b8483e0190e094d11550bddc52055c0307f81101a4"
+  },
+  "models/cocsc/oin/iso_2.OIX": {
+    "bytes": 76123,
+    "sha256": "1a96fb69d7f9988c7f6c6342a4a1814e63858c0a50906be933306245c411999e"
+  },
+  "models/cocsc/oin/iso_map.OIX": {
+    "bytes": 3243472,
+    "sha256": "08b2eadc70b32d61630439d80810f6aa34be379389dc5c01660872b0ec4e9de8"
+  },
+  "models/cocsc/oin/isolated_1.OIX": {
+    "bytes": 98459,
+    "sha256": "819b54300145d6fec43720a7ce69f81694e8cd9985fbedc179ccac9e9a3c620f"
+  },
+  "models/cocsc/oin/isolated_2.OIX": {
+    "bytes": 98401,
+    "sha256": "e7e94b17300285916fd702029fe1370b2388e298d93e2c36396139672862e7f7"
+  },
+  "models/cocsc/oin/isolated_3.OIX": {
+    "bytes": 100841,
+    "sha256": "019e6f2da6bf93bd575cbf6aa17af542f57fb0d6ea007e2ef5ff1690d1fc6836"
+  },
+  "models/cocsc/oin/isolated_4.OIX": {
+    "bytes": 100903,
+    "sha256": "e5bff8fcf174b16a51aa8feb478db8244e3c07907edddd8078f85448a6ff3cb5"
+  },
+  "models/cocsc/oin/isolated_map.OIX": {
+    "bytes": 3243472,
+    "sha256": "08b2eadc70b32d61630439d80810f6aa34be379389dc5c01660872b0ec4e9de8"
+  },
+  "models/cocsc/oin/kmp_1.OIX": {
+    "bytes": 69917,
+    "sha256": "0fed83a6f55d863e4315283bafbc5a116df700b5ca48390ccc4a25ee1bb3c12d"
+  },
+  "models/cocsc/oin/kmp_map.OIX": {
+    "bytes": 1006639,
+    "sha256": "a839cab53619f12bf4b7b3e70c3a7534e4831138be992a0e4e6bf470e61474b8"
+  },
+  "models/cocsc/oin/krf_1.OIX": {
+    "bytes": 67583,
+    "sha256": "85613e721ac40a2287ff2cf94321d5424ad368a2c9aee9931defcb93cd929a7d"
+  },
+  "models/cocsc/oin/krf_map.OIX": {
+    "bytes": 1008973,
+    "sha256": "9ec8f336593c877b17d10ac5d41ef5d783c98abd6748cd8fdc4691e665ff0fcf"
+  },
+  "models/cocsc/oin/krkmp_1.OIX": {
+    "bytes": 36523,
+    "sha256": "d60f9983fb440ab22a4be7b909d31604dad35578195ffe2fe1656eb2ed765938"
+  },
+  "models/cocsc/oin/krkmp_2.OIX": {
+    "bytes": 39300,
+    "sha256": "99ed730f4d480e5c5a5d3370a1b82dc40a7bf01be8536e1156bbc83f9d02bfcb"
+  },
+  "models/cocsc/oin/krkmp_map.OIX": {
+    "bytes": 1002671,
+    "sha256": "867e37dba3e1ef1110e1eeec13d5ff9703db6ffd3b10cb25d9878948837de82f"
+  },
+  "models/cocsc/oin/Malmedy_1.OIX": {
+    "bytes": 53736,
+    "sha256": "e86756907464a0d060c092ccff7e71375f899266ccedb6c05bfe8a40c0d17071"
+  },
+  "models/cocsc/oin/Malmedy_map.OIX": {
+    "bytes": 1848117,
+    "sha256": "e99eb0909967f2e6fe21b4c3f83fef95625f28f8e830becefd9f36c50177836d"
+  },
+  "models/cocsc/oin/Maybach_1_1.OIX": {
+    "bytes": 41097,
+    "sha256": "724c79bd1ad19720dcf7ba583c15e0c6cd3afcdea3445f071ea340ce4c6d1de5"
+  },
+  "models/cocsc/oin/Maybach_1_2.OIX": {
+    "bytes": 41097,
+    "sha256": "64cc0876c269fc717618432d38a880f68c7b54f610b300e88a5a7c817fc4d13e"
+  },
+  "models/cocsc/oin/Maybach_1_3.OIX": {
+    "bytes": 41097,
+    "sha256": "e3f0efb5f30e50d2ff49be407afc17f2cedda3737f29d80c881daae161d5c193"
+  },
+  "models/cocsc/oin/Maybach_1_4.OIX": {
+    "bytes": 41097,
+    "sha256": "fc4f0a01723c004eafb02a98af47905b686251ae156b1beca2eb20cfdbb1ded1"
+  },
+  "models/cocsc/oin/Maybach_1_5.OIX": {
+    "bytes": 41097,
+    "sha256": "836408d4f46df08cb66c97cdba3ff46d6425d2fe0ecdd7e5027befa95789e6d5"
+  },
+  "models/cocsc/oin/Maybach_1_6.OIX": {
+    "bytes": 41097,
+    "sha256": "93e2549d05082228bb901bde6939a9e0d51be1400d2a00d83bc0b4e0bd244f8c"
+  },
+  "models/cocsc/oin/Maybach_1_7.OIX": {
+    "bytes": 41097,
+    "sha256": "5da80a0e7ae72dcd8cf8615dc2d1e5be72b4d0d5e50ec11c182c669484a5c768"
+  },
+  "models/cocsc/oin/Maybach_1_8.OIX": {
+    "bytes": 41097,
+    "sha256": "19d7b1e5c3b8297ac14c7e204ec6b9664d9b48272a2b347a55604f7a87e61571"
+  },
+  "models/cocsc/oin/Maybach_1_map.OIX": {
+    "bytes": 1992615,
+    "sha256": "0126c9e629ee38590ebc256d4918a7e6aa3781ec75ebe93dcaef6c98b5690578"
+  },
+  "models/cocsc/oin/Maybach_2_1.OIX": {
+    "bytes": 41109,
+    "sha256": "c3d1c83c9f42ae3a1962d252a872732addf5db12512ddcca796d4e64533fcdb2"
+  },
+  "models/cocsc/oin/Maybach_2_2.OIX": {
+    "bytes": 41109,
+    "sha256": "eadc9fec07e3cc29549f2a024ef919bf77f371530b0efe46b921bf38708781b3"
+  },
+  "models/cocsc/oin/Maybach_2_3.OIX": {
+    "bytes": 41109,
+    "sha256": "1a1a957292bceeafb2c5a2765552f5385ff757f164c930259a73e5a90501a62b"
+  },
+  "models/cocsc/oin/Maybach_2_4.OIX": {
+    "bytes": 41109,
+    "sha256": "2b3fbbd8f989de585b67cff5494094d6b74fb0b592bed236b9ec22b2e0a9aa05"
+  },
+  "models/cocsc/oin/Maybach_2_5.OIX": {
+    "bytes": 41109,
+    "sha256": "9d1c01c09e0c89eccdf7bdc1800157be20e47f396e2b932fc8a808d4ad0567a9"
+  },
+  "models/cocsc/oin/Maybach_2_6.OIX": {
+    "bytes": 41109,
+    "sha256": "dd38ee28ea1a4fadccf7462450090af1c1b12ec6237ce53c28e860c0ea76abcb"
+  },
+  "models/cocsc/oin/Maybach_2_7.OIX": {
+    "bytes": 41109,
+    "sha256": "e209f74fe0b415ade7eba0085afbc29e176adde34794c553c920d64dae74d5e9"
+  },
+  "models/cocsc/oin/Maybach_2_8.OIX": {
+    "bytes": 41109,
+    "sha256": "e2ce55257e673f476750d274894b096fa6b6df0bca8a9b575b0ab901b923744c"
+  },
+  "models/cocsc/oin/Maybach_2_map.OIX": {
+    "bytes": 2716859,
+    "sha256": "ac3158c26ac8904fdcfc4f742058972cc9810d34e38bdb16fd82ec8b987e765e"
+  },
+  "models/cocsc/oin/monte_1.OIX": {
+    "bytes": 36725,
+    "sha256": "df52b7fedc2936be41a65202553b11836f71baaafb2791e65239ee6ffb6d0913"
+  },
+  "models/cocsc/oin/monte_map.OIX": {
+    "bytes": 1191078,
+    "sha256": "257e0423a56cd78a6c9f482473761a9308f770eebc978db7599e6aa69ccbb2e4"
+  },
+  "models/cocsc/oin/mrkt_1.OIX": {
+    "bytes": 35457,
+    "sha256": "d9ccf9b423d23e0d0cf618f9599dc5d4aee8f22dbc829765800285ad23449ad6"
+  },
+  "models/cocsc/oin/mrkt_map.OIX": {
+    "bytes": 645039,
+    "sha256": "17e9368403127d7668b29bfc1bfcf394ece7a1aee0cb2d2d1d0628175758c207"
+  },
+  "models/cocsc/oin/mtg_1.OIX": {
+    "bytes": 74204,
+    "sha256": "2971a18b3532e87d79aecb9299ae57bd3cf35189eef52867e5d38c80bbdf6957"
+  },
+  "models/cocsc/oin/mtg_map.OIX": {
+    "bytes": 804757,
+    "sha256": "9a650bfe368eef190439612601748ecc366d577b0f448f4acbb7f1047722d037"
+  },
+  "models/cocsc/oin/nagrsch_1.OIX": {
+    "bytes": 74892,
+    "sha256": "ab0bb1a72a3892f808d6984822f1ec3918ff78f5cd9782f9a94a9703403c34be"
+  },
+  "models/cocsc/oin/nagrsch_2.OIX": {
+    "bytes": 76631,
+    "sha256": "37070e30e95a362964a1039b800833a879015dcc761aba94bea5decb8add135e"
+  },
+  "models/cocsc/oin/nagrsch_3.OIX": {
+    "bytes": 74778,
+    "sha256": "d08bb4561a779efa77473fbb757db73b5f0921c3d9ada8920ff19cd324788253"
+  },
+  "models/cocsc/oin/nagrsch_map.OIX": {
+    "bytes": 1325276,
+    "sha256": "6e8c1bbd4216a74ac13dac0ed7a6c794c464457cde8748e46cfd142b2bb34f15"
+  },
+  "models/cocsc/oin/nartsrn_1.OIX": {
+    "bytes": 38867,
+    "sha256": "29e929bbf160cc802f3dea3208b0db22d51a95b6147326929d35aa98b3abcce9"
+  },
+  "models/cocsc/oin/nartsrn_2.OIX": {
+    "bytes": 101831,
+    "sha256": "30f64afebf83574946f501f2dc94b25ab40dafa279d210ffff215beb06e84a3f"
+  },
+  "models/cocsc/oin/nartsrn_map.OIX": {
+    "bytes": 893764,
+    "sha256": "eec58b945e8e4e6ecfa2c5515d4afacce4334d5ef254c4035e43619b5e59eae0"
+  },
+  "models/cocsc/oin/nkr_1.OIX": {
+    "bytes": 53851,
+    "sha256": "bdb812ddc7c89dae8a8f232a56d137a61de9111d3e2a2c800eac7c305afb581f"
+  },
+  "models/cocsc/oin/nkr_map.OIX": {
+    "bytes": 735340,
+    "sha256": "84732faa5c21a7dcf8548f89e33599b97479e17b71737c2b0a01bb121b17e94a"
+  },
+  "models/cocsc/oin/nmtg_1.OIX": {
+    "bytes": 79140,
+    "sha256": "d18db3d027088d49daf4df6260e27689894948d5128dc5d6a8cf2e7472eda1ba"
+  },
+  "models/cocsc/oin/nmtg_map.OIX": {
+    "bytes": 724701,
+    "sha256": "d3536b5b6b268a32a4bc55390f978a87ff3cbc234c9d2f3a92b7cfc7302baca2"
+  },
+  "models/cocsc/oin/Official Game Rules.txt": {
+    "bytes": 2808,
+    "sha256": "0796667eb66990168b8aeafaa138ba29c78e60a95442aa8bad7780c55a7d2432"
+  },
+  "models/cocsc/oin/oin/2rivest_1.OIX": {
+    "bytes": 67267,
+    "sha256": "8d3c38438795c6f2fc8f9dbe3592749aa5e387bd483896fdd3f3b49f62358d95"
+  },
+  "models/cocsc/oin/oin/2rivest_map.OIX": {
+    "bytes": 967681,
+    "sha256": "b10b561394459ec22c27fd01b9c8a11a16a6d1bc4a24095e4438ae3244199d86"
+  },
+  "models/cocsc/oin/oin/aaa_1.OIX": {
+    "bytes": 63613,
+    "sha256": "c66dc55f04352f2b44fc1084568a423678205c9c07a86d4ca6ea0df0f5fab626"
+  },
+  "models/cocsc/oin/oin/aaa_2.OIX": {
+    "bytes": 63583,
+    "sha256": "f293f6cae5fd9db8e48a647ded0b68a112fb25113cb95b436cbfb28e956e9bc8"
+  },
+  "models/cocsc/oin/oin/aaa_map.OIX": {
+    "bytes": 2995038,
+    "sha256": "10f6be871787833bcbc9e1c496dc6aeb348dc245bc066ce00d187a563d87861e"
+  },
+  "models/cocsc/oin/oin/aab_1.OIX": {
+    "bytes": 65819,
+    "sha256": "a133cc67ade098a81a48fc3e773550043c34428d0f8674953e4cf39193946e84"
+  },
+  "models/cocsc/oin/oin/aab_2.OIX": {
+    "bytes": 65789,
+    "sha256": "363cd3327b04d37b60ef372a00a84ef1163bd2c3bf3c46738ea78c1cdbcfe14d"
+  },
+  "models/cocsc/oin/oin/aab_map.OIX": {
+    "bytes": 2258285,
+    "sha256": "ca76831269f8d365d8afb5fcdfa2ab9645b55625bcb3440eb06f801b3535ff58"
+  },
+  "models/cocsc/oin/oin/AbbeyArden_1.OIX": {
+    "bytes": 42249,
+    "sha256": "5e2050e71b07ae20569f13a67a24c5b4a209f30091849f6698eef8d20bc8cfeb"
+  },
+  "models/cocsc/oin/oin/AbbeyArden_map.OIX": {
+    "bytes": 797457,
+    "sha256": "3bf17fe1b3f30f05ab148d5218abf5e368a83581cfeb8d8e53a9bdc2975be7d9"
+  },
+  "models/cocsc/oin/oin/AhatFactory_1.OIX": {
+    "bytes": 49617,
+    "sha256": "040f47b59d069f4d8abe61045e195ed9d83c7652218c359e8be8c062fa78ac7e"
+  },
+  "models/cocsc/oin/oin/AhatFactory_2.OIX": {
+    "bytes": 49617,
+    "sha256": "057bc860c50591e450e6a2e004479e50ec22ad10a3afaebb7c84e9a0327bbbca"
+  },
+  "models/cocsc/oin/oin/AhatFactory_3.OIX": {
+    "bytes": 49617,
+    "sha256": "75de310324aaee6caa7f1a2db9361221e9f2348c18a741d6cf28f2dd50899f5a"
+  },
+  "models/cocsc/oin/oin/AhatFactory_4.OIX": {
+    "bytes": 49617,
+    "sha256": "2c23a9b1df5893b276702040a85f18a40244dc10dc6c536e63638db9b8f4130c"
+  },
+  "models/cocsc/oin/oin/AhatFactory_5.OIX": {
+    "bytes": 49617,
+    "sha256": "b409cdc29dfb1393171a74cedb522d264f6377e8d2087e6e8efe6cf6f203f19e"
+  },
+  "models/cocsc/oin/oin/AhatFactory_map.OIX": {
+    "bytes": 1779333,
+    "sha256": "2e06055ee9851d6f317b909aadc4c3e75951eb2fece219e6de29292f1e9c3d93"
+  },
+  "models/cocsc/oin/oin/airfield_1.OIX": {
+    "bytes": 224301,
+    "sha256": "ca5e7f9d23f028fc1abc35ba4c20c1b6802022bf7e6fdc406a7103623db2dfdc"
+  },
+  "models/cocsc/oin/oin/airfield_map.OIX": {
+    "bytes": 1411140,
+    "sha256": "639873c05bf4095a92f6290801dbb8c8875a149e71579396da64825c0be1635a"
+  },
+  "models/cocsc/oin/oin/aotgcp_1.OIX": {
+    "bytes": 49179,
+    "sha256": "ff854668da7278838c4e82dcdf1c2176443b257ee40d16e75061b510c2e350e9"
+  },
+  "models/cocsc/oin/oin/aotgcp_2.OIX": {
+    "bytes": 49209,
+    "sha256": "7d986a9e1a4235f6e2f2359b468e4672efbc28509ec670092f8d2b20f1361261"
+  },
+  "models/cocsc/oin/oin/aotgcp_3.OIX": {
+    "bytes": 56151,
+    "sha256": "4205f3eefd81667fe19d8df8cbccbafe008dae619b1141c5d41c93b6e5a75367"
+  },
+  "models/cocsc/oin/oin/aotgcp_4.OIX": {
+    "bytes": 49209,
+    "sha256": "3c293022497efb43bda97e2378bbab1e32b83282b9216907bfa7a13b64cfe8ff"
+  },
+  "models/cocsc/oin/oin/aotgcp_map.OIX": {
+    "bytes": 2487341,
+    "sha256": "9ebe00addc485532fc9bdaa2cb67747fe6d2f7d791e305609637c5ce39956b0e"
+  },
+  "models/cocsc/oin/oin/beachassault_1.OIX": {
+    "bytes": 58503,
+    "sha256": "2ac8ce92f2cea5c01cdc42fd66b230c717baebb7363f0a035e340abba4cbd12e"
+  },
+  "models/cocsc/oin/oin/beachassault_map.OIX": {
+    "bytes": 2206272,
+    "sha256": "856ba310013d0437204fcbac9134cbfa62852f0047d8193e9faf3da814eb8b38"
+  },
+  "models/cocsc/oin/oin/blockhaus_1.OIX": {
+    "bytes": 40997,
+    "sha256": "a29a3e8a122ed8016680227181b2dc1387a7d2d325ba0aefab7b5c39d72e7580"
+  },
+  "models/cocsc/oin/oin/blockhaus_map.OIX": {
+    "bytes": 3435565,
+    "sha256": "f5b94cd0ca1d33ed65512f835a9ce8f3b16c7ab8e7a18992a0a087d604618fd5"
+  },
+  "models/cocsc/oin/oin/bridgetoofar_1.OIX": {
+    "bytes": 106421,
+    "sha256": "974be7905df17602d554168bd023b682b2a0af8ac89f3d08f726d3d692a1d820"
+  },
+  "models/cocsc/oin/oin/bridgetoofar_2.OIX": {
+    "bytes": 47780,
+    "sha256": "1ff67e86b4d2260a6ce20eb257d8850dba010b914160e1f7f48648f13686aa45"
+  },
+  "models/cocsc/oin/oin/bridgetoofar_3.OIX": {
+    "bytes": 47780,
+    "sha256": "5d01239c9afbfd006729fe318241213aafe4f74a990debad968c44c9606b2c2a"
+  },
+  "models/cocsc/oin/oin/bridgetoofar_4.OIX": {
+    "bytes": 51117,
+    "sha256": "1e9f4c83437976113722652a9282fa712c18f66df8e73ce437cc24656fc831bf"
+  },
+  "models/cocsc/oin/oin/bridgetoofar_map.OIX": {
+    "bytes": 1917595,
+    "sha256": "b00c252dcf8e08e3743de57465014867dec2c2ba5a6a189c8f69708a7498230f"
+  },
+  "models/cocsc/oin/oin/Chateau_1.OIX": {
+    "bytes": 38779,
+    "sha256": "ee63a7255753e4cc2bd636fb2dda9e0ccb07e4c4bcb63e0737f7feb3022a9538"
+  },
+  "models/cocsc/oin/oin/Chateau_map.OIX": {
+    "bytes": 695997,
+    "sha256": "4cba9dfeeee8a7b564329af884f060815186dc8b3454ed16c6e210bad174d1ee"
+  },
+  "models/cocsc/oin/oin/chv_1.OIX": {
+    "bytes": 70005,
+    "sha256": "c3f707fe865549578b3aeaaf5c420439e3265cfb334cb2b8acc3e98dbf139e54"
+  },
+  "models/cocsc/oin/oin/chv_map.OIX": {
+    "bytes": 977461,
+    "sha256": "f5fec557ab4edc3a684a17e82d3d95feb2700a3de05095c8092893c099e42c3a"
+  },
+  "models/cocsc/oin/oin/CMBTPTRL_1.OIX": {
+    "bytes": 91686,
+    "sha256": "32006aed3d9f8e92fe29b6ce26968b71537ffc45a7b73222c54975d10e53c5e0"
+  },
+  "models/cocsc/oin/oin/CMBTPTRL_2.OIX": {
+    "bytes": 81974,
+    "sha256": "f01a5879582ae4c07831e48ecaf0f607a9053bf6f1a9b290fa889502db01bac1"
+  },
+  "models/cocsc/oin/oin/CMBTPTRL_map.OIX": {
+    "bytes": 653752,
+    "sha256": "02f3b8f31fcbd0dbdafbd6077dd973d10f58d2f40d3b3558ad9db7a53fad13cc"
+  },
+  "models/cocsc/oin/oin/CNTRATK_1.OIX": {
+    "bytes": 114441,
+    "sha256": "ec3ad906ee4bc1b47f896ff44db5fc398e3666cd64137841b1a67ba0d919db85"
+  },
+  "models/cocsc/oin/oin/CNTRATK_2.OIX": {
+    "bytes": 107443,
+    "sha256": "213ef43e4132000279fadce9d1d8f6ee88bbf1b608bcf782712c20ee0c058831"
+  },
+  "models/cocsc/oin/oin/CNTRATK_map.OIX": {
+    "bytes": 657072,
+    "sha256": "d41d6b6b0e3a66944e94b9ab5b725b41c42935fe2a8a87b26a6adfd2d4594879"
+  },
+  "models/cocsc/oin/oin/concen_1.OIX": {
+    "bytes": 53613,
+    "sha256": "a7f9e045e206bccb56c39b2b992b43ee30cfded7368265f92465ee22cade67f2"
+  },
+  "models/cocsc/oin/oin/concen_2.OIX": {
+    "bytes": 53613,
+    "sha256": "1e72f7df5f9d29fa606a276a345eb7a9b24af822634a1ef52ae274133bc2e6f9"
+  },
+  "models/cocsc/oin/oin/concen_map.OIX": {
+    "bytes": 828705,
+    "sha256": "11a8d0065b8fb6a45858bfd67f3f0d054a17c4e02585e8f86b313c0cf06a8606"
+  },
+  "models/cocsc/oin/oin/CrucifixHill_1.OIX": {
+    "bytes": 44245,
+    "sha256": "fb79775c1f04fd5afa707047f523c55113bcf2824e8c069d4fbcfe30d695c5a0"
+  },
+  "models/cocsc/oin/oin/CrucifixHill_map.OIX": {
+    "bytes": 976330,
+    "sha256": "0177a37bc50e1472036ab529771e10ac6c09aa27061c47e0e7ff9af6756fb0c9"
+  },
+  "models/cocsc/oin/oin/ff_1.OIX": {
+    "bytes": 72302,
+    "sha256": "fe95d26d78d2487b4f9bcf6b9cfd13b4d27264a607797f735e0e404db7b0fc4b"
+  },
+  "models/cocsc/oin/oin/ff_map.OIX": {
+    "bytes": 804757,
+    "sha256": "9a650bfe368eef190439612601748ecc366d577b0f448f4acbb7f1047722d037"
+  },
+  "models/cocsc/oin/oin/fmft2_1.OIX": {
+    "bytes": 112856,
+    "sha256": "fc301fb33fe0b96b22e5f8b56e5e8f2cff3c8226ae94ba414e3fe6bb4e5c42bf"
+  },
+  "models/cocsc/oin/oin/fmft2_map.OIX": {
+    "bytes": 724735,
+    "sha256": "a3d227e02e13e51a6514196a8f188d18e5d9262fb35943802659670cf039001f"
+  },
+  "models/cocsc/oin/oin/fmft_1.OIX": {
+    "bytes": 109432,
+    "sha256": "150743dc25972dcf9809b4f7f186b99cef71a5f09d8cc6d1d9d2bcb5dc95ca75"
+  },
+  "models/cocsc/oin/oin/fmft_map.OIX": {
+    "bytes": 806178,
+    "sha256": "799fec658be7c8944fa373afb363aa1be9816cd1a2b4905a39c93b4a3f97b93b"
+  },
+  "models/cocsc/oin/oin/fores_1.OIX": {
+    "bytes": 41101,
+    "sha256": "f3967d9f8b317d6fe26024f609d42c96f54b6856ad3eb54ca906b3a8d5ed7a85"
+  },
+  "models/cocsc/oin/oin/fores_map.OIX": {
+    "bytes": 611454,
+    "sha256": "7eb7c510f8c3ae539b1f158a6b775807e6d40dd73786a6bd81fcb55689e6f836"
+  },
+  "models/cocsc/oin/oin/fort_1.OIX": {
+    "bytes": 53162,
+    "sha256": "e9619ee5c773fb84d5624db81b6451430036151baf6476497ad0e4f7e573bac5"
+  },
+  "models/cocsc/oin/oin/fort_2.OIX": {
+    "bytes": 38076,
+    "sha256": "9248550f00c705cb5c910b5575bb263daaafbfdc512ff0d444f44a08b538c8a0"
+  },
+  "models/cocsc/oin/oin/fort_3.OIX": {
+    "bytes": 38126,
+    "sha256": "2c03af4a7b1c58907f3e4227c3d09c03e8a59acafde7ddf5e783c562f52b62b8"
+  },
+  "models/cocsc/oin/oin/fort_4.OIX": {
+    "bytes": 35417,
+    "sha256": "967dbb47fd77ed92dc077b4b23a70ade0dc09c19d03aa5ac0b1572e5372ab49c"
+  },
+  "models/cocsc/oin/oin/fort_5.OIX": {
+    "bytes": 38144,
+    "sha256": "7c9c174657b6f21108f123eb1717b0f2fa68ad4105809102b2ee40bffeead13f"
+  },
+  "models/cocsc/oin/oin/fort_map.OIX": {
+    "bytes": 1487448,
+    "sha256": "e853d757d824da4301ea22a204ede98ba3c4cff6bde53d16013b20e7f9076164"
+  },
+  "models/cocsc/oin/oin/foyer_1.OIX": {
+    "bytes": 81203,
+    "sha256": "b6fa12591d7a19b126e66b84713ce75519f893896ef99a367044f43f06d5c7ae"
+  },
+  "models/cocsc/oin/oin/foyer_map.OIX": {
+    "bytes": 801705,
+    "sha256": "159bcc2ba74c4b02dc87f6a76fea01ac9e33dbe5348f4232ce3ccf9dbb4f2db7"
+  },
+  "models/cocsc/oin/oin/frmft1_aw1.OIX": {
+    "bytes": 1040,
+    "sha256": "5223b946cef79a33e6d0560c208388d76d71956ea8c7e9d167c9dd48edbc795a"
+  },
+  "models/cocsc/oin/oin/frmft1_gw1.OIX": {
+    "bytes": 1089,
+    "sha256": "9744f95c37f4c40e498bc9de63c18a63ea87b10ceed652419a648334f6d96f63"
+  },
+  "models/cocsc/oin/oin/frmft_1.OIX": {
+    "bytes": 109491,
+    "sha256": "2f52b4d8bffab9dfdcf3da472bd7452c703db0c90c00f1f19aa5f3b1da1e644e"
+  },
+  "models/cocsc/oin/oin/frmft_map.OIX": {
+    "bytes": 806182,
+    "sha256": "c37fbb6996a8b5a96ab4f3c1e9e2f825ac800a4a8fba919414c6ed43e9840b9e"
+  },
+  "models/cocsc/oin/oin/FRNTASLT_1.OIX": {
+    "bytes": 104791,
+    "sha256": "74d05f78e321369b124fa5963d840a820c3aa970f12794bf332f88283dd520a2"
+  },
+  "models/cocsc/oin/oin/FRNTASLT_map.OIX": {
+    "bytes": 1884495,
+    "sha256": "fef04785b65954b9468f4062cd3ee5462bc79dc6965bf35de308f971ae671e83"
+  },
+  "models/cocsc/oin/oin/FRONT_1.OIX": {
+    "bytes": 156609,
+    "sha256": "978b3ee325005e2fbe9deaa41ae766ae44536cff38938fa7831fdb553fe77db2"
+  },
+  "models/cocsc/oin/oin/FRONT_2.OIX": {
+    "bytes": 139103,
+    "sha256": "6a31374b06cc13f0157db91a6632f180014c85c813da4d5e7aa66f98539322b0"
+  },
+  "models/cocsc/oin/oin/FRONT_map.OIX": {
+    "bytes": 1884499,
+    "sha256": "25928241831d2fa821ad4c03c57af606c2577389df4424e8b4982f59eb162bc3"
+  },
+  "models/cocsc/oin/oin/gehq_1.OIX": {
+    "bytes": 35597,
+    "sha256": "ba7ee7bafdca41a7fa511dbd6dd3fb7c8425b57ab3870318f4ea603241b5c501"
+  },
+  "models/cocsc/oin/oin/gehq_map.OIX": {
+    "bytes": 1005964,
+    "sha256": "b55afecf85945506d6d8e54ad27c92f0ab02ae083e8e8fb0b25bef76650d32c6"
+  },
+  "models/cocsc/oin/oin/germhq_1.OIX": {
+    "bytes": 110259,
+    "sha256": "3a93ceb518ec71f1c0d686e36bffaa7c00c2794759216804da4d157a3a8e8fb2"
+  },
+  "models/cocsc/oin/oin/germhq_map.OIX": {
+    "bytes": 1157365,
+    "sha256": "cb334eaa3aea80ab52cd85e7d9d76f09bfbf3fec41ec118ff88c0cf0856d18dc"
+  },
+  "models/cocsc/oin/oin/gts_1.OIX": {
+    "bytes": 66318,
+    "sha256": "55f94e5bcc484d4c82238f77c0ad667c4940a435f76a7f71f9be1ddab22d178d"
+  },
+  "models/cocsc/oin/oin/gts_map.OIX": {
+    "bytes": 1359444,
+    "sha256": "e75f45717c0d071a438f7336984b433880c113eea56570841fb7fd32f7c667c4"
+  },
+  "models/cocsc/oin/oin/hldlne_1.OIX": {
+    "bytes": 159940,
+    "sha256": "70639faafec2d0adbbc2f7fea57317451aa53f8b4dfcfe3e4a719cf0ecc4f156"
+  },
+  "models/cocsc/oin/oin/hldlne_2.OIX": {
+    "bytes": 159934,
+    "sha256": "082d1c3aff0ca312e5ba3637b81fa996260598a860b422366e2cee8b223096b1"
+  },
+  "models/cocsc/oin/oin/hldlne_map.OIX": {
+    "bytes": 1069847,
+    "sha256": "9a96312fbb620c3cba581efa9f9a715871deabdda8703f2afe3aaa6bd248fac8"
+  },
+  "models/cocsc/oin/oin/hlne_1.OIX": {
+    "bytes": 161060,
+    "sha256": "c7998139d6aa1e82d34fd416035296861b4736e951478020d28e622c0258c377"
+  },
+  "models/cocsc/oin/oin/hlne_map.OIX": {
+    "bytes": 1179598,
+    "sha256": "ebb646ab7923b683c00cbf8a007520020e195bdbe8bef5d7c94784585eaef032"
+  },
+  "models/cocsc/oin/oin/hse_1.OIX": {
+    "bytes": 74759,
+    "sha256": "86a47cbb97bb660eabe8e97f729cb0fdd36e9eac3209eee526282d8bca92ac02"
+  },
+  "models/cocsc/oin/oin/hse_2.OIX": {
+    "bytes": 78821,
+    "sha256": "cf7202a251df22c5481a368229e8f04fc26e0c50720df0133a6462a8612ddd48"
+  },
+  "models/cocsc/oin/oin/hse_map.OIX": {
+    "bytes": 772565,
+    "sha256": "a3fcc7c0ff69542574baaf002f00815a81c631493a6d31f0d88d6802a473772b"
+  },
+  "models/cocsc/oin/oin/ide_1.OIX": {
+    "bytes": 34461,
+    "sha256": "5146289140abd4b5553ca88a81e708011d2efbccc4858217fe4eac094b45397b"
+  },
+  "models/cocsc/oin/oin/ide_map.OIX": {
+    "bytes": 1126264,
+    "sha256": "e9f8212d12795c24ad867c6af37240693ebd5ac5d0ea02c3ec61f4c9f5ea6701"
+  },
+  "models/cocsc/oin/oin/iso_1.OIX": {
+    "bytes": 67739,
+    "sha256": "eda9f4671fd4e2ea02e818b8483e0190e094d11550bddc52055c0307f81101a4"
+  },
+  "models/cocsc/oin/oin/iso_2.OIX": {
+    "bytes": 76123,
+    "sha256": "1a96fb69d7f9988c7f6c6342a4a1814e63858c0a50906be933306245c411999e"
+  },
+  "models/cocsc/oin/oin/iso_map.OIX": {
+    "bytes": 3243472,
+    "sha256": "08b2eadc70b32d61630439d80810f6aa34be379389dc5c01660872b0ec4e9de8"
+  },
+  "models/cocsc/oin/oin/isolated_1.OIX": {
+    "bytes": 98459,
+    "sha256": "819b54300145d6fec43720a7ce69f81694e8cd9985fbedc179ccac9e9a3c620f"
+  },
+  "models/cocsc/oin/oin/isolated_2.OIX": {
+    "bytes": 98401,
+    "sha256": "e7e94b17300285916fd702029fe1370b2388e298d93e2c36396139672862e7f7"
+  },
+  "models/cocsc/oin/oin/isolated_3.OIX": {
+    "bytes": 100841,
+    "sha256": "019e6f2da6bf93bd575cbf6aa17af542f57fb0d6ea007e2ef5ff1690d1fc6836"
+  },
+  "models/cocsc/oin/oin/isolated_4.OIX": {
+    "bytes": 100903,
+    "sha256": "e5bff8fcf174b16a51aa8feb478db8244e3c07907edddd8078f85448a6ff3cb5"
+  },
+  "models/cocsc/oin/oin/isolated_map.OIX": {
+    "bytes": 3243472,
+    "sha256": "08b2eadc70b32d61630439d80810f6aa34be379389dc5c01660872b0ec4e9de8"
+  },
+  "models/cocsc/oin/oin/kmp_1.OIX": {
+    "bytes": 69917,
+    "sha256": "0fed83a6f55d863e4315283bafbc5a116df700b5ca48390ccc4a25ee1bb3c12d"
+  },
+  "models/cocsc/oin/oin/kmp_map.OIX": {
+    "bytes": 1006639,
+    "sha256": "a839cab53619f12bf4b7b3e70c3a7534e4831138be992a0e4e6bf470e61474b8"
+  },
+  "models/cocsc/oin/oin/krf_1.OIX": {
+    "bytes": 67583,
+    "sha256": "85613e721ac40a2287ff2cf94321d5424ad368a2c9aee9931defcb93cd929a7d"
+  },
+  "models/cocsc/oin/oin/krf_map.OIX": {
+    "bytes": 1008973,
+    "sha256": "9ec8f336593c877b17d10ac5d41ef5d783c98abd6748cd8fdc4691e665ff0fcf"
+  },
+  "models/cocsc/oin/oin/krkmp_1.OIX": {
+    "bytes": 36523,
+    "sha256": "d60f9983fb440ab22a4be7b909d31604dad35578195ffe2fe1656eb2ed765938"
+  },
+  "models/cocsc/oin/oin/krkmp_2.OIX": {
+    "bytes": 39300,
+    "sha256": "99ed730f4d480e5c5a5d3370a1b82dc40a7bf01be8536e1156bbc83f9d02bfcb"
+  },
+  "models/cocsc/oin/oin/krkmp_map.OIX": {
+    "bytes": 1002671,
+    "sha256": "867e37dba3e1ef1110e1eeec13d5ff9703db6ffd3b10cb25d9878948837de82f"
+  },
+  "models/cocsc/oin/oin/Malmedy_1.OIX": {
+    "bytes": 53736,
+    "sha256": "e86756907464a0d060c092ccff7e71375f899266ccedb6c05bfe8a40c0d17071"
+  },
+  "models/cocsc/oin/oin/Malmedy_map.OIX": {
+    "bytes": 1848117,
+    "sha256": "e99eb0909967f2e6fe21b4c3f83fef95625f28f8e830becefd9f36c50177836d"
+  },
+  "models/cocsc/oin/oin/Maybach_1_1.OIX": {
+    "bytes": 41097,
+    "sha256": "724c79bd1ad19720dcf7ba583c15e0c6cd3afcdea3445f071ea340ce4c6d1de5"
+  },
+  "models/cocsc/oin/oin/Maybach_1_2.OIX": {
+    "bytes": 41097,
+    "sha256": "64cc0876c269fc717618432d38a880f68c7b54f610b300e88a5a7c817fc4d13e"
+  },
+  "models/cocsc/oin/oin/Maybach_1_3.OIX": {
+    "bytes": 41097,
+    "sha256": "e3f0efb5f30e50d2ff49be407afc17f2cedda3737f29d80c881daae161d5c193"
+  },
+  "models/cocsc/oin/oin/Maybach_1_4.OIX": {
+    "bytes": 41097,
+    "sha256": "fc4f0a01723c004eafb02a98af47905b686251ae156b1beca2eb20cfdbb1ded1"
+  },
+  "models/cocsc/oin/oin/Maybach_1_5.OIX": {
+    "bytes": 41097,
+    "sha256": "836408d4f46df08cb66c97cdba3ff46d6425d2fe0ecdd7e5027befa95789e6d5"
+  },
+  "models/cocsc/oin/oin/Maybach_1_6.OIX": {
+    "bytes": 41097,
+    "sha256": "93e2549d05082228bb901bde6939a9e0d51be1400d2a00d83bc0b4e0bd244f8c"
+  },
+  "models/cocsc/oin/oin/Maybach_1_7.OIX": {
+    "bytes": 41097,
+    "sha256": "5da80a0e7ae72dcd8cf8615dc2d1e5be72b4d0d5e50ec11c182c669484a5c768"
+  },
+  "models/cocsc/oin/oin/Maybach_1_8.OIX": {
+    "bytes": 41097,
+    "sha256": "19d7b1e5c3b8297ac14c7e204ec6b9664d9b48272a2b347a55604f7a87e61571"
+  },
+  "models/cocsc/oin/oin/Maybach_1_map.OIX": {
+    "bytes": 1992615,
+    "sha256": "0126c9e629ee38590ebc256d4918a7e6aa3781ec75ebe93dcaef6c98b5690578"
+  },
+  "models/cocsc/oin/oin/Maybach_2_1.OIX": {
+    "bytes": 41109,
+    "sha256": "c3d1c83c9f42ae3a1962d252a872732addf5db12512ddcca796d4e64533fcdb2"
+  },
+  "models/cocsc/oin/oin/Maybach_2_2.OIX": {
+    "bytes": 41109,
+    "sha256": "eadc9fec07e3cc29549f2a024ef919bf77f371530b0efe46b921bf38708781b3"
+  },
+  "models/cocsc/oin/oin/Maybach_2_3.OIX": {
+    "bytes": 41109,
+    "sha256": "1a1a957292bceeafb2c5a2765552f5385ff757f164c930259a73e5a90501a62b"
+  },
+  "models/cocsc/oin/oin/Maybach_2_4.OIX": {
+    "bytes": 41109,
+    "sha256": "2b3fbbd8f989de585b67cff5494094d6b74fb0b592bed236b9ec22b2e0a9aa05"
+  },
+  "models/cocsc/oin/oin/Maybach_2_5.OIX": {
+    "bytes": 41109,
+    "sha256": "9d1c01c09e0c89eccdf7bdc1800157be20e47f396e2b932fc8a808d4ad0567a9"
+  },
+  "models/cocsc/oin/oin/Maybach_2_6.OIX": {
+    "bytes": 41109,
+    "sha256": "dd38ee28ea1a4fadccf7462450090af1c1b12ec6237ce53c28e860c0ea76abcb"
+  },
+  "models/cocsc/oin/oin/Maybach_2_7.OIX": {
+    "bytes": 41109,
+    "sha256": "e209f74fe0b415ade7eba0085afbc29e176adde34794c553c920d64dae74d5e9"
+  },
+  "models/cocsc/oin/oin/Maybach_2_8.OIX": {
+    "bytes": 41109,
+    "sha256": "e2ce55257e673f476750d274894b096fa6b6df0bca8a9b575b0ab901b923744c"
+  },
+  "models/cocsc/oin/oin/Maybach_2_map.OIX": {
+    "bytes": 2716859,
+    "sha256": "ac3158c26ac8904fdcfc4f742058972cc9810d34e38bdb16fd82ec8b987e765e"
+  },
+  "models/cocsc/oin/oin/MEETENGT_1.OIX": {
+    "bytes": 82266,
+    "sha256": "86a887b664dc6b0ca8eeccc32e1354b1432d835c814eaeefa40724b10bd27f34"
+  },
+  "models/cocsc/oin/oin/MEETENGT_map.OIX": {
+    "bytes": 804757,
+    "sha256": "9a650bfe368eef190439612601748ecc366d577b0f448f4acbb7f1047722d037"
+  },
+  "models/cocsc/oin/oin/monastery_1.OIX": {
+    "bytes": 40979,
+    "sha256": "951cd137a6b1024666bfa4c1e2b911097bf7f7f09d00b733b42f44ed7e3325f6"
+  },
+  "models/cocsc/oin/oin/monastery_2.OIX": {
+    "bytes": 40979,
+    "sha256": "027420a38669d205459c5637826dbc824e5aae372f34d18fde87d7a1352bab3b"
+  },
+  "models/cocsc/oin/oin/monastery_3.OIX": {
+    "bytes": 40979,
+    "sha256": "29b376f96740ff99ebbeca01a7115178099a399063d586c7088d96251d10a583"
+  },
+  "models/cocsc/oin/oin/monastery_4.OIX": {
+    "bytes": 40979,
+    "sha256": "bb49f5b95e84b4d619f9da31908981f8b51f7fd79ac423ff4dab801b77f75b51"
+  },
+  "models/cocsc/oin/oin/monastery_map.OIX": {
+    "bytes": 1221120,
+    "sha256": "c574110a919145d96688e1b380e40403e715bdbd797eb2fc8a0d07e7f8df4b03"
+  },
+  "models/cocsc/oin/oin/monte_1.OIX": {
+    "bytes": 36725,
+    "sha256": "df52b7fedc2936be41a65202553b11836f71baaafb2791e65239ee6ffb6d0913"
+  },
+  "models/cocsc/oin/oin/monte_map.OIX": {
+    "bytes": 1191078,
+    "sha256": "257e0423a56cd78a6c9f482473761a9308f770eebc978db7599e6aa69ccbb2e4"
+  },
+  "models/cocsc/oin/oin/mrkt_1.OIX": {
+    "bytes": 35457,
+    "sha256": "d9ccf9b423d23e0d0cf618f9599dc5d4aee8f22dbc829765800285ad23449ad6"
+  },
+  "models/cocsc/oin/oin/mrkt_map.OIX": {
+    "bytes": 645039,
+    "sha256": "17e9368403127d7668b29bfc1bfcf394ece7a1aee0cb2d2d1d0628175758c207"
+  },
+  "models/cocsc/oin/oin/mtg_1.OIX": {
+    "bytes": 74204,
+    "sha256": "2971a18b3532e87d79aecb9299ae57bd3cf35189eef52867e5d38c80bbdf6957"
+  },
+  "models/cocsc/oin/oin/mtg_map.OIX": {
+    "bytes": 804757,
+    "sha256": "9a650bfe368eef190439612601748ecc366d577b0f448f4acbb7f1047722d037"
+  },
+  "models/cocsc/oin/oin/nagrsch_1.OIX": {
+    "bytes": 74892,
+    "sha256": "ab0bb1a72a3892f808d6984822f1ec3918ff78f5cd9782f9a94a9703403c34be"
+  },
+  "models/cocsc/oin/oin/nagrsch_2.OIX": {
+    "bytes": 76631,
+    "sha256": "37070e30e95a362964a1039b800833a879015dcc761aba94bea5decb8add135e"
+  },
+  "models/cocsc/oin/oin/nagrsch_3.OIX": {
+    "bytes": 74778,
+    "sha256": "d08bb4561a779efa77473fbb757db73b5f0921c3d9ada8920ff19cd324788253"
+  },
+  "models/cocsc/oin/oin/nagrsch_map.OIX": {
+    "bytes": 1325276,
+    "sha256": "6e8c1bbd4216a74ac13dac0ed7a6c794c464457cde8748e46cfd142b2bb34f15"
+  },
+  "models/cocsc/oin/oin/nartsrn_1.OIX": {
+    "bytes": 38867,
+    "sha256": "29e929bbf160cc802f3dea3208b0db22d51a95b6147326929d35aa98b3abcce9"
+  },
+  "models/cocsc/oin/oin/nartsrn_2.OIX": {
+    "bytes": 101831,
+    "sha256": "30f64afebf83574946f501f2dc94b25ab40dafa279d210ffff215beb06e84a3f"
+  },
+  "models/cocsc/oin/oin/nartsrn_map.OIX": {
+    "bytes": 893764,
+    "sha256": "eec58b945e8e4e6ecfa2c5515d4afacce4334d5ef254c4035e43619b5e59eae0"
+  },
+  "models/cocsc/oin/oin/nkr_1.OIX": {
+    "bytes": 53851,
+    "sha256": "bdb812ddc7c89dae8a8f232a56d137a61de9111d3e2a2c800eac7c305afb581f"
+  },
+  "models/cocsc/oin/oin/nkr_map.OIX": {
+    "bytes": 735340,
+    "sha256": "84732faa5c21a7dcf8548f89e33599b97479e17b71737c2b0a01bb121b17e94a"
+  },
+  "models/cocsc/oin/oin/nmtg_1.OIX": {
+    "bytes": 79140,
+    "sha256": "d18db3d027088d49daf4df6260e27689894948d5128dc5d6a8cf2e7472eda1ba"
+  },
+  "models/cocsc/oin/oin/nmtg_map.OIX": {
+    "bytes": 724701,
+    "sha256": "d3536b5b6b268a32a4bc55390f978a87ff3cbc234c9d2f3a92b7cfc7302baca2"
+  },
+  "models/cocsc/oin/oin/opttotalize_1.OIX": {
+    "bytes": 43151,
+    "sha256": "e0f641ff109cef666c6b8b5bd9f9f5a53b85d263f9414baccd5cd2a31d131b70"
+  },
+  "models/cocsc/oin/oin/opttotalize_map.OIX": {
+    "bytes": 1174429,
+    "sha256": "739400178b2fb23ffb40fe129d34fe3f72c31f909529293b3ea14392a14260d3"
+  },
+  "models/cocsc/oin/oin/pathw_1.OIX": {
+    "bytes": 86152,
+    "sha256": "e090bd7077f2bee6ad2be9e7032a0f75f40da464a803ad186984c09133dfa146"
+  },
+  "models/cocsc/oin/oin/pathw_map.OIX": {
+    "bytes": 805006,
+    "sha256": "be7b348ecbe71febf34f413d70e460f6b5b70df822d4736888c5b4644d1e00ce"
+  },
+  "models/cocsc/oin/oin/pdh_1.OIX": {
+    "bytes": 34549,
+    "sha256": "f9fc2191d83eed95b6fdfabae6ea69963eb335c889975a8c19210f9e1d808028"
+  },
+  "models/cocsc/oin/oin/pdh_2.OIX": {
+    "bytes": 34501,
+    "sha256": "449f78c4340965170dc5f714340f50a4909b0000670da6ef8cc5be7641ec3f0a"
+  },
+  "models/cocsc/oin/oin/pdh_3.OIX": {
+    "bytes": 34501,
+    "sha256": "48ac1c49428c8dbffdaa2dc065114eb8ec2c7b556c1da7920b6243d23c7cd699"
+  },
+  "models/cocsc/oin/oin/pdh_4.OIX": {
+    "bytes": 34537,
+    "sha256": "ff064fd3ff22b6613559e2562eca93296c87523c543c700b3996efc0903dc8a1"
+  },
+  "models/cocsc/oin/oin/pdh_5.OIX": {
+    "bytes": 34549,
+    "sha256": "4753c3fb309a3e5731039f157c691d07aad8256fad6a24be736a9049935b9ea8"
+  },
+  "models/cocsc/oin/oin/pdh_6.OIX": {
+    "bytes": 34477,
+    "sha256": "c416a6f31b804d6e7dee604e9d9d45a4154e952b1a7a1dacc7d00e9f7b43f8f9"
+  },
+  "models/cocsc/oin/oin/pdh_map.OIX": {
+    "bytes": 2162386,
+    "sha256": "0afbeb5325f62a9a252d3dd3c70fe9309c49d2fabcf03d37430078a8247b07d0"
+  },
+  "models/cocsc/oin/oin/post_1.OIX": {
+    "bytes": 46335,
+    "sha256": "c2dd9e232d932a41f97db38c9f8ddb6dd9d0d31c44b0e075ca3d11006b98563e"
+  },
+  "models/cocsc/oin/oin/post_2.OIX": {
+    "bytes": 46369,
+    "sha256": "021b5920b25c5a348fc575b7e59d26226a563a0b0ee5ff0b6700bd8e859edf28"
+  },
+  "models/cocsc/oin/oin/post_3.OIX": {
+    "bytes": 48567,
+    "sha256": "d303d78d56fa59b38fb49a18b758f3b6c099766a2c0e4bbb50a560b0994563a7"
+  },
+  "models/cocsc/oin/oin/post_4.OIX": {
+    "bytes": 46365,
+    "sha256": "3c902717162488bea95097fe43813c86cd060b6b109e78b67e8bc93f6865fd1d"
+  },
+  "models/cocsc/oin/oin/post_map.OIX": {
+    "bytes": 2488871,
+    "sha256": "0b8abd00674dda7ecbdeec2169ab796c6eb388e924ce68ed725d3e60c9083fc3"
+  },
+  "models/cocsc/oin/oin/pst_1.OIX": {
+    "bytes": 81296,
+    "sha256": "552853f6b85710c7550b2c5e2e55ce4bb6cef2f94566d1c9a506353840054a9f"
+  },
+  "models/cocsc/oin/oin/pst_map.OIX": {
+    "bytes": 772565,
+    "sha256": "a3fcc7c0ff69542574baaf002f00815a81c631493a6d31f0d88d6802a473772b"
+  },
+  "models/cocsc/oin/oin/RCN_1.OIX": {
+    "bytes": 92546,
+    "sha256": "5414e29214d88bd1a0e554485c010f24fed7ee8595297b92fafa846f5dd79888"
+  },
+  "models/cocsc/oin/oin/RCN_map.OIX": {
+    "bytes": 657072,
+    "sha256": "37765ce1c9262ab14cd3d17bd1b9661b096469e347c3b70b5c658efcf64f32dc"
+  },
+  "models/cocsc/oin/oin/rdc_1.OIX": {
+    "bytes": 150213,
+    "sha256": "08b3a1201c2b5067f439ac7959e95db0a4bb6692f3c080060756eb7daad46eba"
+  },
+  "models/cocsc/oin/oin/rdc_map.OIX": {
+    "bytes": 1884499,
+    "sha256": "25928241831d2fa821ad4c03c57af606c2577389df4424e8b4982f59eb162bc3"
+  },
+  "models/cocsc/oin/oin/Rec_1.OIX": {
+    "bytes": 71526,
+    "sha256": "0fa167573e021db56884603dc091f246e60c1bd78bcab1fbc04259780810172f"
+  },
+  "models/cocsc/oin/oin/rec_map.OIX": {
+    "bytes": 657072,
+    "sha256": "37765ce1c9262ab14cd3d17bd1b9661b096469e347c3b70b5c658efcf64f32dc"
+  },
+  "models/cocsc/oin/oin/redsand_1.OIX": {
+    "bytes": 46366,
+    "sha256": "ffd7988ff890823c94c222f09ba4320317ab0446db57408d620a1e26526462e5"
+  },
+  "models/cocsc/oin/oin/redsand_map.OIX": {
+    "bytes": 1009419,
+    "sha256": "156527689c6dcd5d93c323f812fae432aa6fd214200c399828662e902e552349"
+  },
+  "models/cocsc/oin/oin/remagen_1.OIX": {
+    "bytes": 38947,
+    "sha256": "877126cc2c645a43febebc7c27c75861d193c64518d6143c4956b05ba3e208d5"
+  },
+  "models/cocsc/oin/oin/remagen_2.OIX": {
+    "bytes": 38947,
+    "sha256": "40635d2189ce38adf99299ec8c215f7fb26186c71adca2c948c63f88afe8e265"
+  },
+  "models/cocsc/oin/oin/remagen_3.OIX": {
+    "bytes": 38947,
+    "sha256": "0358a24c17c51bd26d41d784b64acaf6eba916a5e4e9d2d7284d381dd381dd99"
+  },
+  "models/cocsc/oin/oin/remagen_4.OIX": {
+    "bytes": 38947,
+    "sha256": "3939d6e75c3407e0216228bfbe2cc939f281bb22b21efe18f9c39e49370d5c4f"
+  },
+  "models/cocsc/oin/oin/remagen_5.OIX": {
+    "bytes": 38947,
+    "sha256": "5ad0486ff49b12c2264a27428e83749bf2b8bd1616ff698513e7b7fe9b9e9262"
+  },
+  "models/cocsc/oin/oin/remagen_6.OIX": {
+    "bytes": 38947,
+    "sha256": "7edf292a1a516b2109f3986f5a076dd47f5c7b006e92376bb526f60428ac7fe3"
+  },
+  "models/cocsc/oin/oin/remagen_7.OIX": {
+    "bytes": 38947,
+    "sha256": "98380d8e5d4ab38e49a1cf07b6bb1ac4218e39566fab1e94a875a1c9d3abce6e"
+  },
+  "models/cocsc/oin/oin/remagen_8.OIX": {
+    "bytes": 38947,
+    "sha256": "08b6b48a3a019e6e1f2bc5d9a35087615b0ed759e32d1fa4aab94ad54b48eb13"
+  },
+  "models/cocsc/oin/oin/remagen_9.OIX": {
+    "bytes": 38947,
+    "sha256": "f63f0e99745a483ebe2b8904beeab4b4d0653c0a753b8470e4d1fe39336d99dd"
+  },
+  "models/cocsc/oin/oin/Remagen_map.OIX": {
+    "bytes": 1754600,
+    "sha256": "dde251cbe21d03dcd899abea6501bc8dc8f3bc564931c048d55cd70b4a553b24"
+  },
+  "models/cocsc/oin/oin/rivest_1.OIX": {
+    "bytes": 65281,
+    "sha256": "724e5270ff4b9ac93da66891f7b99ac34d86aa9dbbdac6958eacdc5f693748ee"
+  },
+  "models/cocsc/oin/oin/rivest_map.OIX": {
+    "bytes": 967681,
+    "sha256": "b10b561394459ec22c27fd01b9c8a11a16a6d1bc4a24095e4438ae3244199d86"
+  },
+  "models/cocsc/oin/oin/roads_1.OIX": {
+    "bytes": 60049,
+    "sha256": "f795a4b58708c2732c85ba43aea96ff6f2b4557a49ee202f1c87f34dec1d235b"
+  },
+  "models/cocsc/oin/oin/roads_map.OIX": {
+    "bytes": 3633981,
+    "sha256": "67f783a8859377f9ce046f925db13d6bf277379c0f7482711257927847f9e75f"
+  },
+  "models/cocsc/oin/oin/rts_1.OIX": {
+    "bytes": 66250,
+    "sha256": "c5ba78a201a5f9dc520f523fa3403cf07cb96fbd4f06549da90e31f8b235c18f"
+  },
+  "models/cocsc/oin/oin/rts_map.OIX": {
+    "bytes": 1325276,
+    "sha256": "6e8c1bbd4216a74ac13dac0ed7a6c794c464457cde8748e46cfd142b2bb34f15"
+  },
+  "models/cocsc/oin/oin/SecureTheEstate_1.OIX": {
+    "bytes": 47545,
+    "sha256": "741b0d64bcb22bbb23338d07263e6fb7221150952ed4ef35ce2061f75243a985"
+  },
+  "models/cocsc/oin/oin/SecureTheEstate_2.OIX": {
+    "bytes": 47753,
+    "sha256": "cbe6c1b188d7e1b732eafa23e52c2e8f1cff33c6bae7c66f5e220eb1cf6e42b7"
+  },
+  "models/cocsc/oin/oin/SecureTheEstate_3.OIX": {
+    "bytes": 47753,
+    "sha256": "a5dfad41116ee624d0fc5e7cf64b0fd28b4dfa35d8ed92a9b905a804b27d55e3"
+  },
+  "models/cocsc/oin/oin/SecureTheEstate_4.OIX": {
+    "bytes": 47735,
+    "sha256": "25185191258a2147c01c71e9d1b70fafc1bd07c4103f1e0e7158fb6fdd36c1d1"
+  },
+  "models/cocsc/oin/oin/SecureTheEstate_Map.OIX": {
+    "bytes": 2891059,
+    "sha256": "23c986ea410d3a12b710b4b4da3c5aaf3c74bc7f026542baae401c585f126d33"
+  },
+  "models/cocsc/oin/oin/sri_1.OIX": {
+    "bytes": 102614,
+    "sha256": "33fa44c9a3f4105e6447fb076752d8c341b7fff50b6f30be0bead777a169c8e2"
+  },
+  "models/cocsc/oin/oin/sri_map.OIX": {
+    "bytes": 806178,
+    "sha256": "799fec658be7c8944fa373afb363aa1be9816cd1a2b4905a39c93b4a3f97b93b"
+  },
+  "models/cocsc/oin/oin/Stalag1_1.OIX": {
+    "bytes": 38899,
+    "sha256": "714b1aa8658c786bc566c02c99ea840a322b1f83c5c0d4852066c81c60d2bccf"
+  },
+  "models/cocsc/oin/oin/stalag1_2.OIX": {
+    "bytes": 38905,
+    "sha256": "112190910e67a36250e2d4cb199c68c0f114587dd54494f067a47aad546bee2e"
+  },
+  "models/cocsc/oin/oin/stalag1_map.OIX": {
+    "bytes": 1349218,
+    "sha256": "ecef0c87878ced3e2424102c29a1f101017d32ae9d375bd2e218460ee955aa6f"
+  },
+  "models/cocsc/oin/oin/stalag2_1.OIX": {
+    "bytes": 38731,
+    "sha256": "3a532947776e4729ed23b13282eb380fc41d2a1c57b0c4c16902d2519d82d733"
+  },
+  "models/cocsc/oin/oin/stalag2_map.OIX": {
+    "bytes": 1356332,
+    "sha256": "4bd488c5c25559ca5bacf6c60b950c05688f9500ddd1b42e6180224d62d8aebb"
+  },
+  "models/cocsc/oin/oin/StoneHouse.OIX": {
+    "bytes": 795634,
+    "sha256": "567d99fd16b955ddba969fae0bb631fc13964fb1dfd502691b8a1781ecee1cc4"
+  },
+  "models/cocsc/oin/oin/StoneHouse_1.OIX": {
+    "bytes": 42259,
+    "sha256": "04983756967101cf53f7885fb5956a18f8c91f66613ad72178f2330a2573744a"
+  },
+  "models/cocsc/oin/oin/StoneHouse_map.OIX": {
+    "bytes": 795634,
+    "sha256": "567d99fd16b955ddba969fae0bb631fc13964fb1dfd502691b8a1781ecee1cc4"
+  },
+  "models/cocsc/oin/oin/StreetFight_1.OIX": {
+    "bytes": 43149,
+    "sha256": "d37a49a4aa6bdc8c383cc654007dff3b590396a6155e79a8946e34e949a45e8c"
+  },
+  "models/cocsc/oin/oin/StreetFight_map.OIX": {
+    "bytes": 2430454,
+    "sha256": "29894d813a5a676dba22923839b3c7694a118570b768d10b12d42f17de50e7cf"
+  },
+  "models/cocsc/oin/oin/subpens_1.OIX": {
+    "bytes": 38897,
+    "sha256": "c4cb4b751668160bd1f7b5378b6b9bf212d92025a67a22707943667e7d04c953"
+  },
+  "models/cocsc/oin/oin/subpens_map.OIX": {
+    "bytes": 1762933,
+    "sha256": "2c71429d2be89fc7adeea3a2ce55962f6e738c23cc593b458824d23f41896dfc"
+  },
+  "models/cocsc/oin/oin/tbighouse_1.OIX": {
+    "bytes": 40993,
+    "sha256": "d683b2e599721cf8d10efe896ffb31dec74b1837326a51d8a56dfaeaa6c12fff"
+  },
+  "models/cocsc/oin/oin/tbighouse_map.OIX": {
+    "bytes": 1386541,
+    "sha256": "3503261eba76b4016985a735854f06a187b6148fc1f0a68404777979d5b6fb27"
+  },
+  "models/cocsc/oin/oin/test_map.OIX": {
+    "bytes": 28253,
+    "sha256": "e7cd2918f0c08c5189f1aea14514e7ffc49f563090b3476fc630b00c7cfa4d9e"
+  },
+  "models/cocsc/oin/oin/TheBunker1_gw1.OIX": {
+    "bytes": 1119,
+    "sha256": "2bf72c1c292427274f1c6db3456476bf4f6e18580f149a49636131ba1cad1bdf"
+  },
+  "models/cocsc/oin/oin/TheBunker_1.OIX": {
+    "bytes": 326055,
+    "sha256": "9934a5d117b92924288bbf1d7e4c3d17589c4e891ddf033fb2c7f620e13e7c4d"
+  },
+  "models/cocsc/oin/oin/TheBunker_map.OIX": {
+    "bytes": 3807324,
+    "sha256": "fe76e9ecf1d77f625ee116e6b8cdc4b5857d4f2f0e0f0b12d9ffc835d5fcdbcc"
+  },
+  "models/cocsc/oin/oin/TheFortress_1.OIX": {
+    "bytes": 43301,
+    "sha256": "da929219c0a54c744c4d4bf92bf0f16b037e547f6e0471ee93b381609710fbc2"
+  },
+  "models/cocsc/oin/oin/TheFortress_map.OIX": {
+    "bytes": 894043,
+    "sha256": "781e52c0f3677564cc9e58d7bbc77487eafecad041aa98be6703951dddfd7af3"
+  },
+  "models/cocsc/oin/oin/third_1.OIX": {
+    "bytes": 203791,
+    "sha256": "62ca62e8cbc033a7d1187ed9d3069a6fc56aeb76387df6719709136a45003bca"
+  },
+  "models/cocsc/oin/oin/third_map.OIX": {
+    "bytes": 3946200,
+    "sha256": "d21bbdc813a0065708157d7bcab4f53a3364e2011cb422104a92aff53ebf6cc3"
+  },
+  "models/cocsc/oin/oin/TightQuarters_1.OIX": {
+    "bytes": 45401,
+    "sha256": "74a3d60347a4907c17cb48094e525fc0699cc84445b5b4f43ea3b867b7dda999"
+  },
+  "models/cocsc/oin/oin/TightQuarters_map.OIX": {
+    "bytes": 631363,
+    "sha256": "84602358e845dfd5fec5a0ad587e8c9a1461ea959347148982722305b83ad61c"
+  },
+  "models/cocsc/oin/oin/tny_1.OIX": {
+    "bytes": 102606,
+    "sha256": "acb36a7a2a2f3b743170c0fdeb60c1b39c1e8cbba5a4867c3236638a0ece120d"
+  },
+  "models/cocsc/oin/oin/tny_map.OIX": {
+    "bytes": 806178,
+    "sha256": "799fec658be7c8944fa373afb363aa1be9816cd1a2b4905a39c93b4a3f97b93b"
+  },
+  "models/cocsc/oin/oin/villa_1.OIX": {
+    "bytes": 36687,
+    "sha256": "b2b9d89d756d53a00171234310a4edd081b33f3cd56104e7d7ba8b4e7e131864"
+  },
+  "models/cocsc/oin/oin/villa_map.OIX": {
+    "bytes": 889002,
+    "sha256": "01aba5e657d2b7f89de7ddde963748c90e8b8b606520246b7083d39c7aa29468"
+  },
+  "models/cocsc/oin/oin/village_1.OIX": {
+    "bytes": 38711,
+    "sha256": "d4c99e8c22814a75ee030064688dcd1667e1b896860104406a6882550ce3e5c8"
+  },
+  "models/cocsc/oin/oin/village_2.OIX": {
+    "bytes": 38741,
+    "sha256": "c64e9f4c41f11353faa18c9a4788e3c2783463c5dd6a5ff9bcfdf1f0cb90df35"
+  },
+  "models/cocsc/oin/oin/village_map.OIX": {
+    "bytes": 890760,
+    "sha256": "5f534796aeaa85e8aaa15149be0fb484f89994d93bb9af1e4883e7ffb5cc2e86"
+  },
+  "models/cocsc/oin/oin/Wereth_1.OIX": {
+    "bytes": 37665,
+    "sha256": "8f7b9cff9123de623de588d5aedab94f7a64bf90b2aa9de1c173efdd6f050c09"
+  },
+  "models/cocsc/oin/oin/Wereth_2.OIX": {
+    "bytes": 37645,
+    "sha256": "9cd8d1e609755b7ee752dcf1a9bc0cf0246d9194b1b093cec564af037cd01b97"
+  },
+  "models/cocsc/oin/oin/Wereth_3.OIX": {
+    "bytes": 37665,
+    "sha256": "d2867c01bb6da471207a66310d6a78ec6d0015ed012b2c982f7aeccb154efb8b"
+  },
+  "models/cocsc/oin/oin/Wereth_4.OIX": {
+    "bytes": 37645,
+    "sha256": "add5c97e0d8bdc7eafeca9b127c1d2727fa725ae0567b2053f6c99562adbee0d"
+  },
+  "models/cocsc/oin/oin/wereth_map.OIX": {
+    "bytes": 1188735,
+    "sha256": "a8dc69576aa43c207e4fcc73a5d1a2ebc06b3fc0d4508ab957d7f75e0c25f9e7"
+  },
+  "models/cocsc/oin/oin/wik_1.OIX": {
+    "bytes": 58028,
+    "sha256": "2de242572b172d355bc1149467c39537866ef290996bec0eca125a0c18dbc735"
+  },
+  "models/cocsc/oin/oin/wik_map.OIX": {
+    "bytes": 1292859,
+    "sha256": "02f617742288ca9dc8e4466b1c57cc1a04fff0d9597038278c7bbf32cd2edd56"
+  },
+  "models/cocsc/oin/oin/wm_1.OIX": {
+    "bytes": 75819,
+    "sha256": "15298703d52ea693eed4cdeccaa110511f212955aeeebf081769171e24a0c73e"
+  },
+  "models/cocsc/oin/oin/wm_map.OIX": {
+    "bytes": 804564,
+    "sha256": "20ce9c088fca7dee5ebdab9bdef9bc8c00a92a414c26fd5470ae83542dd4ce8d"
+  },
+  "models/cocsc/oin/opttotalize_1.OIX": {
+    "bytes": 43151,
+    "sha256": "e0f641ff109cef666c6b8b5bd9f9f5a53b85d263f9414baccd5cd2a31d131b70"
+  },
+  "models/cocsc/oin/opttotalize_map.OIX": {
+    "bytes": 1174429,
+    "sha256": "739400178b2fb23ffb40fe129d34fe3f72c31f909529293b3ea14392a14260d3"
+  },
+  "models/cocsc/oin/pathw_1.OIX": {
+    "bytes": 86152,
+    "sha256": "e090bd7077f2bee6ad2be9e7032a0f75f40da464a803ad186984c09133dfa146"
+  },
+  "models/cocsc/oin/pathw_map.OIX": {
+    "bytes": 805006,
+    "sha256": "be7b348ecbe71febf34f413d70e460f6b5b70df822d4736888c5b4644d1e00ce"
+  },
+  "models/cocsc/oin/pdh_1.OIX": {
+    "bytes": 34549,
+    "sha256": "f9fc2191d83eed95b6fdfabae6ea69963eb335c889975a8c19210f9e1d808028"
+  },
+  "models/cocsc/oin/pdh_2.OIX": {
+    "bytes": 34501,
+    "sha256": "449f78c4340965170dc5f714340f50a4909b0000670da6ef8cc5be7641ec3f0a"
+  },
+  "models/cocsc/oin/pdh_3.OIX": {
+    "bytes": 34501,
+    "sha256": "48ac1c49428c8dbffdaa2dc065114eb8ec2c7b556c1da7920b6243d23c7cd699"
+  },
+  "models/cocsc/oin/pdh_4.OIX": {
+    "bytes": 34537,
+    "sha256": "ff064fd3ff22b6613559e2562eca93296c87523c543c700b3996efc0903dc8a1"
+  },
+  "models/cocsc/oin/pdh_5.OIX": {
+    "bytes": 34549,
+    "sha256": "4753c3fb309a3e5731039f157c691d07aad8256fad6a24be736a9049935b9ea8"
+  },
+  "models/cocsc/oin/pdh_6.OIX": {
+    "bytes": 34477,
+    "sha256": "c416a6f31b804d6e7dee604e9d9d45a4154e952b1a7a1dacc7d00e9f7b43f8f9"
+  },
+  "models/cocsc/oin/pdh_map.OIX": {
+    "bytes": 2162386,
+    "sha256": "0afbeb5325f62a9a252d3dd3c70fe9309c49d2fabcf03d37430078a8247b07d0"
+  },
+  "models/cocsc/oin/post_1.OIX": {
+    "bytes": 46335,
+    "sha256": "c2dd9e232d932a41f97db38c9f8ddb6dd9d0d31c44b0e075ca3d11006b98563e"
+  },
+  "models/cocsc/oin/post_2.OIX": {
+    "bytes": 46369,
+    "sha256": "021b5920b25c5a348fc575b7e59d26226a563a0b0ee5ff0b6700bd8e859edf28"
+  },
+  "models/cocsc/oin/post_3.OIX": {
+    "bytes": 48567,
+    "sha256": "d303d78d56fa59b38fb49a18b758f3b6c099766a2c0e4bbb50a560b0994563a7"
+  },
+  "models/cocsc/oin/post_4.OIX": {
+    "bytes": 46365,
+    "sha256": "3c902717162488bea95097fe43813c86cd060b6b109e78b67e8bc93f6865fd1d"
+  },
+  "models/cocsc/oin/post_map.OIX": {
+    "bytes": 2488871,
+    "sha256": "0b8abd00674dda7ecbdeec2169ab796c6eb388e924ce68ed725d3e60c9083fc3"
+  },
+  "models/cocsc/oin/pst_1.OIX": {
+    "bytes": 81296,
+    "sha256": "552853f6b85710c7550b2c5e2e55ce4bb6cef2f94566d1c9a506353840054a9f"
+  },
+  "models/cocsc/oin/pst_map.OIX": {
+    "bytes": 772565,
+    "sha256": "a3fcc7c0ff69542574baaf002f00815a81c631493a6d31f0d88d6802a473772b"
+  },
+  "models/cocsc/oin/rdc_1.OIX": {
+    "bytes": 150213,
+    "sha256": "08b3a1201c2b5067f439ac7959e95db0a4bb6692f3c080060756eb7daad46eba"
+  },
+  "models/cocsc/oin/rdc_map.OIX": {
+    "bytes": 1884499,
+    "sha256": "25928241831d2fa821ad4c03c57af606c2577389df4424e8b4982f59eb162bc3"
+  },
+  "models/cocsc/oin/ReadMe.txt": {
+    "bytes": 654,
+    "sha256": "9f0f13856dd266b42cfe6523c0e1f69f8743fe0aee5f3461b8e4674edde3310a"
+  },
+  "models/cocsc/oin/Rec_1.OIX": {
+    "bytes": 71526,
+    "sha256": "0fa167573e021db56884603dc091f246e60c1bd78bcab1fbc04259780810172f"
+  },
+  "models/cocsc/oin/rec_map.OIX": {
+    "bytes": 657072,
+    "sha256": "37765ce1c9262ab14cd3d17bd1b9661b096469e347c3b70b5c658efcf64f32dc"
+  },
+  "models/cocsc/oin/redsand_1.OIX": {
+    "bytes": 46366,
+    "sha256": "ffd7988ff890823c94c222f09ba4320317ab0446db57408d620a1e26526462e5"
+  },
+  "models/cocsc/oin/redsand_map.OIX": {
+    "bytes": 1009419,
+    "sha256": "156527689c6dcd5d93c323f812fae432aa6fd214200c399828662e902e552349"
+  },
+  "models/cocsc/oin/rivest_1.OIX": {
+    "bytes": 65281,
+    "sha256": "724e5270ff4b9ac93da66891f7b99ac34d86aa9dbbdac6958eacdc5f693748ee"
+  },
+  "models/cocsc/oin/rivest_map.OIX": {
+    "bytes": 967681,
+    "sha256": "b10b561394459ec22c27fd01b9c8a11a16a6d1bc4a24095e4438ae3244199d86"
+  },
+  "models/cocsc/oin/roads_1.OIX": {
+    "bytes": 60049,
+    "sha256": "f795a4b58708c2732c85ba43aea96ff6f2b4557a49ee202f1c87f34dec1d235b"
+  },
+  "models/cocsc/oin/roads_map.OIX": {
+    "bytes": 3633981,
+    "sha256": "67f783a8859377f9ce046f925db13d6bf277379c0f7482711257927847f9e75f"
+  },
+  "models/cocsc/oin/rts_1.OIX": {
+    "bytes": 66250,
+    "sha256": "c5ba78a201a5f9dc520f523fa3403cf07cb96fbd4f06549da90e31f8b235c18f"
+  },
+  "models/cocsc/oin/rts_map.OIX": {
+    "bytes": 1325276,
+    "sha256": "6e8c1bbd4216a74ac13dac0ed7a6c794c464457cde8748e46cfd142b2bb34f15"
+  },
+  "models/cocsc/oin/SecureTheEstate_1.OIX": {
+    "bytes": 47545,
+    "sha256": "741b0d64bcb22bbb23338d07263e6fb7221150952ed4ef35ce2061f75243a985"
+  },
+  "models/cocsc/oin/SecureTheEstate_2.OIX": {
+    "bytes": 47753,
+    "sha256": "cbe6c1b188d7e1b732eafa23e52c2e8f1cff33c6bae7c66f5e220eb1cf6e42b7"
+  },
+  "models/cocsc/oin/SecureTheEstate_3.OIX": {
+    "bytes": 47753,
+    "sha256": "a5dfad41116ee624d0fc5e7cf64b0fd28b4dfa35d8ed92a9b905a804b27d55e3"
+  },
+  "models/cocsc/oin/SecureTheEstate_4.OIX": {
+    "bytes": 47735,
+    "sha256": "25185191258a2147c01c71e9d1b70fafc1bd07c4103f1e0e7158fb6fdd36c1d1"
+  },
+  "models/cocsc/oin/SecureTheEstate_Map.OIX": {
+    "bytes": 2891059,
+    "sha256": "23c986ea410d3a12b710b4b4da3c5aaf3c74bc7f026542baae401c585f126d33"
+  },
+  "models/cocsc/oin/sri_1.OIX": {
+    "bytes": 102614,
+    "sha256": "33fa44c9a3f4105e6447fb076752d8c341b7fff50b6f30be0bead777a169c8e2"
+  },
+  "models/cocsc/oin/sri_map.OIX": {
+    "bytes": 806178,
+    "sha256": "799fec658be7c8944fa373afb363aa1be9816cd1a2b4905a39c93b4a3f97b93b"
+  },
+  "models/cocsc/oin/Stalag1_1.OIX": {
+    "bytes": 38899,
+    "sha256": "714b1aa8658c786bc566c02c99ea840a322b1f83c5c0d4852066c81c60d2bccf"
+  },
+  "models/cocsc/oin/stalag1_2.OIX": {
+    "bytes": 38905,
+    "sha256": "112190910e67a36250e2d4cb199c68c0f114587dd54494f067a47aad546bee2e"
+  },
+  "models/cocsc/oin/stalag1_map.OIX": {
+    "bytes": 1349218,
+    "sha256": "ecef0c87878ced3e2424102c29a1f101017d32ae9d375bd2e218460ee955aa6f"
+  },
+  "models/cocsc/oin/stalag2_1.OIX": {
+    "bytes": 38731,
+    "sha256": "3a532947776e4729ed23b13282eb380fc41d2a1c57b0c4c16902d2519d82d733"
+  },
+  "models/cocsc/oin/stalag2_map.OIX": {
+    "bytes": 1356332,
+    "sha256": "4bd488c5c25559ca5bacf6c60b950c05688f9500ddd1b42e6180224d62d8aebb"
+  },
+  "models/cocsc/oin/StreetFight_1.OIX": {
+    "bytes": 43149,
+    "sha256": "d37a49a4aa6bdc8c383cc654007dff3b590396a6155e79a8946e34e949a45e8c"
+  },
+  "models/cocsc/oin/StreetFight_map.OIX": {
+    "bytes": 2430454,
+    "sha256": "29894d813a5a676dba22923839b3c7694a118570b768d10b12d42f17de50e7cf"
+  },
+  "models/cocsc/oin/subpens_1.OIX": {
+    "bytes": 38897,
+    "sha256": "c4cb4b751668160bd1f7b5378b6b9bf212d92025a67a22707943667e7d04c953"
+  },
+  "models/cocsc/oin/subpens_map.OIX": {
+    "bytes": 1762933,
+    "sha256": "2c71429d2be89fc7adeea3a2ce55962f6e738c23cc593b458824d23f41896dfc"
+  },
+  "models/cocsc/oin/tbighouse_1.OIX": {
+    "bytes": 40993,
+    "sha256": "d683b2e599721cf8d10efe896ffb31dec74b1837326a51d8a56dfaeaa6c12fff"
+  },
+  "models/cocsc/oin/tbighouse_map.OIX": {
+    "bytes": 1386541,
+    "sha256": "3503261eba76b4016985a735854f06a187b6148fc1f0a68404777979d5b6fb27"
+  },
+  "models/cocsc/oin/TheBunker_1.OIX": {
+    "bytes": 326055,
+    "sha256": "9934a5d117b92924288bbf1d7e4c3d17589c4e891ddf033fb2c7f620e13e7c4d"
+  },
+  "models/cocsc/oin/TheBunker_map.OIX": {
+    "bytes": 3807324,
+    "sha256": "fe76e9ecf1d77f625ee116e6b8cdc4b5857d4f2f0e0f0b12d9ffc835d5fcdbcc"
+  },
+  "models/cocsc/oin/TheFortress_1.OIX": {
+    "bytes": 43301,
+    "sha256": "da929219c0a54c744c4d4bf92bf0f16b037e547f6e0471ee93b381609710fbc2"
+  },
+  "models/cocsc/oin/TheFortress_map.OIX": {
+    "bytes": 894043,
+    "sha256": "781e52c0f3677564cc9e58d7bbc77487eafecad041aa98be6703951dddfd7af3"
+  },
+  "models/cocsc/oin/third_1.OIX": {
+    "bytes": 203791,
+    "sha256": "62ca62e8cbc033a7d1187ed9d3069a6fc56aeb76387df6719709136a45003bca"
+  },
+  "models/cocsc/oin/third_map.OIX": {
+    "bytes": 3946200,
+    "sha256": "d21bbdc813a0065708157d7bcab4f53a3364e2011cb422104a92aff53ebf6cc3"
+  },
+  "models/cocsc/oin/TightQuarters_1.OIX": {
+    "bytes": 45401,
+    "sha256": "74a3d60347a4907c17cb48094e525fc0699cc84445b5b4f43ea3b867b7dda999"
+  },
+  "models/cocsc/oin/TightQuarters_map.OIX": {
+    "bytes": 631363,
+    "sha256": "84602358e845dfd5fec5a0ad587e8c9a1461ea959347148982722305b83ad61c"
+  },
+  "models/cocsc/oin/tny_1.OIX": {
+    "bytes": 102606,
+    "sha256": "acb36a7a2a2f3b743170c0fdeb60c1b39c1e8cbba5a4867c3236638a0ece120d"
+  },
+  "models/cocsc/oin/tny_map.OIX": {
+    "bytes": 806178,
+    "sha256": "799fec658be7c8944fa373afb363aa1be9816cd1a2b4905a39c93b4a3f97b93b"
+  },
+  "models/cocsc/oin/villa_1.OIX": {
+    "bytes": 36687,
+    "sha256": "b2b9d89d756d53a00171234310a4edd081b33f3cd56104e7d7ba8b4e7e131864"
+  },
+  "models/cocsc/oin/villa_map.OIX": {
+    "bytes": 889002,
+    "sha256": "01aba5e657d2b7f89de7ddde963748c90e8b8b606520246b7083d39c7aa29468"
+  },
+  "models/cocsc/oin/village_1.OIX": {
+    "bytes": 38711,
+    "sha256": "d4c99e8c22814a75ee030064688dcd1667e1b896860104406a6882550ce3e5c8"
+  },
+  "models/cocsc/oin/village_2.OIX": {
+    "bytes": 38741,
+    "sha256": "c64e9f4c41f11353faa18c9a4788e3c2783463c5dd6a5ff9bcfdf1f0cb90df35"
+  },
+  "models/cocsc/oin/village_map.OIX": {
+    "bytes": 890760,
+    "sha256": "5f534796aeaa85e8aaa15149be0fb484f89994d93bb9af1e4883e7ffb5cc2e86"
+  },
+  "models/cocsc/oin/Wereth_1.OIX": {
+    "bytes": 37665,
+    "sha256": "8f7b9cff9123de623de588d5aedab94f7a64bf90b2aa9de1c173efdd6f050c09"
+  },
+  "models/cocsc/oin/Wereth_2.OIX": {
+    "bytes": 37645,
+    "sha256": "9cd8d1e609755b7ee752dcf1a9bc0cf0246d9194b1b093cec564af037cd01b97"
+  },
+  "models/cocsc/oin/Wereth_3.OIX": {
+    "bytes": 37665,
+    "sha256": "d2867c01bb6da471207a66310d6a78ec6d0015ed012b2c982f7aeccb154efb8b"
+  },
+  "models/cocsc/oin/Wereth_4.OIX": {
+    "bytes": 37645,
+    "sha256": "add5c97e0d8bdc7eafeca9b127c1d2727fa725ae0567b2053f6c99562adbee0d"
+  },
+  "models/cocsc/oin/wereth_map.OIX": {
+    "bytes": 1188735,
+    "sha256": "a8dc69576aa43c207e4fcc73a5d1a2ebc06b3fc0d4508ab957d7f75e0c25f9e7"
+  },
+  "models/cocsc/oin/wik_1.OIX": {
+    "bytes": 58028,
+    "sha256": "2de242572b172d355bc1149467c39537866ef290996bec0eca125a0c18dbc735"
+  },
+  "models/cocsc/oin/wik_map.OIX": {
+    "bytes": 1292859,
+    "sha256": "02f617742288ca9dc8e4466b1c57cc1a04fff0d9597038278c7bbf32cd2edd56"
+  },
+  "models/cocsc/oin/wm_1.OIX": {
+    "bytes": 75819,
+    "sha256": "15298703d52ea693eed4cdeccaa110511f212955aeeebf081769171e24a0c73e"
+  },
+  "models/cocsc/oin/wm_map.OIX": {
+    "bytes": 804564,
+    "sha256": "20ce9c088fca7dee5ebdab9bdef9bc8c00a92a414c26fd5470ae83542dd4ce8d"
+  },
+  "models/cocsc/sound/granad3.wav": {
+    "bytes": 58952,
+    "sha256": "946cf3891ee64b654b680c07e42d61eccddece5b6c433c2c02a4dc480835ee4c"
+  },
+  "models/cocsc/sound/granad3.wav.ZL": {
+    "bytes": 38464,
+    "sha256": "7178ac0c1528cd50f5125704505a8aaf1270f9bbb06f84a89e0715b4c423f5c9"
+  },
+  "models/cocsc/sound/gun.wav": {
+    "bytes": 17966,
+    "sha256": "5121d5dff6e2f2f746c6b25a809df37a39c289bdb3e9371bda81bfb3069509b3"
+  },
+  "models/cocsc/sound/gun.wav.ZL": {
+    "bytes": 7090,
+    "sha256": "504709ca4d19ae570ea42e26d02e206810d6a389eeba80d71d9586d3eb2d4b77"
+  },
+  "models/cocsc/sound/gun2.wav": {
+    "bytes": 20888,
+    "sha256": "064c0b1e6ca0ef11b7a2a4ca343de933de09adcf71bdf23bef32c12d59c064dc"
+  },
+  "models/cocsc/sound/gun2.wav.ZL": {
+    "bytes": 9434,
+    "sha256": "f275093aa43e92ba7e92e33e22543f74cda05cda0acb90d5643bb3f153098731"
+  },
+  "models/cocsc/sound/mchgun8.wav": {
+    "bytes": 13060,
+    "sha256": "a50ff761b87ac6f46b05a998175e424f689716ed4f81cd8a6da6499c991b2da2"
+  },
+  "models/cocsc/sound/mchgun8.wav.ZL": {
+    "bytes": 6431,
+    "sha256": "8f3922ea5ec8f0149b606b1e5e783516ffa5994fb43be379b58d4c000097bab6"
+  },
+  "models/cocsc/sound/mchgun9.wav": {
+    "bytes": 22268,
+    "sha256": "2e91ba697112f164db2f4e76c45d6ffb3141d66b1bae28411d3193d20f680577"
+  },
+  "models/cocsc/sound/mchgun9.wav.ZL": {
+    "bytes": 13550,
+    "sha256": "6ef50d7ca5467445e089e7711893bb58573fd0adc10409ef0a1af859c33e9fc3"
+  },
+  "models/cocsc/sound/Mdwn.wav": {
+    "bytes": 3724,
+    "sha256": "2722d81a07dd53e9fb2ba79c3737d7ebab16ba98fc5974581bcd589a18f1990a"
+  },
+  "models/cocsc/sound/Mdwn.wav.ZL": {
+    "bytes": 1197,
+    "sha256": "39fe8851e3125cfcb842a62b6dc2f6099437407bfa03e710ef79bd6315d8c2dc"
+  },
+  "models/cocsc/sound/mg34.wav": {
+    "bytes": 34688,
+    "sha256": "73080637640acbcca59d1923be1c551076e401a1492b8cf63d5de4042259037f"
+  },
+  "models/cocsc/sound/mg34.wav.ZL": {
+    "bytes": 21151,
+    "sha256": "ad1608688aa2dc455afd7e97356bae327eae8dc86bdb0ea73cb276bfeae15aa0"
+  },
+  "models/cocsc/sound/Mg42-1.WAV": {
+    "bytes": 21884,
+    "sha256": "434205fac56d8fafe1d5194a30f00bb3f37553552b255ba6facec40379673075"
+  },
+  "models/cocsc/sound/Mg42-1.WAV.ZL": {
+    "bytes": 15214,
+    "sha256": "f7e8fa0facfe2b9d29ed55ba489a0501da4d57bb24cbe744a48c3ecc8c93c089"
+  },
+  "models/cocsc/sound/Mup.wav": {
+    "bytes": 1548,
+    "sha256": "8b3eca5dc458db9f70ff6388ba9c953398e7b214c4ea5413f7d59f3a47ff5b7b"
+  },
+  "models/cocsc/sound/Mup.wav.ZL": {
+    "bytes": 577,
+    "sha256": "66ff2ce643be548c9e71f38c557e8f06d776137744bb4b5330ab310c85aeeb96"
+  },
+  "models/cocsc/sound/scream.wav": {
+    "bytes": 19534,
+    "sha256": "5d42aa0ae1169e2d1adc362a0f1bb26a97eacf0064c9532b864d8a1eb4df0016"
+  },
+  "models/cocsc/sound/scream1.wav": {
+    "bytes": 44090,
+    "sha256": "f4c3c89bef3b204bfedb2b6c88bf103fc17b6b77783d877017c0cfcfcc818f96"
+  },
+  "models/cocsc/sound/scream1.wav.ZL": {
+    "bytes": 21082,
+    "sha256": "a1e03a5335fd43d612ca4c399f4198c26898605889b023299b3f1dd9dbb387f7"
+  },
+  "models/cocsc/sound/scream10.wav": {
+    "bytes": 16570,
+    "sha256": "92ee60e6ac7010992dabd2ecc4e5559bc1087e9a12fb37e23e2030fd4dd5a342"
+  },
+  "models/cocsc/sound/scream10.wav.ZL": {
+    "bytes": 8011,
+    "sha256": "0ef3778145c17c2727f78226fe34e39bfcbcb6b03bdf3e0c0103a3833d166132"
+  },
+  "models/cocsc/sound/scream11.wav": {
+    "bytes": 30330,
+    "sha256": "9c3d9d3d01116b431125663d9ee8e9edd1d5482c951f42d2264dee3eb8e1cab8"
+  },
+  "models/cocsc/sound/scream11.wav.ZL": {
+    "bytes": 23607,
+    "sha256": "7422d4217b3d87dfa098bbfbf6212103e7cbce4e135a4f81d797c57a98e0cd60"
+  },
+  "models/cocsc/sound/scream12.wav": {
+    "bytes": 30330,
+    "sha256": "9c3d9d3d01116b431125663d9ee8e9edd1d5482c951f42d2264dee3eb8e1cab8"
+  },
+  "models/cocsc/sound/scream12.wav.ZL": {
+    "bytes": 23607,
+    "sha256": "927d3ebb125836e8587ab23910b73885052c872394568cfb9217b21a71bca61f"
+  },
+  "models/cocsc/sound/scream2.wav": {
+    "bytes": 44090,
+    "sha256": "f4c3c89bef3b204bfedb2b6c88bf103fc17b6b77783d877017c0cfcfcc818f96"
+  },
+  "models/cocsc/sound/scream2.wav.ZL": {
+    "bytes": 21082,
+    "sha256": "60f471d7fda8bf9eb4ec124e2260f7757f02b25d8a6d42b25ff440407028ff1e"
+  },
+  "models/cocsc/sound/scream3.wav": {
+    "bytes": 17946,
+    "sha256": "4b7a7bc6a7cb88d4f1938890510cf8e57c3c57ca9cc85b0d8d76fa71221c93db"
+  },
+  "models/cocsc/sound/scream3.wav.ZL": {
+    "bytes": 11600,
+    "sha256": "14bd6ebfbc85008c3ab60700a2720641600069b1e28e089b52d6697904bd284a"
+  },
+  "models/cocsc/sound/scream4.wav": {
+    "bytes": 22074,
+    "sha256": "c0344d7fcaa089064096c6458883386d2602b8557b8818f6fe6bc4137accf6e9"
+  },
+  "models/cocsc/sound/scream4.wav.ZL": {
+    "bytes": 14259,
+    "sha256": "c1b4c77657cb3432928518680b08c93b69b890f1d0938fd10bb3b3f95f803e8c"
+  },
+  "models/cocsc/sound/scream5.wav": {
+    "bytes": 23450,
+    "sha256": "73dd56c0bfabfae53f80fe8135bafbcb329339b4594bbf0dd5317f1289ed6750"
+  },
+  "models/cocsc/sound/scream5.wav.ZL": {
+    "bytes": 14926,
+    "sha256": "91876b8672ca24922728744eebe2e48d4aaa42fbfd6d4c9093584bd793455a24"
+  },
+  "models/cocsc/sound/scream6.wav": {
+    "bytes": 22074,
+    "sha256": "c0344d7fcaa089064096c6458883386d2602b8557b8818f6fe6bc4137accf6e9"
+  },
+  "models/cocsc/sound/scream6.wav.ZL": {
+    "bytes": 14259,
+    "sha256": "34ea2b307bd6df14cc0adc3c1bb6fdcd36a6e21f993a8fb0964ee062af65f0f0"
+  },
+  "models/cocsc/sound/scream7.wav": {
+    "bytes": 28954,
+    "sha256": "1e9e442381516cde07676fd066b9bd14aff004332b9baa7d3f6f591c26fadf3a"
+  },
+  "models/cocsc/sound/scream7.wav.ZL": {
+    "bytes": 16170,
+    "sha256": "b3cf32bae4dab6ccf5c99d392891f9d2d0b5247f9b3f1edfa9523020d3636d96"
+  },
+  "models/cocsc/sound/scream8.wav": {
+    "bytes": 17946,
+    "sha256": "880f70c4d7ed3e93ced3e6e327456d614c30a16e6e53cdb04f14b49f980632db"
+  },
+  "models/cocsc/sound/scream8.wav.ZL": {
+    "bytes": 7600,
+    "sha256": "364b0dd3fddd27c6befc78285c0229a602db84c707e795adf1fc19a515d934f3"
+  },
+  "models/cocsc/sound/scream9.wav": {
+    "bytes": 17946,
+    "sha256": "f1c7b2793b8b86a766aec7eed5647683c293f5d1e4dcf431693efd311a97d157"
+  },
+  "models/cocsc/sound/scream9.wav.ZL": {
+    "bytes": 6817,
+    "sha256": "c580d827d0af21552e9dd01990164b9356642bfe8006d46e2b572240e7e37eac"
+  },
+  "models/GameClub/1lvmps3a.bmp": {
+    "bytes": 3574,
+    "sha256": "fc9d8c459e4b42c8527a3726816d9954660950dbceb8974acf17fec549903f6f"
+  },
+  "models/GameClub/join.bmp": {
+    "bytes": 3286,
+    "sha256": "4945e6ff300e74392c728950b616c976ea166b8447b18ac3cc50fe286c77019f"
+  },
+  "models/GameClub/mag1.MBM": {
+    "bytes": 708350,
+    "sha256": "6f6293dfc61ed9d71157c7f248759fbe69ac2ab639d967afa9405de028107f84"
+  },
+  "models/GameClub/magall.MBM": {
+    "bytes": 49948,
+    "sha256": "6b3859ac6872681deb249f7be70a66b14c936189ca329627f0af1a585f937fff"
+  },
+  "models/GameClub/SOUND/gc.wav": {
+    "bytes": 67580,
+    "sha256": "7ea3d4b5580b58743b588b9fb0ac4ef1715416e9f8c1971f8db3b807325216f1"
+  },
+  "readme.txt": {
+    "bytes": 1045,
+    "sha256": "afb21a5030f329f1c8af29c0149e7c4021ef6d3c5e9fe3c0b5ed3b40ebae6f06"
+  }
+}

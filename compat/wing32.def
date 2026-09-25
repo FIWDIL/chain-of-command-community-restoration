@@ -1,0 +1,6 @@
+LIBRARY WING32
+EXPORTS
+WinGCreateDC=_WinGCreateDC@0
+WinGCreateBitmap=_WinGCreateBitmap@12
+WinGBitBlt=_WinGBitBlt@32
+WinGCreateHalftonePalette=_WinGCreateHalftonePalette@0
