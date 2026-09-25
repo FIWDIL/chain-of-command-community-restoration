@@ -74,4 +74,4 @@ py -3.12 -m venv .venv
 
 To build a portable package, install `pyinstaller==6.19.0` in that environment and run `tools/build_release.py --output <release-directory> --work <build-directory>`. `compat/wing32.dll` is reproducible using `tools/build_wing.py --llvm <LLVM-bin-directory>`; its source needs no Windows SDK headers.
 
-The MIT license applies only to the newly written restoration code. Original game files remain separately copyrighted and are included for free distribution under the project owner's asserted rights. See [third-party notices](THIRD_PARTY_NOTICES.md). This is a community restoration, not an official 2AM service.
+The MIT license applies only to the newly written restoration code. Original game files remain separately copyrighted. See [third-party notices](THIRD_PARTY_NOTICES.md). This is a community restoration, not an official 2AM service.
