@@ -1,77 +1,67 @@
-# Chain of Command — original-engine community restoration
+# CoC Restored+
 
-Free experimental restoration of the recovered 2AM Chain of Command client. This runs the **original `creation.exe` 1.50.0.621**, original graphics archives, and recovered maps. It is a separate project from Combat on Contact.
+Double-click **CoC Restored+.exe** to play. Keep the `game` and `_internal` folders beside it. No Python installation is needed for the packaged game.
 
-The original online service and `zamCocSc_client.dll` were not recovered. A new local match service supplies their missing gameplay and input behavior. Offline play still uses that service on your own computer; it needs no Internet connection or 2AM account. This is not a claim to have recovered the original server source or its exact rules.
+## Play against the computer
 
-## Download and play
+Choose **Offline vs CPU**, then choose a map, team size, machine guns and SMGs. Click **Start match**.
 
-Download the Windows ZIP from [Releases](https://github.com/Huckleberry87/chain-of-command-community/releases). Extract the whole ZIP, then run **ChainOfCommand.exe**. Keep the `original` and `_internal` folders beside it. Windows 10/11 x64 is the target; the preserved game executable itself is 32-bit.
+You control four soldiers. Each extra fireteam adds four computer-controlled soldiers to each side. Weapon settings apply to each whole side, with rifles filling the remaining places.
 
-Choose **Offline vs AI**, pick an original map and **1–7 fireteams per side**, then open the match. Each fireteam has four soldiers: **7v7 is 28 soldiers versus 28**. You command one American fireteam; AI commands the remaining friendly fireteams and the German side. The original battlefield opens in its own window; the launcher shows both rosters and extra commands.
+## Play with friends
 
-Capture the control point for 90 uncontested seconds, or incapacitate the opposing team. Press **O** to find the objective and **Space** to return to your selected soldiers. The first recovered scenario's spawn locations and first victory point are used. Maps without those records receive documented fallback positions.
+Choose **Host**, set up the match and click **Open lobby**. The launcher shows your local IP address and the lobby and game ports. Give those details and your room password to your friends.
 
-## Direct connection
+Friends choose **Join**, enter your IP and password, then click **Join lobby**. Everyone can choose or change sides before the host starts. The team list shows players, computer fireteams and their commanders. The host can change reporting relationships before launch. Commanders may assign weapons within their branch, while each player keeps control of their own soldiers.
 
-One player chooses **Host direct connection**, selects the map, team size and side weapon pools, then opens the match. Up to thirteen others choose **Join host**, enter the host's IPv4 address and room password, and choose USA, Germany or Auto. The host owns USA fireteam 1. Each connection gets its own four soldiers and original command bar.
+**Start match** marks a guest ready. The host uses it to launch the battle for everyone. **Leave lobby** disconnects a guest; **Close lobby** closes the hosted room. After a match, the host chooses **Return to lobby** to prepare another round without disconnecting everyone. The host can then choose the next map.
 
-After connected players finish loading, the host clicks **Begin battle** on the launcher's **Fireteams and orders** tab. Vacant slots use AI, so you can play cooperatively or competitively with any mix of humans and AI up to seven slots per side. Joining during play takes over a vacant AI fireteam with its existing injuries and ammunition. A disconnect returns that fireteam to AI; it does not spawn replacements or replenish weapons. Closing the host closes the match. Everyone must use v0.2.0 or later with control protocol version 2; v0.1.0 launchers are rejected.
+The lobby uses TCP port 1851 and the game uses TCP port 1850. Both must be reachable. The displayed IP is a local network address; Internet play may need router forwarding or a VPN. There is no public matchmaking service. Use a room-only password because connections are not encrypted.
 
-The host listens on **TCP 1850 and TCP 1851**. Allow both ports through the host's firewall for the network you use. Across the Internet, the router must forward both TCP ports to the host; a VPN providing a reachable private IPv4 address is another option. There is no matchmaking, relay, automatic router setup, or public master server.
+## Give orders
 
-1850 carries the recovered Creation protocol; 1851 carries the restoration's command/session protocol. Passwords and traffic are not encrypted. Use a room-only password and connect to people you trust. The local offline service binds to loopback only. All fourteen simultaneous player slots have passed wire-protocol integration tests; two actual native clients have played a 7v7 match on one PC with twelve AI fireteams. A separate-machine or Internet test is still needed.
+Click a soldier or drag around your soldiers to select them. The top command row gives orders to all four; each lower row controls one soldier. Choose an order, then right-click its destination or target. Right-drag sets facing. Click a targeting command again to cancel it.
 
-## Controls
+The **Orders** menu also provides smoke grenades, stop, crouch, stand, prone, soldier selection and cancel targeting. No gameplay hotkeys are needed. Use **Equipment** before a match to assign individual weapons from the limited side stockpile.
 
-Left-click one of your soldiers, or select with **1–4**. **A** selects your four soldiers. Allied fireteams are labeled F2.1, F2.2, etc.; their orders belong to their own player or AI controller. Shift-click adds a soldier. Dragging selects a group, although this build does not yet draw a selection rectangle. Right-click gives the current order. A right-button drag gives a facing order. Escape cancels grenade, smoke, fire-target, or facing mode.
+Use **Center** to return to your soldiers. Use the horizontal and vertical scrollbars to look around. Yellow pips identify your four soldiers; filled red squares flash at their destinations. Only other players’ living soldiers show names in multiplayer. Destination pips sit in the center of the ground marker. The mouse wheel is disabled; use the scrollbars to move the view. Choose room, team or private chat, then type a message and press **Enter** or **Send**. In the launcher, select a private recipient and use **Ignore / unignore** to control incoming messages. The in-game **Lobby** button brings the launcher forward.
 
-The recovered command strip works for its movement, shooting, facing, stance, grenade, and centering buttons. Its upper order row addresses everyone; each lower row addresses one soldier. Campaign promotion and commander/weapon assignment panels are hidden because their original service is unavailable. The host chooses finite side weapon pools in the launcher before starting. Weapons are automatically spread among fireteams; joiners cannot duplicate or override the stockpile. See [weapon restrictions and evidence](docs/WEAPON_RESTRICTIONS.md).
+Defeat the opposing soldiers to win. After 15 minutes, surviving teams draw. Capturing the point is optional and does not end the match.
 
-| Key | Order |
-| --- | --- |
-| W / R | Walk / run to the next right-click |
-| X / C | Assault / crawl to the next right-click |
-| H | Stop |
-| Z / V / P | Stand / crouch / prone |
-| G / T | Fragmentation / smoke grenade at the next right-click |
-| F | Face the next right-click |
-| S / E | Hold fire / fire at will |
-| B | Carry a nearby friendly WIA soldier, or put them down |
-| Space / O | Center selected soldiers / objective |
+## About the restoration
 
-The launcher also exposes these orders. Fire at a specific visible enemy using its **Fire at** button or the native command strip. Orders preserve the selected soldiers' relative destination spacing, although pathfinding can split the group around an obstacle. Walking, running, and crawling suppress firing while moving; assault allows it with an accuracy penalty. Reloading happens automatically when the weapon is empty.
+This is a partial reimplementation around the recovered engine, maps, sounds and artwork. Combat, movement, visibility, computer tactics and multiplayer service behavior have been newly implemented; much of that behavior is approximate rather than verified against the original. See the [feature-by-feature provenance audit](docs/FEATURE_AUDIT.md) for what is original, verified reconstruction, approximation or a requested change. The original Mission-End Debriefing artwork now shows the result and each soldier's condition. Campaign progress, persistent ranks and the original online service are not available.
 
-## What is preserved
+Completed matches are saved on the host computer and can be reviewed with **Match history**. These are local results, not recovered accounts or original promotion records.
 
-- Original native rendering engine and isometric projection; `creation.exe` remains byte-for-byte unchanged.
-- Original map files, graphics archives, soldier animation frames, and sound files.
-- Original command-strip artwork and core row-based ordering.
-- 71 indexed original map layouts. All pass data-loading checks; most have not received a visual playthrough.
+See the [reference review](docs/RESTORATION_SOURCES.md) for inspected recordings/screenshots and remaining alignment gaps. The recovered files include more than art: layouts, scenario records, state-to-image references and some gameplay values survive. Requested restorations of original controls are distinguished from intentional changes in the audit.
 
-The portable package adds a small, open-source WinG-to-GDI compatibility DLL beside the copied game. It does not install files in Windows or require an administrator account. A version-checked Frida bridge supplies input routing inside this one launched process; it never attaches to Combat on Contact or another running game.
+See the repository's `docs` folder for gameplay notes, restoration details and test coverage. For help, include the map, mode and steps that caused the problem.
 
-## Reconstructed behavior and current limits
+The new restoration code is MIT-licensed. Recovered game files keep their separate copyright; see **THIRD_PARTY_NOTICES.md**.
 
-This release supports 1v1 through 7v7 fireteams, offline allied/enemy AI, direct connection for up to fourteen players, limited ammunition, automatic reloads, stress, stance effects, tile-based cover/visibility, fragmentation and smoke grenades, WIA/KIA, carrying, and match results. One hidden soldier identity per fireteam is revealed to its player after the battle.
+## If anyone has the following data or files, let me know!
 
-These rules are **reconstructed defaults**, not verified original formulas. Collision treats recovered terrain as occupied squares rather than reproducing the lost server's wall-edge geometry. Smoke reuses recovered explosion-cloud frames. The AI and weapon balance need playtesting. Native menus unrelated to the restored skirmish may remain inert. There is no saved match, persistent rank/company system, original lobby, campaign, original commander hierarchy/weapon-assignment UI, or exact corner-peeking/body-part simulation in this release. HUD labels retain some of the original engine's coarse positioning.
+The aim is to restore Chain of Command as completely and as close to the original as feasible. Some approximations were gleaned from limited public sources, including surviving community pages, screenshots and gameplay videos, alongside the recovered client data. Those sources do not establish every formula: undocumented numbers and some behavior remain restoration choices. Exact original files and rules would be preferable to approximations.
 
-Version 0.3.0 adds coordinated covering fire and movement, directional cover searches, smoke screens with fuse waits, and separate approach positions. Both friendly and enemy AI use these rules. [AI behavior and limits](docs/TACTICAL_AI.md) documents the changes.
+The most useful contributions would be:
 
-See [mechanics](docs/MECHANICS.md), [protocol and compatibility notes](docs/RESTORATION.md), and [validation](docs/VALIDATION.md). Report a problem with the map name, mode, and steps that produced it.
+- **`zamCocSc_client.dll`**: the missing game-specific client module, matching symbols, source code, or an installer that contains it.
+- **The original server**: source code, server executables, configuration files, database schemas and protocol documentation. The gameplay server and original online service were not recovered.
+- **Scoring and promotion rules**: kill/injury points, mission rewards, point distribution through commanders, rank thresholds, penalties after death or retreat, and any persistent player/regiment progression rules. Rank names and some client fields survive, but the complete formulas do not.
+- **Command and weapon-assignment rules**: commander selection and succession, rank restrictions, subordinate visibility, special-weapon stockpiles by player count or mission, and who could assign equipment to whom.
+- **Combat and movement details**: original accuracy, weapon timing and ammunition rules; stress and injury behavior; wall edges, windows, corner-peeking, grenade trajectories and visibility calculations.
+- **Missing graphics**: the original `icor`, `qcor` and `wh09` image entries and their matching graphics archives/model definitions. The maps `hse`, `nagrsch`, `pst` and `rts` currently need substitutions. Original smoke-specific artwork and animation definitions would also help.
+- **Complete maps and scenarios**: original mission configurations, spawn points, objectives, timing, ammunition and weapon-cache quantities, plus any missing map variants.
+- **Original manuals and recordings**: help files, training manuals, screenshots or videos showing the command controls, assignment screens, debriefing, chat and lobby. Full installations from different periods would help distinguish original behavior from later community changes.
 
-## Source and building
+Useful surviving references include [CoC Central's history](https://www.coccentral.com/CoC/Information/) and this [gameplay recording](https://www.youtube.com/watch?v=OpUfEyB25sQ). They help establish appearance and broad behavior; they are not a substitute for the missing server code or exact rules.
 
-The repository contains the new service, bridge, launcher, compatibility source, and tests. The larger original data files are in the release ZIP rather than Git history. Copy the release's `original` directory into a source checkout to run from source.
+Please describe the source and approximate date of anything you can share. Reports can be opened in [GitHub Issues](https://github.com/Huckleberry87/chain-of-command-community/issues).
 
-```powershell
-py -3.12 -m venv .venv
-.venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python launch.py
-.venv\Scripts\python -m unittest discover -s tests -v
-```
+This restoration deliberately keeps objective-capture requirements, gameplay hotkeys and retired-service branding removed. Missing-file requests do not mean those choices will be reversed.
 
-To build a portable package, install `pyinstaller==6.19.0` in that environment and run `tools/build_release.py --output <release-directory> --work <build-directory>`. `compat/wing32.dll` is reproducible using `tools/build_wing.py --llvm <LLVM-bin-directory>`; its source needs no Windows SDK headers.
 
-The MIT license applies only to the newly written restoration code. Original game files remain separately copyrighted and are included for free distribution under the project owner's asserted rights. See [third-party notices](THIRD_PARTY_NOTICES.md). This is a community restoration, not an official 2AM service.
+## Capture point
+
+The capture point occupies one square and starts neutral. An active soldier must occupy that square for 120 seconds to capture it. Multiple friendly soldiers do not speed this up. Both sides on the square pause the timer; leaving resets progress. The owner keeps control until the other side completes a full capture. Ownership uses the recovered USA/Germany floor symbols and flag sprites. Capturing does not end the match or award reconstructed victory points. The 120-second rule and contest/reset behavior are requested/reconstructed behavior, not verified original timing.

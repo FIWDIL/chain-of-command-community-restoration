@@ -11,12 +11,12 @@ from .tactics import TacticalAI
 
 # Practical firing intervals, not cyclic rates. All unverified values are explicit here.
 WEAPONS = {
-    'Garand': dict(magazine=8, reserve=80, interval=1.0, reload=3.2, range=24, accuracy=.70, damage=65),
-    'Mauser': dict(magazine=5, reserve=60, interval=1.8, reload=4.0, range=26, accuracy=.76, damage=70),
-    'BAR': dict(magazine=20, reserve=160, interval=.30, reload=4.5, range=24, accuracy=.48, damage=58),
-    'MG42': dict(magazine=50, reserve=200, interval=.18, reload=6.0, range=27, accuracy=.40, damage=58),
-    'Thompson': dict(magazine=30, reserve=180, interval=.24, reload=3.6, range=16, accuracy=.48, damage=40),
-    'MP40': dict(magazine=32, reserve=192, interval=.30, reload=3.6, range=17, accuracy=.50, damage=40),
+    'Garand': dict(magazine=8, interval=1.0, reload=3.2, range=24, accuracy=.70, damage=65),
+    'Mauser': dict(magazine=5, interval=1.8, reload=4.0, range=26, accuracy=.76, damage=70),
+    'BAR': dict(magazine=20, interval=.30, reload=4.5, range=24, accuracy=.48, damage=58),
+    'MG42': dict(magazine=50, interval=.18, reload=6.0, range=27, accuracy=.40, damage=58),
+    'Thompson': dict(magazine=30, interval=.24, reload=3.6, range=16, accuracy=.48, damage=40),
+    'MP40': dict(magazine=32, interval=.30, reload=3.6, range=17, accuracy=.50, damage=40),
 }
 SPEEDS = {'run':2.5, 'walk':1.35, 'assault':1.15, 'crawl':.55}
 
@@ -44,7 +44,7 @@ class Unit:
     animation: str = ''
     hold_fire: bool = False
     target: int = 0
-    grenades: int = 2
+    grenades: int = 0
     smoke: int = 1
     carrying: int = 0
     carried_by: int = 0
@@ -78,7 +78,7 @@ class Game:
         self.random=random.Random(seed); self.ai_sides=set(ai_sides)
         self.time=0.; self.next_ai=0.; self.units=[]; self.grenades=[]; self.smokes=[]
         self.blasts=[]
-        self.scores=[0.,0.]; self.winner=None; self.events=[]; self.notices=['','']
+        self.winner=None; self.events=[]; self.notices=['','']
         self.blocked=set(); self.solid=set(); self.windows=set(); self.low=set(); self.trees=set()
         self.spawns=[(20,50),(80,50)]
         for obj in self.map_objects:
@@ -101,6 +101,8 @@ class Game:
             if p.get('Player Type')=='VictoryPoints':
                 objectives.append((int(p.get('x',p.get('x_static',50))),int(p.get('y',50))))
         self.objective=self.nearest_open(objectives[0] if objectives else tuple(round((a+b)/2) for a,b in zip(*self.spawns)))
+        self.capture_owner=None; self.capture_side=None; self.capture_elapsed=0.
+        self.capture_contested=False
         used=set()
         for side in (0,1):
             weapons=loadouts(assets,team_size,side,self.pool)
@@ -109,10 +111,18 @@ class Game:
                 used.add((x,y));weapon=weapons[i//4][i%4]
                 u=Unit(UNIT_BASE+side*MAX_SLOTS*4+i,side,i,float(x),float(y),weapon)
                 u.direction=self.direction((x,y),self.objective)
-                u.ammo=WEAPONS[weapon]['magazine'];u.reserve=WEAPONS[weapon]['reserve'];self.units.append(u)
+                self.equip(u,weapon);u.grenades=assets.grenade_counts[side];self.units.append(u)
         self.player_identity={(side,slot):self.random.randrange(4) for side in (0,1) for slot in range(team_size)}
         self.tactics=TacticalAI(self)
         self.ai_deadlines={(side,slot):(side*self.team_size+slot)*1.4/(2*self.team_size) for side in (0,1) for slot in range(self.team_size)}
+
+    def equip(self, unit, weapon):
+        # AmmoMax is treated as total carried ammunition, never added on top of a
+        # magazine. The magazine/reload subdivision remains a reconstructed rule.
+        unit.weapon=weapon
+        total=self.assets.ammo_limits[weapon]
+        unit.ammo=min(WEAPONS[weapon]['magazine'],total)
+        unit.reserve=total-unit.ammo
 
     def spawn_cells(self, origin, count, excluded):
         # Flood outward from the recovered spawn through connected walkable tiles.
@@ -247,8 +257,9 @@ class Game:
                 for u in selected:u.target=target.uid;u.hold_fire=False;u.path=[]
             else:self.notices[side]='No visible enemy at that point'
         elif action in ('grenade','smoke') and point is not None:
-            candidates=[u for u in selected if (u.grenades if action=='grenade' else u.smoke)>0 and math.dist(u.cell,point)<=5 and u.stun<=0]
-            if not candidates:self.notices[side]='Throw range: 5 squares; check remaining grenades';return
+            limit=self.assets.grenade_range
+            candidates=[u for u in selected if (u.grenades if action=='grenade' else u.smoke)>0 and math.dist(u.cell,point)<=limit and u.stun<=0]
+            if not candidates:self.notices[side]=f'Throw range: {limit:g} squares; check remaining grenades';return
             u=min(candidates,key=lambda u:math.dist(u.cell,point));landing=point
             cells=list(self.ray(u.cell,point)); wall=next((p for p in cells if p in self.solid),None)
             if wall:
@@ -296,8 +307,9 @@ class Game:
             self.blasts.append((p[0],p[1],self.time+2.4))
             for u in self.units:
                 distance=math.dist(u.cell,p)
-                if distance>3 or not self.clear_line(p,u.cell,smoke=False):continue
-                factor=max(0,1-distance/3);u.stun=max(u.stun,5*factor);u.stress=min(1,u.stress+factor)
+                radius=self.assets.grenade_radius
+                if distance>=radius or not self.clear_line(p,u.cell,smoke=False):continue
+                factor=max(0,1-distance/radius);u.stun=max(u.stun,5*factor);u.stress=min(1,u.stress+factor)
                 if self.random.random()<factor:self.hurt(u,150*factor*(.6 if u.stance=='prone' else 1))
         self._vision=self.visibility()
         due={pair for pair in self.ai_slots if self.time>=self.ai_deadlines.get(pair,0)}
@@ -312,11 +324,17 @@ class Game:
                 if not u.reload:n=min(WEAPONS[u.weapon]['magazine'],u.reserve);u.ammo=n;u.reserve-=n
             if u.stun>0:continue
             if u.path:
-                p=u.path[0];dx=p[0]-u.x;dy=p[1]-u.y;distance=math.hypot(dx,dy)
                 speed=SPEEDS[u.mode]*(.6 if u.carrying else 1)*(1-u.stress*.2)
-                u.direction=self.direction(u.cell,p)
-                if distance<=speed*dt:u.x,u.y=map(float,p);u.path.pop(0)
-                elif distance:u.x+=dx/distance*speed*dt;u.y+=dy/distance*speed*dt
+                travel=speed*dt
+                while u.path and travel>0:
+                    p=u.path[0];dx=p[0]-u.x;dy=p[1]-u.y;distance=math.hypot(dx,dy)
+                    # Rounded cells can equal the waypoint halfway through a step,
+                    # making the old facing calculation snap east every square.
+                    if distance:u.direction=self.direction((u.x,u.y),p)
+                    if distance<=travel:
+                        u.x,u.y=map(float,p);u.path.pop(0);travel-=distance
+                    else:
+                        u.x+=dx/distance*travel;u.y+=dy/distance*travel;travel=0
                 if u.carrying:w=self.by_id(u.carrying);w.x=u.x;w.y=u.y
             if u.hold_fire or u.carrying or (u.path and u.mode!='assault') or u.cooldown or u.reload:continue
             targets=[v for v in self.units if v.side!=u.side and v.active and self.visible(u.side,v) and self.hit_chance(u,v)>0]
@@ -331,30 +349,52 @@ class Game:
             if self.random.random()<self.hit_chance(u,v):self.hurt(v,WEAPONS[u.weapon]['damage']*self.random.uniform(.65,1.3))
             if not u.ammo and u.reserve:u.reload=WEAPONS[u.weapon]['reload']*(1+u.stress)
         self._vision=None
+        self.update_capture(dt)
         active=[any(u.active and u.side==s for u in self.units) for s in (0,1)]
         if not all(active):self.winner=0 if active[0] else 1 if active[1] else -1;return
-        near=[any(u.active and u.side==s and math.dist(u.cell,self.objective)<=3 for u in self.units) for s in (0,1)]
-        if near[0]!=near[1]:self.scores[0 if near[0] else 1]+=dt
-        if max(self.scores)>=90:self.winner=0 if self.scores[0]>self.scores[1] else 1
-        if self.time>=900:self.winner=0 if self.scores[0]>self.scores[1] else 1 if self.scores[1]>self.scores[0] else -1
+        if self.time>=900:self.winner=-1
+
+    def update_capture(self, dt):
+        sides={u.side for u in self.units if u.active and not u.carried_by
+               and abs(u.x-self.objective[0])<.5 and abs(u.y-self.objective[1])<.5}
+        self.capture_contested=len(sides)>1
+        if self.capture_contested:return
+        side=next(iter(sides),None)
+        if side is None or side==self.capture_owner:
+            self.capture_side=None;self.capture_elapsed=0.
+            return
+        if self.capture_side!=side:
+            self.capture_side=side;self.capture_elapsed=0.
+        self.capture_elapsed=min(120.,self.capture_elapsed+max(0.,dt))
+        if self.capture_elapsed>=120.:
+            self.capture_owner=side;self.capture_side=None;self.capture_elapsed=0.
+            self.notices=['Capture point secured by '+('USA' if side==0 else 'Germany')]*2
+
+    def capture_status(self):
+        owner='Neutral' if self.capture_owner is None else ('USA','Germany')[self.capture_owner]
+        if self.capture_contested:return f'{owner} | Contested'
+        if self.capture_side is not None:
+            remaining=math.ceil(120-self.capture_elapsed)
+            return f'{("USA","Germany")[self.capture_side]} capturing | {remaining//60:02}:{remaining%60:02}'
+        return f'{owner} | '+('Capture: 02:00' if self.capture_owner is None else 'Captured')
 
     def think(self):
         self.tactics.think()
 
     def image(self,u):
-        faction='a' if u.side==0 else 'g'
-        if u.state=='WIA':code='wlg';kind='static'
-        elif u.state=='KIA':code='pdd';kind='static'
+        master=self.assets.objects['_hg_unitmaster_american' if u.side==0 else '_hg_unitmaster_german']['properties']
+        if u.state=='WIA':field='UM_ImageWoundedLegSt'
+        elif u.state=='KIA':field='UMImageDead'
         elif u.carrying:
-            return 'img - '+('uswk' if u.side==0 else 'eswk')+' action'
-        elif self.time<u.anim_until:code='stg' if u.animation=='throw' else 'pfi' if u.stance=='prone' else 'sfi';kind='action'
-        elif u.path:code='pmo' if u.mode=='crawl' else 'smo' if u.mode=='run' else 'swk';kind='action'
-        elif u.stance=='prone':code='pid';kind='static'
-        elif u.stance=='crouch':code='knl' if u.side==0 else 'skn';kind='static' if u.side==0 else 'action'
-        else:code='sid';kind='static'
-        name=f'img - {faction}{code} {kind}'
-        if name.casefold() not in self.assets.objects:name=f'img - {faction}sid static'
-        return name
+            field='UM_ImageWoundedCarring' if u.path else 'UM_ImageWoundedCarringIdle'
+        elif self.time<u.anim_until:
+            if u.animation=='throw':field='UMImageLyThrowGr' if u.stance=='prone' else 'UMImageStThrowGr'
+            else:field='UMImageProneFirin' if u.stance=='prone' else 'UMImageStandingFi'
+        elif u.path:field='UMImageProneMovin' if u.mode=='crawl' else 'UMImageStandingMo' if u.mode=='run' else 'UMImageWalking'
+        elif u.stance=='prone':field='UMImageProneIdle'
+        elif u.stance=='crouch':field='UMImageKneel'
+        else:field='UMImageStIdle'
+        return master[field]['name'].casefold()
 
     def status(self,side,slot=0):
         own=self.owned(side,slot)
@@ -362,4 +402,4 @@ class Game:
         if self.winner is not None:
             result='Draw' if self.winner==-1 else 'Victory' if self.winner==side else 'Defeat'
             return f'{result} | Fireteam {slot+1}: Player was soldier {self.player_identity[side,slot]+1} | {ammo}'
-        return f'{int(self.time)//60:02}:{int(self.time)%60:02}  USA {int(self.scores[0])}/90  Germany {int(self.scores[1])}/90 | {ammo}'
+        return f'{int(self.time)//60:02}:{int(self.time)%60:02} | {ammo}'

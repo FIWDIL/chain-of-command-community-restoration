@@ -121,7 +121,7 @@ class TacticalAI:
             for u in members:
                 if u.stun>0 or u.carrying:continue
                 u.hold_fire=False
-                danger=next((b for b in g.grenades if not b['smoke'] and math.dist(u.cell,(b['x'],b['y']))<3.5 and g.clear_line(u.cell,(b['x'],b['y']),smoke=False)),None)
+                danger=next((b for b in g.grenades if not b['smoke'] and math.dist(u.cell,(b['x'],b['y']))<g.assets.grenade_radius+.5 and g.clear_line(u.cell,(b['x'],b['y']),smoke=False)),None)
                 if danger:
                     point=(danger['x'],danger['y']);dx=u.x-point[0];dy=u.y-point[1];d=max(.1,math.hypot(dx,dy))
                     dest=g.nearest_open((round(u.x+(dx or 1)*4/d),round(u.y+dy*4/d)))

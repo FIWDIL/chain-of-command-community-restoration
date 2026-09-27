@@ -6,7 +6,7 @@ from restoration.simulation import Game
 
 class TacticalTests(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):cls.assets=Assets(Path(__file__).resolve().parents[1]/'original')
+    def setUpClass(cls):cls.assets=Assets(Path(__file__).resolve().parents[1]/'game')
     def setUp(self):
         self.g=Game(self.assets,ai_sides=(0,),seed=9)
         self.g.blocked.clear();self.g.solid.clear();self.g.windows.clear();self.g.low.clear();self.g.trees.clear()

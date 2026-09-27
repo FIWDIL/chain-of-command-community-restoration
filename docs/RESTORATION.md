@@ -1,40 +1,41 @@
-# Recovery and native compatibility
+# Restoration status
 
-## Preserved client
+CoC Restored+ uses the recovered Creation engine, 71 maps, soldier artwork, command buttons and sounds. The recovered files are kept unchanged in `game`.
 
-`creation.exe` SHA-256:
-`bf817ef80d98872ffe117b9d7d11a79b4238ea616bd9a9a828a97c8db91d5ccd`
+The [feature provenance audit](FEATURE_AUDIT.md) separates preserved material from verified reconstructions, approximations and requested changes. Reusing the original engine and artwork does not establish original gameplay behavior.
 
-The launcher rejects a different executable before installing its in-memory hooks. Original ODF, OIX, MBM, BMP and sound files are read directly. `original-manifest.json` records the recovered files; the separately added `wing32.dll` is built from this repository's compatibility source. No changes are made to Combat on Contact, the recovered Desktop installation, or Windows system files.
+A new local service runs the match, supplies player input and connects friends directly. Offline play uses the same service on your computer. No original account is needed.
 
-The missing `zamCocSc_client.dll` name is retained in the original ODF. Loading it is nonfatal, but its game-specific input glue is absent. The new bridge hooks Creation's native map input dispatcher at 0x4a2250 and key dispatcher at 0x4a3f40. It forwards logical map coordinates and original command-strip clicks to the authoritative service. The legacy browser preference is overridden for this process; no account or registry configuration is changed.
+## Presentation
 
-Original weapon and grenade WAV files play through the launcher's Windows sound channel, replacing the missing module's DirectSound trigger. This first release has one effect channel, so overlapping sounds can interrupt each other. Network messages select only an allowed sound name; they cannot choose a local file path.
+The game window can be resized. Commands and messages sit below the battlefield. Original button artwork shows which command is pressed. Yellow pips identify only your four soldiers. Other players’ living multiplayer units show centered names. Ground markers have centered pips and draw beneath soldiers. Filled red squares flash at movement destinations. The mouse wheel is disabled. Community titles and icons replace the retired service branding at runtime.
 
-The app-local WinG shim implements only the four functions this executable imports. It uses GDI `CreateCompatibleDC`, `CreateDIBSection`, `BitBlt` and `CreateHalftonePalette`, and exports the original WinG names. [Microsoft's DIB documentation](https://learn.microsoft.com/en-us/windows/win32/api/wingdi/nf-wingdi-createdibsection) describes the shared pixel-memory mechanism. The shim is not intended as a general WinG replacement.
+The recovered Mission-End Debriefing now shows victory, defeat or draw, each soldier's condition and the player identity revealed at the end. Unavailable point totals are shown as dashes. The inactive promotion section is hidden.
 
-## Wire format
+## Missing map art
 
-Native game TCP port: 1850. Frame header: little-endian four 32-bit values `(0xfedcba98, payload_length, sequence, 0xabcdef00)`. Payload: 16-bit message kind, message data, 32-bit `0x89abcdef` trailer. Incoming frames are limited to 4 MiB.
+Four mapsâ€”hse, nagrsch, pst and rtsâ€”refer to missing images. The game substitutes recovered art while loading:
 
-Observed startup sequence: server 0; client 1; server 2 version/model negotiation; client 3 credentials; server 4 model snapshot; client 13 snapshot acknowledgement; server 5 startup complete. Client type 25 acknowledgements can interleave with these messages.
+| Missing image | Replacement |
+| --- | --- |
+| icor | iwcr |
+| qcor | wcor |
+| wh09 | wh01 |
 
-Snapshots declare all new object identities before their property records. New properties use `u16 property-id + typed value`; existing-object changes additionally have a one-byte presence flag. A zero presence flag clears the property. Object/property lists use their observed zero or 0xffff terminators. All references are resolved case-insensitively.
+The original map files are unchanged. These corners and walls may look different from the intended artwork. Smoke also reuses recovered explosion-cloud frames.
 
-Runtime message 8 sets a property, with full-reference escape bytes when compression tables are empty. A user-object Refresh update commits a visible redraw; setting a world's Refresh alone is insufficient. Camera scroll updates are sent after the view is created. Startup metadata must supply the recovered background bitmap and palette or the native renderer can dereference an empty surface.
+## Still incomplete
 
-TCP 1851 is newline-delimited JSON, capped at 4096 bytes per client message. The initial handshake is `{"version":1,"password":"room password","support":"MG"}`. The server allocates a random temporary username and binds the native client to that session's source address. Commands can operate only on that session's side. Selection, keyboard, and native mouse messages are validated and rate-limited. No original 2AM login credentials are used. This protocol is version-specific and unencrypted.
+The original online service, persistent ranks and complete promotion rules were not recovered. Commander assignments, equipment permissions, scoped chat and lobby continuity now have working reconstructed implementations. Local match history records outcomes without inventing original promotion scores. Combat and computer tactics use reconstructed rules. Loading every map successfully does not mean every map has had a full playthrough.
 
-## Map fallback data
+This project is separate from Combat on Contact. Its Godot code and assets are not used here.
 
-71 map layouts are indexed from recovered `_map.OIX` files; their original files and names are unchanged. Scenario `_1.OIX` supplies deployment centers and the first victory point when present. Defaults are (20,50), (80,50), and the midpoint; impassable spawn/objective cells move to the closest walkable cell.
+For source setup and packaging, see [Building](BUILDING.md). For the current checks and limitations, see [Validation](VALIDATION.md).
 
-Four maps — hse, nagrsch, pst and rts — reference absent generic images. At load time `icor` maps to `iwcr`, `qcor` to `wcor`, and `wh09` to `wh01`, using original recovered art. Those substitutions preserve playability but may differ from the intended decorative corners. They are not written into the original maps.
+## Current room features
 
-The German crouch uses the recovered crouch transition with looping disabled. Smoke holds/repeats middle cloud frames from the original explosion. No remastered or Combat on Contact assets are included.
+The host can assign a cycle-free command tree for each side before launch. Commanders can equip their own fireteam and subordinate fireteams without exceeding recovered per-fireteam caps or the side stockpile. Combat orders still control only the player's own four soldiers. Exact original command succession, rank eligibility and subordinate visibility remain unverified.
 
-## v0.2.0 player slots
+Room, team and private messages are filtered by the server. Team/private history is restricted to its original recipients; late joiners do not inherit private messages. Ignore controls do not hide system notices.
 
-The command/session protocol now requires version 2. Native Creation framing is unchanged. The control handshake returns a server-selected side and fireteam slot, plus team size and finite weapon pools. Each native snapshot maps the four-row HUD to that slot while rendering all visible soldiers. Slots range 0–6 per side; a side-local soldier index maps to `slot = index // 4` and `number = index % 4`. Soldier IDs occupy a separate range from HUD and effect objects to avoid the collisions that simply extending the old eight-soldier ID block would create.
-
-The host receives a fresh in-memory capability to start its room. Regular joiners cannot start it or command another fireteam by supplying a forged side/slot in input. The local host slot is reserved. This does not add encrypted transport or original account authentication.
+Returning to the lobby preserves connections, chat, hierarchy and weapon choices; the next match resets casualties and ammunition. Map changes are host-only. Match history is stored locally in `saves/match-history.json`, with no original account authentication or promotion claims.

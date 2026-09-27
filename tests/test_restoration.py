@@ -29,7 +29,7 @@ class WireTests(unittest.TestCase):
 
 class RuleTests(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):cls.assets=Assets(ROOT/'original')
+    def setUpClass(cls):cls.assets=Assets(ROOT/'game')
     def setUp(self):
         self.g=Game(self.assets,seed=23,ai_sides=())
         self.g.blocked.clear();self.g.solid.clear();self.g.low.clear();self.g.windows.clear();self.g.trees.clear()
@@ -58,6 +58,16 @@ class RuleTests(unittest.TestCase):
     def test_keep_formation(self):
         self.g.command(0,[0,1,2,3],'walk',(30,30))
         self.assertEqual([u.path[-1] for u in self.g.units[:4]],[(30,30),(30,32),(30,34),(30,36)])
+    def test_running_keeps_heading_near_waypoint(self):
+        u=self.g.units[0];u.x=10;u.y=10.7;u.path=[(10,11)];u.mode='run'
+        self.g.step(.05)
+        self.assertEqual(u.direction,90)
+        self.assertAlmostEqual(u.y,10.825)
+    def test_running_preserves_travel_across_waypoints(self):
+        u=self.g.units[0];u.x=10;u.y=10.9;u.path=[(10,11),(10,12)];u.mode='run'
+        self.g.step(.2)
+        self.assertAlmostEqual(u.y,11.4)
+        self.assertEqual(u.path,[(10,12)])
     def test_distance_stress_and_movement_reduce_accuracy(self):
         a,b=self.g.units[0],self.g.units[4];base=self.g.hit_chance(a,b)
         a.stress=1;self.assertLess(self.g.hit_chance(a,b),base);a.stress=0
@@ -71,7 +81,7 @@ class RuleTests(unittest.TestCase):
         self.assertEqual((u.ammo,u.reserve),(3,0))
     def test_grenade_fuse_blast_and_smoke(self):
         self.g.command(0,[0],'grenade',(10,10))
-        self.assertEqual(self.g.units[0].grenades,1)
+        self.assertEqual(self.g.units[0].grenades,4)
         self.g.step(4.9);self.assertEqual(self.g.units[0].health,100)
         self.g.step(.11);self.assertEqual(self.g.units[0].health,0);self.assertGreater(self.g.units[0].stun,0)
         self.g.step(2)
@@ -83,6 +93,21 @@ class RuleTests(unittest.TestCase):
         self.g.command(0,[0],'walk',(12,10));self.g.step(1)
         self.assertEqual(wounded.cell,carrier.cell)
         self.g.command(0,[0],'carry');self.assertEqual(wounded.carried_by,0)
+    def test_holding_objective_does_not_win(self):
+        self.g.objective=self.g.units[0].cell
+        for _ in range(91):self.g.step(1)
+        self.assertIsNone(self.g.winner)
+        self.assertNotIn('/90',self.g.status(0))
+    def test_time_limit_draws_despite_objective_occupation(self):
+        self.g.objective=self.g.units[0].cell
+        self.g.time=899
+        self.g.step(1)
+        self.assertEqual(self.g.winner,-1)
+    def test_incapacitating_opponents_wins(self):
+        for u in self.g.units:
+            if u.side==1:u.state='WIA';u.health=0
+        self.g.step(.1)
+        self.assertEqual(self.g.winner,0)
     def test_ai_can_finish_a_match(self):
         g=Game(self.assets,ai_sides=(0,1),seed=2)
         for _ in range(4501):

@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class Teams(unittest.TestCase):
     @classmethod
-    def setUpClass(cls): cls.assets = Assets(ROOT/'original')
+    def setUpClass(cls): cls.assets = Assets(ROOT/'game')
 
     def test_all_sizes_own_four_unique_soldiers_and_share_stockpile(self):
         for size in range(1, 8):
@@ -133,7 +133,7 @@ class Connection:
 
 class NetworkTeams(unittest.TestCase):
     def test_fourteen_players_lobby_ownership_full_room_disconnect_and_rejoin(self):
-        assets=Assets(ROOT/'original')
+        assets=Assets(ROOT/'game')
         server=MatchServer(assets,'AbbeyArden',offline=False,bind='127.0.0.1',password='test',game_port=0,control_port=0,team_size=7)
         clients=[];server.start()
         try:
