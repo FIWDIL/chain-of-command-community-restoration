@@ -19,6 +19,8 @@ Mixed features are split into separate rows. The broad request to restore everyt
 
 ## Evidence and scope
 
+September 27 asset update: [changed and kept replacements](ASSET_RESTORATION.md) supersedes earlier asset-availability notes below. The full nested archive contains 81 named maps and 153 selectable map/mission combinations. Recovered transition, cover and casualty clips are now connected, with reconstructed timing and triggers. Inspection also showed that the prone-throw aliases and generic death references have no usable bitmap; actual recovered standing-throw and corpse art now supply those visuals. Mission objectives beyond the first are now presented and tracked independently. Historical audit counts below describe the earlier pass.
+
 - All **505 files** under `game/` matched the SHA-256 values in [the preservation manifest](../original-manifest.json) during this audit. There are **71 map layouts**. Preserved bytes do not mean unchanged runtime behavior.
 - Primary evidence is the decoded `game/cocSc.ODF`, decoded map/scenario OIX files, and the code linked below. [The audit evidence file](feature-audit-evidence.json) records selected recovered fields, missing-art references and hash-check results.
 - The model hash is `7cd25a3ce58d4224789d33fab92766cac9650932daecd7ca6b6ae86c940a0900`. The client hash is `bf817ef80d98872ffe117b9d7d11a79b4238ea616bd9a9a828a97c8db91d5ccd`.

@@ -38,7 +38,7 @@ class Launcher:
             button.pack(side='left',padx=10);self.radios.append(button)
         self.form=ttk.Frame(self.box);self.form.pack(pady=12,fill='x')
         self.form.columnconfigure(1,weight=1);self.fields={}
-        rows=[('map','Map',ttk.Combobox(self.form,textvariable=self.map,values=sorted(self.assets.map_files),state='readonly')),
+        rows=[('map','Map',ttk.Combobox(self.form,textvariable=self.map,values=sorted(self.assets.missions),state='readonly')),
               ('name','Player name',ttk.Entry(self.form,textvariable=self.name)),
               ('side','Side',ttk.Combobox(self.form,textvariable=self.side,values=['USA','Germany'],state='readonly')),
               ('team_size','Fireteams per side',ttk.Combobox(self.form,textvariable=self.team_size,values=list(range(1,MAX_SLOTS+1)),state='readonly')),
@@ -213,6 +213,8 @@ class Launcher:
                 elif kind=='return_lobby':
                     self.started=False;self.launching=False;self.finished=False;self.ready=False;self.busy=False;self.last_lobby=None;self.map.set(event['map']);self.render_mode();self.show_room()
                 elif kind=='ui' and event.get('action')=='room':self.show_room()
+                elif kind=='ui' and event.get('action')=='equipment':self.show_room();self.equipment_dialog()
+                elif kind=='ui' and event.get('action')=='commanders':self.show_room();self.commander_dialog()
                 elif kind=='assignment':self.side.set('USA' if event['side']==0 else 'Germany')
                 elif kind in ('chat','chat_history'):self.show_chat()
                 elif kind=='launch' and not self.client.game_open and not self.busy:
@@ -242,7 +244,7 @@ class Launcher:
         messagebox.showinfo('Messages','Ignore setting changed for this player.',parent=self.root)
 
     def preparation(self):
-        if self.busy or self.started or self.launching:
+        if self.busy or self.launching:
             messagebox.showinfo('Match setup','Return to the lobby after the match to change assignments.',parent=self.root);return None
         if self.client:return self.room_state
         if self.mode.get()=='join':
@@ -259,6 +261,10 @@ class Launcher:
     def assignment_window(self,title,state):
         window=tk.Toplevel(self.root);window.title(title);window.transient(self.root);window.resizable(False,False)
         window.iconbitmap(str(Path(__file__).parent/'restoration/community.ico'))
+        # Let the native button's mouse release finish before raising its viewer.
+        def raise_viewer():
+            if window.winfo_exists():window.lift();window.focus_force()
+        window.after(150,raise_viewer)
         body=ttk.Frame(window,padding=14);body.pack(fill='both',expand=True)
         side=tk.StringVar(value='USA' if state['side']==0 else 'Germany')
         slot=tk.IntVar(value=state['slot']+1)
@@ -266,6 +272,8 @@ class Launcher:
         sides=ttk.Combobox(body,textvariable=side,values=['USA','Germany'],state='readonly',width=25);sides.grid(row=0,column=1,pady=4)
         ttk.Label(body,text='Fireteam').grid(row=1,column=0,sticky='w',pady=4)
         slots=ttk.Combobox(body,textvariable=slot,values=list(range(1,len(state['teams'][0]['fireteams'])+1)),state='readonly',width=25);slots.grid(row=1,column=1,pady=4)
+        if self.started:
+            ttk.Label(window,text='View only during a match. Change assignments in the lobby.',padding=8).pack()
         return window,body,side,slot,sides,slots
 
     def equipment_dialog(self):
@@ -290,7 +298,7 @@ class Launcher:
                 if not session['outgoing'].empty():messagebox.showinfo('Equipment',session['outgoing'].get()['text'],parent=window)
         sides.bind('<<ComboboxSelected>>',refresh);slots.bind('<<ComboboxSelected>>',refresh);refresh()
         ttk.Label(body,text='Weapons come from the side stockpile. Return weapons to rifles before moving them to another fireteam.',wraplength=350).grid(row=6,column=0,columnspan=2,pady=10)
-        ttk.Button(body,text='Apply',command=apply).grid(row=7,column=0,columnspan=2)
+        ttk.Button(body,text='Apply',command=apply,state='disabled' if self.started or self.launching else 'normal').grid(row=7,column=0,columnspan=2)
 
     def commander_dialog(self):
         state=self.preparation()
@@ -312,7 +320,7 @@ class Launcher:
                 session=dict(owner=True,outgoing=queue.Queue());self.draft.set_commander(session,event)
                 messagebox.showinfo('Commanders',session['outgoing'].get()['text'] if not session['outgoing'].empty() else 'Commander assigned.',parent=window)
         sides.bind('<<ComboboxSelected>>',refresh);slots.bind('<<ComboboxSelected>>',refresh);refresh()
-        ttk.Button(body,text='Apply',command=apply).grid(row=3,column=0,columnspan=2,pady=10)
+        ttk.Button(body,text='Apply',command=apply,state='disabled' if self.started or self.launching else 'normal').grid(row=3,column=0,columnspan=2,pady=10)
 
     def history_dialog(self):
         window=tk.Toplevel(self.root);window.title('Match history');window.transient(self.root)

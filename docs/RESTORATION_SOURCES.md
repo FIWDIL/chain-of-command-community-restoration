@@ -1,5 +1,7 @@
 # Restoration reference review
 
+For the September 27 archive inspection and implementation changes, see [original assets: changed and kept](ASSET_RESTORATION.md). It adds mission variants and recovered animation states and corrects the earlier interpretation of bitmap-free prone-throw and generic death references. This is additional local-file evidence, not a new media review.
+
 Reviewed September 25–26, 2026. A requested restoration of an original function is not a new feature merely because the user had to ask for it. The earlier audit confused those two questions in several rows. [The revised audit](FEATURE_AUDIT.md) separates the historical function from the accuracy of its current implementation.
 
 ## What was actually reviewed

@@ -1,5 +1,25 @@
 // Input glue for the missing zamCocSc_client module, Creation 1.50.0.621 only.
 // No artwork, executable files, or external processes are modified.
+// Preserve the native model identity and graphics paths while renaming its file.
+if((typeof renamedDefinition!=='undefined' && renamedDefinition) || (typeof flattenedModelPaths!=='undefined' && flattenedModelPaths)) {
+    for(const api of ['CreateFileA','CreateFileW','GetFileAttributesA','GetFileAttributesW']) {
+        Interceptor.attach(Process.getModuleByName('kernel32.dll').getExportByName(api),{
+            onEnter(a) {
+                if(a[0].isNull())return;
+                const wide=api.endsWith('W');
+                const name=wide?a[0].readUtf16String():a[0].readCString();
+                let renamed=name;
+                if(typeof renamedDefinition!=='undefined' && renamedDefinition && /(?:^|[\\/])cocsc\.odf$/i.test(name))renamed=renamed.replace(/cocsc\.odf$/i,'enginedata.odf');
+                if(typeof flattenedModelPaths!=='undefined' && flattenedModelPaths)renamed=renamed.replace(/(^|[\\/])models[\\/]cocsc[\\/]/i,(_,prefix)=>prefix+'models\\');
+                if(renamed!==name) {
+                    this.renamed=wide?Memory.allocUtf16String(renamed):Memory.allocUtf8String(renamed);
+                    a[0]=this.renamed;
+                }
+            },
+            onLeave() {}
+        });
+    }
+}
 function nameOf(p) { try { return p.add(4).readPointer().readCString(); } catch (_) { return ''; } }
 Interceptor.attach(ptr('0x4a2250'), {
     onEnter(a) {
@@ -212,9 +232,10 @@ setInterval(()=>{
 
 // A local native message panel, backed by the restoration's room chat.
 // Controls are created/updated on the game's UI thread, never the network reader.
-let chatPanel=null,chatTranscript=null,chatInput=null,chatSend=null,pendingChat='';
+let chatPanel=null,chatTranscript=null,chatInput=null,chatSend=null,pendingChat='',pendingChatFocus=false;
 let orderButton=null,channelButton=null,roomButton=null,roomState={},chatChannel='room',chatRecipient='';
 const getFocus=winapi('GetFocus','pointer',[]);
+const focusChatInput=winapi('SetFocus','pointer',['pointer']);
 function typingChat() {
     if(!chatInput)return false;
     const focus=getFocus();return focus.equals(chatInput)||focus.equals(chatTranscript);
@@ -285,6 +306,9 @@ Interceptor.attach(user32.getExportByName('DispatchMessageA'),{
             if(message===0x20a || message===0x20e)a[0].add(4).writeU32(0);
         }
         createChat();
+        if(chatInput && pendingChatFocus) {
+            focusChatInput(chatInput);pendingChatFocus=false;
+        }
         if(chatTranscript && pendingChat!==null) {
             setTitle(chatTranscript,Memory.allocUtf16String(pendingChat));
             sendWindowMessage(chatTranscript,0xb1,pendingChat.length,ptr(pendingChat.length));
@@ -309,7 +333,7 @@ function showOrders() {
     const entries=[['All four soldiers','all'],['Soldier 1','select0'],['Soldier 2','select1'],['Soldier 3','select2'],['Soldier 4','select3'],
         ['Walk to','walk'],['Run to','run'],['Assault','assault'],['Crawl to','crawl'],['Stop','stop'],['Stand','stand'],['Crouch','crouch'],['Prone','prone'],
         ['Fire at','fire'],['Face','face'],['Fragmentation grenade','grenade'],['Smoke grenade','smoke'],['Hold fire','hold'],['Fire at will','free'],
-        ['Carry / put down wounded','carry'],['Center soldiers','center'],['Show capture point','objective'],['Cancel targeting','cancel'],['Withdraw selected soldiers','retreat']];
+        ['Carry / put down wounded','carry'],['Center soldiers','center'],['Next capture point','objective'],['Show / hide deployment area','deployment'],['Cancel targeting','cancel'],['Withdraw selected soldiers','retreat']];
     if(roomState.owner && roomState.finished)entries.push(['Return to lobby for next match','lobby']);
     const picked=pickMenu(orderButton,entries);if(!picked)return;
     const action=picked[1];
@@ -342,3 +366,6 @@ Interceptor.attach(ptr('0x47bbe0'),{onEnter(){
     bp.sub(0x84).writeS32(Math.round(bottom-height));bp.sub(0x7c).writeS32(Math.round(bottom));
     bp.sub(0xd8).writePointer(text.add(1));bp.sub(0xd4).writeS32(count-1);
 }});
+
+function receiveFocusChat(){recv('focus_chat',()=>{pendingChatFocus=true;receiveFocusChat();});}
+receiveFocusChat();

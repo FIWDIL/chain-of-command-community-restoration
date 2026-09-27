@@ -92,7 +92,7 @@ class RecoveredRulesTests(unittest.TestCase):
             unit.stance='crouch'
             self.assertEqual(game.image(unit),master['UMImageKneel']['name'])
             unit.stance='prone';unit.animation='throw';unit.anim_until=1
-            self.assertEqual(game.image(unit),master['UMImageLyThrowGr']['name'])
+            self.assertEqual(game.image(unit),master['UMImageStThrowGr']['name'])
             unit.carrying=game.owned(side,0)[1].uid
             self.assertEqual(game.image(unit),master['UM_ImageWoundedCarringIdle']['name'])
             unit.path=[(20,20)]

@@ -12,6 +12,8 @@ STATUS = 0x20003030
 OBJECTIVE = 0x20003031
 OBJECTIVE_FLOOR = 0x20003032
 OBJECTIVE_FLAG = 0x20003033
+EXTRA_OBJECTIVE_BASE = 0x20003a00
+DEPLOYMENT_BASE = 0x20003c00
 EFFECT_BASE = 0x20003300
 # Five flash/cloud pairs plus three smoke clouds for each of 56 soldiers.
 EFFECT_COUNT = 728
@@ -24,7 +26,9 @@ DESTINATION_PIP_BASE = 0x20003820
 class Assets:
     def __init__(self, original):
         self.original = Path(original)
-        self.definition = odf((self.original/'cocSc.ODF').read_bytes())
+        definition = self.original/'enginedata.odf'
+        if not definition.is_file():definition = self.original/'cocSc.ODF'
+        self.definition = odf(definition.read_bytes())
         self.types = {t['name']:t for t in self.definition['types']}
         self.objects = {o['name'].casefold():o for o in self.definition['objects']}
         # Four recovered maps refer to an absent interior-corner image.
@@ -49,23 +53,47 @@ class Assets:
         self.hud = self.ref('_HG_CommandDialog_Global')
         self.hud_buttons=[o for o in self.definition['objects'] if o['type'] in ('InterfaceButton','ManageButton')
                           and o['properties'].get('World',{}).get('ref')==self.hud]
-        self.map_files = {p.stem[:-4]:p for p in (self.original/'models/cocsc/oin').glob('*') if p.stem.lower().endswith('_map') and p.suffix.lower()=='.oix'}
-        if not self.map_files:
-            raise ValueError('Original map files not found')
+        # Prefer the main archive; the nested archive contains byte-identical
+        # duplicates plus additional recovered maps and mission variants.
+        self.model_root=self.original/('models' if (self.original/'models/oin').is_dir() else 'models/cocsc')
+        folder=self.model_root/'oin'
+        files={}
+        for p in sorted(folder.rglob('*'),key=lambda p:(len(p.parts),p.name.casefold())):
+            if p.suffix.lower()=='.oix':files.setdefault(p.name.casefold(),p)
+        self.map_files={p.stem[:-4]:p for p in files.values() if p.stem.lower().endswith('_map')}
+        self.missions={}
+        for name,path in self.map_files.items():
+            variants=sorted((p for p in files.values() if p.stem.casefold().startswith(name.casefold()+'_')
+                             and p.stem[len(name)+1:].isdigit()),key=lambda p:int(p.stem[len(name)+1:]))
+            if not variants:self.missions[name]=(path,None)
+            for scenario in variants:
+                number=int(scenario.stem[len(name)+1:])
+                label=name if number==1 else f'{name} / Mission {number}'
+                self.missions[label]=(path,scenario)
+        if 'stonehouse.oix' in files:
+            self.missions['StoneHouse / Alternate layout']=(files['stonehouse.oix'],files.get('stonehouse_1.oix'))
+        selected={p for pair in self.missions.values() for p in pair if p}
+        self.archive_unselected=sorted(str(p.relative_to(self.original)) for p in files.values() if p not in selected)
+        if not self.map_files:raise ValueError('Original map files not found')
         self.motion_objects=[]
         self.motion_frames={}
+        self.animation_lengths={}
         self.build_motion_frames()
 
     def build_motion_frames(self):
         # Use the recovered directional bitmaps, but advance locomotion on the
         # server clock. Native animation can restart on fractional position updates.
         uid=0x20008000
-        for code in ('asmo','aswk','apmo','gsmo','gswk','gpmo','uswk','eswk'):
-            name=f'img - {code} action'
+        names=sorted({v['name'].casefold() for side in (0,1) for v in self.unit_master(side).values()
+                      if isinstance(v,dict) and v.get('name','').startswith('img - ')})
+        for name in names:
             source=self.objects[name]
+            if 'mag 8' not in source['properties']:continue
             mag=self.objects[source['properties']['mag 8']['name'].casefold()]
             clips={d:self.objects[v['name'].casefold()] for d,v in mag['properties'].items() if d in ('n','ne','e','se','s','sw','w','nw')}
             count=max(c['properties']['NumFrames'] for c in clips.values())
+            self.animation_lengths[name]=count
+            if count<=1:continue
             frames=[]
             for index in range(count):
                 facets={'Facets':mag['properties']['Facets']}
@@ -81,12 +109,18 @@ class Assets:
                 frames.append(uid);uid+=1
             self.motion_frames[name]=frames
 
+    def unit_master(self, side):
+        return self.objects['_hg_unitmaster_american' if side==0 else '_hg_unitmaster_german']['properties']
+
     def unit_image(self,game,unit):
-        name=game.image(unit)
-        if unit.path and name in self.motion_frames:
+        from .presentation import field
+        state,elapsed=field(game,unit)
+        name=self.unit_master(unit.side)[state]['name'].casefold()
+        if name in self.motion_frames:
             frames=self.motion_frames[name]
-            speed=10 if unit.mode=='run' else 6 if unit.mode=='crawl' else 8
-            return frames[int(game.time*speed)%len(frames)]
+            locomotion=state in ('UMImageStandingMo','UMImageWalking','UMImageProneMovin','UM_ImageWoundedCarring')
+            speed=(10 if unit.mode=='run' else 6 if unit.mode=='crawl' else 8) if locomotion else 10
+            return frames[int(elapsed*speed)%len(frames)]
         return self.ref(name)
 
     @staticmethod
@@ -95,6 +129,10 @@ class Assets:
             return ''
         name=player_names.get((unit.side,unit.slot),'')
         return '\x01'+name if name else ''
+
+    @staticmethod
+    def capture_ids(index):
+        return (OBJECTIVE,OBJECTIVE_FLOOR,OBJECTIVE_FLAG) if index==0 else tuple(EXTRA_OBJECTIVE_BASE+(index-1)*3+i for i in range(3))
 
     def capture_floor_image(self, side):
         return 0 if side is None else self.capture_images[side]
@@ -111,10 +149,14 @@ class Assets:
         return self.by_type[name]
 
     def read_map(self, name):
-        path = self.map_files[name]
+        path,scenario=self.missions[name]
         data = parse_oin(decode_oix(path.read_text(encoding='cp1252')))
-        scenario = next((p for p in path.parent.iterdir() if p.stem.casefold()==name.casefold()+'_1' and p.suffix.lower()=='.oix'), None)
         scenario_data = parse_oin(decode_oix(scenario.read_text(encoding='cp1252'))) if scenario else {'objects':[]}
+        # Legacy German-HQ floor records contain misspelled references.
+        for obj in data['objects']:
+            props=obj['properties']
+            if props.get('terrain') in ('_HG_Evan','_Evan','_HG_NEvan'):props['terrain']='_HG_Even'
+            if props.get('World')=='Worlds':props['World']='World'
         return data['objects'], scenario_data['objects']
 
     def encode_properties(self, obj, lookup, existing=False):
@@ -160,16 +202,19 @@ class Assets:
             new.append(dict(uid=unit.uid,name='Soldier '+str(unit.uid),type='Unit',properties=p))
         new.append(dict(uid=STATUS,name='RestorationStatus',type='label',properties={
             'Player Type':'label','World':self.hud,'x':4,'y':109,'Text':game.status(side,slot),'Text Style':'Textstyle - Yellow10','z':10000}))
-        new.append(dict(uid=OBJECTIVE,name='RestorationObjective',type='TerrainLabel',properties={
-            'World':self.world,'x':game.objective[0],'y':game.objective[1],'Width':1,'Height':1,
-            'Player Type':'TerrainLabel','Text':game.capture_status(),'Text yOffset':-65,'Text Style':'Textstyle - Yellow10','z':10000}))
-        new.append(dict(uid=OBJECTIVE_FLOOR,name='CapturePointFloor',type='PLAYER',properties={
-            'World':self.world,'x':game.objective[0],'y':game.objective[1],'Width':1,'Height':1,
-            'Player Type':'PLAYER','z':100,'Figure':13 if game.capture_owner is None else 0,'Figure Style':'LocalDestinationPipStyle',
-            'Image':self.capture_floor_image(game.capture_owner)}))
-        new.append(dict(uid=OBJECTIVE_FLAG,name='CapturePointFlag',type='PLAYER',properties={
-            'World':self.world,'x':game.objective[0],'y':game.objective[1],'Width':1,'Height':1,
-            'Player Type':'PLAYER','z':200,'Image':self.capture_flags[game.capture_owner] if game.capture_owner is not None else 0}))
+        for index,point in enumerate((game,*game.extra_objectives)):
+            label,floor,flag=self.capture_ids(index)
+            common={'World':self.world,'x':point.objective[0],'y':point.objective[1],'Width':1,'Height':1}
+            new.append(dict(uid=label,name=f'CaptureLabel{index}',type='TerrainLabel',properties={
+                **common,'Player Type':'TerrainLabel','Text':point.capture_status(),'Text Style':'Textstyle - Yellow10','z':10000}))
+            new.append(dict(uid=floor,name=f'CaptureFloor{index}',type='PLAYER',properties={
+                **common,'Player Type':'PLAYER','z':100,'Figure':13 if point.capture_owner is None else 0,
+                'Figure Style':'LocalDestinationPipStyle','Image':self.capture_floor_image(point.capture_owner)}))
+            new.append(dict(uid=flag,name=f'CaptureFlag{index}',type='PLAYER',properties={
+                **common,'Player Type':'PLAYER','z':200,'Image':self.capture_flags[point.capture_owner] if point.capture_owner is not None else 0}))
+        for index,(owner,x,y,img) in enumerate(game.deployment):
+            new.append(dict(uid=DEPLOYMENT_BASE+index,name=f'DeploymentTile{index}',type='PLAYER',properties={
+                'x':x,'y':y,'Width':1,'Height':1,'z':99,'Image':img,'World':0,'Player Type':'PLAYER'}))
         for number in range(4):
             new.append(dict(uid=DESTINATION_BASE+number,name=f'Destination{number+1}',type='PLAYER',properties={
                 'Player Type':'PLAYER','Width':1,'Height':1,'z':199,
@@ -244,19 +289,21 @@ class Assets:
                     # The missing client module used to reveal live soldier
                     # labels. Preserve their recovered positions and styles.
                     pos.update(Showable=1,z=199 if obj['name'].startswith('_HG_UnitTile_ShowWeapon') else 2000)
-                if obj['type']=='PromotionComponents' or obj['name'] in ('Play Again','Chat','InterfaceGroup_Promotion','InterfaceGroup_Dinamic','Reinitialize','Commander Assignment','Weapon Assignment'):
+                if obj['type']=='PromotionComponents' or obj['name'] in ('Play Again','InterfaceGroup_Promotion','InterfaceGroup_Dinamic','Reinitialize'):
                     pos['World']=0
-                if obj['name']=='LStageName':pos['Text']=f'{game.team_size}v{game.team_size}'
+                if obj['name']=='LStageName':pos.update(Text=f'{game.team_size}v{game.team_size}',x=105)
                 modifications.append(dict(uid=obj['uid'],type=obj['type'],properties=pos))
         for o in modifications:
             data += struct.pack('<I',o['uid'])+self.encode_properties(o,lookup,existing=True)
         data += struct.pack('<I',0)
         return (string(username)+struct.pack('<IHHH',self.definition['header']['stamp'],0,0,0)
-                +string('models\\cocsc\\map01.bmp')+struct.pack('<HH',0,0)+string('')+string('models\\cocsc\\defpal.bmp')
+                +string(str((self.model_root/'map01.bmp').relative_to(self.original)))+struct.pack('<HH',0,0)+string('')+string(str((self.model_root/'defpal.bmp').relative_to(self.original)))
                 +string('cocSc')+data+struct.pack('<IHH',0,0,0)+struct.pack('<HHHHIHH',3,0,0,1,100,0,0)+bytes(20))
 
-    def hud_action(self,x,y):
+    def hud_action(self,x,y,finished=False):
         for obj in self.hud_buttons:
+            if obj['name']=='Play Again' and not finished:continue
+            if obj['name'].startswith('Rotate ') and finished:continue
             p=obj['properties']
             ox=int(p.get('transferX',p.get('x_static',0)));oy=int(p.get('transferY',0))
             if ox<=x<ox+p.get('Width',41) and oy<=y<oy+p.get('Height',17):

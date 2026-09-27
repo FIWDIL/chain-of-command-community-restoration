@@ -9,8 +9,10 @@ import winsound
 import frida
 from .assets import Assets
 from .server import CONTROL_VERSION
+from .startup import LaunchPermit
 
 CLIENT_SHA256='bf817ef80d98872ffe117b9d7d11a79b4238ea616bd9a9a828a97c8db91d5ccd'
+GUARDED_SHA256='fe20adbe96900d870965503dbe28fae39e49f60f26bfc704dd0f39784baf5ad7'
 
 class Client:
     def __init__(self,original,host='127.0.0.1',password='',control_port=1851,side='auto',owner_token='',name='',lobby=False):
@@ -18,6 +20,7 @@ class Client:
         self.socket=None;self.reader=None;self.device=None;self.pid=None;self.session=None;self.script=None
         self.events=queue.Queue(maxsize=100);self.outgoing=queue.Queue(maxsize=256);self.closed=threading.Event();self.info={}
         self.side=side;self.owner_token=owner_token
+        self.launch_permit=None
         self.sounds={};self.name=name;self.lobby=lobby;self.chat_history=[];self.game_open=False;self.closing_game=False;self.room_state={}
 
     def start(self):
@@ -40,20 +43,29 @@ class Client:
 
     def open_game(self):
         if self.game_open:return
-        exe=self.original/'creation.exe'
-        if hashlib.sha256(exe.read_bytes()).hexdigest()!=CLIENT_SHA256:raise ValueError('Unsupported creation.exe; use the included original 1.50.0.621 client')
+        exe=self.original/'engine.exe'
+        if not exe.is_file():exe=self.original/'creation.exe'
+        expected=GUARDED_SHA256 if exe.name=='engine.exe' else CLIENT_SHA256
+        if hashlib.sha256(exe.read_bytes()).hexdigest()!=expected:raise ValueError('Unsupported engine; use the included CoC Restored+ engine')
         assets=Assets(self.original)
-        for name in ('Garand','Mauser','BAR','MG42','Thompson','MP40','Grenade'):
+        for name in ('Garand','Mauser','BAR','MG42','Thompson','MP40','Grenade','MouseDownClick','MouseUpClick',
+                     *(f'Scream{i}' for i in range(1,13))):
             relative=assets.objects[name.casefold()]['properties']['File Name'].replace('\\','/')
+            if assets.model_root==self.original/'models':relative=relative.replace('models/cocSc/','models/').replace('models/cocsc/','models/')
             filename=(self.original/relative).resolve()
             if filename.is_relative_to(self.original) and filename.is_file():self.sounds[name]=filename
+        for name,relative in (('Scream0','sound/scream.wav'),('MG42 alternate','sound/Mg42-1.WAV')):
+            filename=assets.model_root/relative
+            if filename.is_file():self.sounds[name]=filename
         try:
             self.device=frida.get_local_device()
-            self.pid=self.device.spawn([str(exe),'-g3','-i'+self.host,'-u'+self.info['username'],'-s1'],cwd=str(self.original),stdio='pipe')
+            self.launch_permit=LaunchPermit()
+            self.pid=self.device.spawn([str(exe),'-g3','-i'+self.host,'-u'+self.info['username'],'-s1'],cwd=str(self.original),stdio='pipe',env={'COC_RESTORED_LAUNCH':self.launch_permit.name})
             self.session=self.device.attach(self.pid)
             self.session.on('detached',self.detached)
             icon=str(Path(__file__).with_name('community.ico').resolve())
-            bridge='const restorationIconPath='+json.dumps(icon)+';\n'+Path(__file__).with_name('bridge.js').read_text()
+            bridge='const restorationIconPath='+json.dumps(icon)+';\nconst renamedDefinition='+str((self.original/'enginedata.odf').is_file()).lower()+';\n'+Path(__file__).with_name('bridge.js').read_text()
+            bridge='const flattenedModelPaths='+str(assets.model_root==self.original/'models').lower()+';\n'+bridge
             if self.info['port']!=1850:
                 bridge += '\n'+"Interceptor.attach(Process.getModuleByName('ws2_32.dll').getExportByName('connect'),{onEnter(a){let p=a[1];if(p.readU16()===2&&p.add(2).readU8()===7&&p.add(3).readU8()===58){p.add(2).writeU8(PORT>>8);p.add(3).writeU8(PORT&255);}}});".replace('PORT',str(int(self.info['port'])))
             self.script=self.session.create_script(bridge)
@@ -82,7 +94,10 @@ class Client:
 
     def message(self,message,data):
         if message.get('type')=='send':
-            if message['payload'].get('type') in ('debug','ui'):self.event(message['payload'])
+            payload=message['payload']
+            if payload.get('type')=='mouse' and payload.get('world')=='_HG_CommandDialog_Global' and payload.get('button')==1:
+                self.play_sound('MouseDownClick' if payload.get('phase')==0 else 'MouseUpClick', interrupt=False)
+            if payload.get('type') in ('debug','ui'):self.event(payload)
             else:self.send(message['payload'])
         elif message.get('type')=='error':self.event({'type':'error','text':message.get('stack',str(message))})
 
@@ -116,15 +131,23 @@ class Client:
                     self.chat_history=((self.chat_history if event.get('append') else [])+event.get('messages',[]))[-100:];self.sync_chat()
                 elif event.get('type')=='chat':
                     self.chat_history=(self.chat_history+[event])[-100:];self.sync_chat()
+                if event.get('type')=='ui' and event.get('action')=='chat' and self.script:
+                    try:self.script.post({'type':'focus_chat'})
+                    except frida.InvalidOperationError:pass
                 if event.get('type')=='sound':
-                    filename=self.sounds.get(event.get('name')) if isinstance(event.get('name'),str) else None
-                    if filename:
-                        try:winsound.PlaySound(str(filename),winsound.SND_FILENAME|winsound.SND_ASYNC|winsound.SND_NODEFAULT)
-                        except RuntimeError:pass
+                    self.play_sound(event.get('name'))
                 else:self.event(event)
         except (OSError,EOFError,ValueError) as exc:
             if not self.closed.is_set():self.event({'type':'error','text':str(exc)})
             self.closed.set()
+
+    def play_sound(self, name, interrupt=True):
+        filename=self.sounds.get(name) if isinstance(name,str) else None
+        if filename:
+            flags=winsound.SND_FILENAME|winsound.SND_ASYNC|winsound.SND_NODEFAULT
+            if not interrupt:flags|=winsound.SND_NOSTOP
+            try:winsound.PlaySound(str(filename),flags)
+            except RuntimeError:pass
 
     def write(self):
         try:
@@ -152,3 +175,4 @@ class Client:
             try:self.session.detach()
             except frida.InvalidOperationError:pass
         self.script=None;self.session=None;self.game_open=False;self.closing_game=False
+        if self.launch_permit:self.launch_permit.close();self.launch_permit=None

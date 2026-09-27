@@ -136,7 +136,7 @@ class RoomFeatures:
 
     def set_map(self, session, event):
         name = event.get('map')
-        if not session['owner'] or self.started or self.launching or not isinstance(name, str) or name not in self.assets.map_files:
+        if not session['owner'] or self.started or self.launching or not isinstance(name, str) or name not in self.assets.missions:
             return
         self.new_round(name, announce=False)
 

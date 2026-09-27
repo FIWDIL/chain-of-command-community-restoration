@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import sys
 import zipfile
+from guard_engine import guarded_engine
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--output',type=Path,required=True);parser.add_argument('--work',type=Path,required=True)
@@ -20,7 +21,22 @@ def main():
                     '--collect-all','frida',str(root/'launch.py')],check=True,cwd=root)
     dest=output/'CoC Restored+'
     shutil.copytree(root/'game',dest/'game',dirs_exist_ok=True,ignore=shutil.ignore_patterns('*.log','*.dmp','*.tmp'))
+    # Reproduce the audited player-file cleanup without touching preserved inputs.
+    exclusions=json.loads((root/'tools/runtime-exclusions.json').read_text())
+    for name in exclusions:
+        path=(dest/name).resolve()
+        if not path.is_relative_to(dest.resolve()) or Path(name).parts[0] not in ('game','_internal'):
+            raise ValueError('Invalid runtime exclusion: '+name)
+        if path.is_file():path.unlink()
+    for path in sorted(dest.rglob('*'),key=lambda p:len(p.parts),reverse=True):
+        if path.is_dir() and not any(path.iterdir()):path.rmdir()
     shutil.copy2(root/'compat/wing32.dll',dest/'game/wing32.dll')
+    (dest/'game/engine.exe').write_bytes(guarded_engine((root/'game/creation.exe').read_bytes()))
+    (dest/'game/creation.exe').unlink()
+    (dest/'game/cocSc.ODF').rename(dest/'game/enginedata.odf')
+    model_folder=dest/'game/models/cocsc'
+    for child in model_folder.iterdir():shutil.move(str(child),str(model_folder.parent/child.name))
+    model_folder.rmdir()
     for name in ('README.md','LICENSE','THIRD_PARTY_NOTICES.md','original-manifest.json'):
         shutil.copy2(root/name,dest/name)
     shutil.copytree(root/'docs',dest/'docs',dirs_exist_ok=True)

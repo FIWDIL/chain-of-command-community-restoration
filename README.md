@@ -4,9 +4,13 @@ Free supported community restoration using the recovered Creation client, graphi
 
 Double-click **CoC Restored+.exe** to play. Keep the `game` and `_internal` folders beside it. No Python installation is needed for the packaged game.
 
+The player package uses `game/engine.exe`, `game/enginedata.odf` and assets directly under `game/models`. Opening the engine directly shows a reminder to use the launcher and exits. See [launcher-only startup](docs/LAUNCHER_GUARD.md). The development source keeps the recovered installation unchanged; packaging applies the names, launcher gate and audited file exclusions.
+
 ## Play against the computer
 
 Choose **Offline vs CPU**, then choose a map, team size, machine guns and SMGs. Click **Start match**.
+
+The map list includes 153 recovered map/mission combinations across 81 named maps. Mission variants and the alternate StoneHouse layout are listed separately.
 
 You control four soldiers. Each extra fireteam adds four computer-controlled soldiers to each side. Weapon settings apply to each whole side, with rifles filling the remaining places.
 
@@ -40,6 +44,8 @@ See the [reference review](docs/RESTORATION_SOURCES.md) for inspected recordings
 
 See the repository's `docs` folder for gameplay notes, restoration details and test coverage. For help, include the map, mode and steps that caused the problem.
 
+See [original assets: changed and kept](docs/ASSET_RESTORATION.md) for restored soldier animations, sounds, missions and controls, and the replacements retained for offline/direct-connect play. Original files remain unchanged.
+
 The MIT license applies only to the newly written restoration code. Original game files remain separately copyrighted. See [third-party notices](THIRD_PARTY_NOTICES.md). This is a community restoration, not an official 2AM service.
 
 ## If anyone has the following data or files, let me know!
@@ -66,4 +72,4 @@ This restoration deliberately keeps objective-capture requirements, gameplay hot
 
 ## Capture point
 
-The capture point occupies one square and starts neutral. An active soldier must occupy that square for 120 seconds to capture it. Multiple friendly soldiers do not speed this up. Both sides on the square pause the timer; leaving resets progress. The owner keeps control until the other side completes a full capture. Ownership uses the recovered USA/Germany floor symbols and flag sprites. Capturing does not end the match or award reconstructed victory points. The 120-second rule and contest/reset behavior are requested/reconstructed behavior, not verified original timing.
+Each mission capture point occupies one square and starts neutral. An active soldier must occupy that square for 120 seconds to capture it. Multiple friendly soldiers do not speed this up. Both sides on the square pause the timer; leaving resets progress. The owner keeps control until the other side completes a full capture. Ownership uses the recovered USA/Germany floor symbols and flag sprites. Orders cycles between points. Capturing does not end the match or award reconstructed victory points. The 120-second rule and contest/reset behavior are requested/reconstructed behavior, not verified original timing.

@@ -115,7 +115,7 @@ class RuleTests(unittest.TestCase):
             if g.winner is not None:break
         self.assertIsNotNone(g.winner)
     def test_all_original_maps_load(self):
-        self.assertEqual(len(self.assets.map_files),71)
+        self.assertEqual(len(self.assets.map_files),81)
         for name in self.assets.map_files:
             with self.subTest(map=name):
                 g=Game(self.assets,name,seed=1)

@@ -50,8 +50,9 @@ class NativeFeedbackTests(unittest.TestCase):
                 for t in (0,.2,.4):
                     g.time=t;frames.append(self.assets.unit_image(g,u))
                 self.assertEqual(len(set(frames)),3)
+                moving=g.image(u)
                 u.path=[]
-                self.assertEqual(self.assets.unit_image(g,u),self.assets.ref(g.image(u)))
+                self.assertNotIn(self.assets.unit_image(g,u),self.assets.motion_frames[moving])
     def test_keyboard_orders_are_ignored(self):
         self.server.handle(self.session,dict(type='key',key=82))
         self.assertEqual(self.session['action'],'walk')

@@ -8,6 +8,8 @@ import random
 from .assets import UNIT_BASE
 from .roster import MAX_SLOTS, validate_size, default_pool, loadouts
 from .tactics import TacticalAI
+from . import presentation
+from .capture import CapturePoint
 
 # Practical firing intervals, not cyclic rates. All unverified values are explicit here.
 WEAPONS = {
@@ -42,6 +44,15 @@ class Unit:
     stun: float = 0
     anim_until: float = 0
     animation: str = ''
+    visual_sequence: list = field(default_factory=list)
+    visual_stance: str = 'stand'
+    visual_cover: str = ''
+    visual_duck: bool = False
+    visual_stunned: bool = False
+    visual_target: int = 0
+    visual_enemy: int = 0
+    death_pose: int = 1
+    wound_pose: str = 'Leg'
     hold_fire: bool = False
     target: int = 0
     grenades: int = 0
@@ -103,6 +114,13 @@ class Game:
         self.objective=self.nearest_open(objectives[0] if objectives else tuple(round((a+b)/2) for a,b in zip(*self.spawns)))
         self.capture_owner=None; self.capture_side=None; self.capture_elapsed=0.
         self.capture_contested=False
+        self.extra_objectives=[CapturePoint(self.nearest_open(p)) for p in dict.fromkeys(objectives[1:]) if self.nearest_open(p)!=self.objective]
+        self.deployment=[]
+        for obj in scenario:
+            p=obj["properties"]
+            if p.get("Player Type")=="DeploymentTiles" and p.get("Type")!="startingpoint":
+                side=0 if str(p.get("state","")).casefold() in ("usa","american") else 1
+                self.deployment.append((side,int(p.get("x",p.get("x_static",0))),int(p.get("y",0)),p.get("Image","img - dpgr static")))
         used=set()
         for side in (0,1):
             weapons=loadouts(assets,team_size,side,self.pool)
@@ -243,9 +261,12 @@ class Game:
                 u.path=self.path(u.cell,dest);u.mode=action;u.stance='prone' if action=='crawl' else 'stand';u.target=0
                 if not u.path and u.cell!=dest:self.notices[side]='No route to destination'
         elif action=='stop':
-            for u in selected:u.path=[];u.target=0
+            for u in selected:
+                if u.target:presentation.play(self,u,'UMImageAimEnd')
+                u.path=[];u.target=0
         elif action in ('stand','crouch','prone'):
-            for u in selected:u.stance=action;u.path=[]
+            for u in selected:
+                presentation.transition(self,u,u.stance,action);u.stance=action;u.path=[]
         elif action in ('hold','free'):
             for u in selected:u.hold_fire=action=='hold';u.target=0
         elif action=='face' and point is not None:
@@ -271,13 +292,17 @@ class Game:
             if action=='grenade':u.grenades-=1
             else:u.smoke-=1
             u.path=[];u.animation='throw';u.anim_until=self.time+.8;u.direction=self.direction(u.cell,point)
+            presentation.play(self,u,'UMImageLyPrepGr' if u.stance=='prone' else 'UMImageStPrepGr','UMImageStThrowGr')
         elif action=='carry':
             for u in selected:
                 if u.carrying:
                     wounded=self.by_id(u.carrying);wounded.carried_by=0;u.carrying=0
+                    presentation.play(self,u,'UM_ImageWoundedPutDown')
                 else:
                     choices=[w for w in self.units if w.side==side and w.state=='WIA' and not w.carried_by and math.dist(w.cell,u.cell)<=2]
-                    if choices:w=min(choices,key=lambda w:math.dist(w.cell,u.cell));w.carried_by=u.uid;u.carrying=w.uid
+                    if choices:
+                        w=min(choices,key=lambda w:math.dist(w.cell,u.cell));w.carried_by=u.uid;u.carrying=w.uid
+                        presentation.play(self,u,'UM_ImageWoundedPeekUp')
         elif action=='retreat':
             # One player cannot concede the other six players' fireteams.
             for u in selected:
@@ -291,9 +316,14 @@ class Game:
 
     def hurt(self,u,damage):
         if u.state=='KIA':return
+        presentation.play(self,u,'UMImageHit'+str(1+(u.uid+round(damage))%3))
+        self.events.append(('scream',u.uid))
         u.health=max(0,u.health-round(damage));u.stress=min(1,u.stress+.45)
         if u.health==0:
             u.state='KIA' if u.state=='WIA' or self.random.random()<.45 else 'WIA';u.path=[]
+            u.death_pose=1+(u.uid+int(self.time))%3
+            u.wound_pose='Leg' if (u.uid+int(self.time))%2 else 'Side'
+            presentation.play(self,u,'UMImageFall' if u.state=='KIA' else 'UM_ImageWounded'+u.wound_pose+'An')
             if u.carrying:self.by_id(u.carrying).carried_by=0;u.carrying=0
 
     def step(self,dt):
@@ -318,6 +348,10 @@ class Game:
             for pair in due:self.ai_deadlines[pair]=self.time+1.4
         for u in self.units:
             if not u.active:continue
+            if u.visual_enemy:
+                target=self.by_id(u.visual_enemy)
+                if target is None or not target.active or not self.visible(u.side,target):u.visual_enemy=0
+            presentation.sync(self,u)
             u.stress=max(0,u.stress-dt*.025);u.stun=max(0,u.stun-dt);u.cooldown=max(0,u.cooldown-dt)
             if u.reload>0:
                 u.reload=max(0,u.reload-dt)
@@ -345,6 +379,8 @@ class Game:
                 continue
             u.ammo-=1;u.cooldown=WEAPONS[u.weapon]['interval']*(1+u.stress*.4)
             u.direction=self.direction(u.cell,v.cell);u.animation='fire';u.anim_until=self.time+.28
+            u.visual_enemy=v.uid
+            presentation.firing(self,u)
             v.stress=min(1,v.stress+.08);self.events.append(('shot',u.uid))
             if self.random.random()<self.hit_chance(u,v):self.hurt(v,WEAPONS[u.weapon]['damage']*self.random.uniform(.65,1.3))
             if not u.ammo and u.reserve:u.reload=WEAPONS[u.weapon]['reload']*(1+u.stress)
@@ -355,46 +391,21 @@ class Game:
         if self.time>=900:self.winner=-1
 
     def update_capture(self, dt):
-        sides={u.side for u in self.units if u.active and not u.carried_by
-               and abs(u.x-self.objective[0])<.5 and abs(u.y-self.objective[1])<.5}
-        self.capture_contested=len(sides)>1
-        if self.capture_contested:return
-        side=next(iter(sides),None)
-        if side is None or side==self.capture_owner:
-            self.capture_side=None;self.capture_elapsed=0.
-            return
-        if self.capture_side!=side:
-            self.capture_side=side;self.capture_elapsed=0.
-        self.capture_elapsed=min(120.,self.capture_elapsed+max(0.,dt))
-        if self.capture_elapsed>=120.:
-            self.capture_owner=side;self.capture_side=None;self.capture_elapsed=0.
-            self.notices=['Capture point secured by '+('USA' if side==0 else 'Germany')]*2
+        for point in (self,*self.extra_objectives):
+            old=point.capture_owner
+            CapturePoint.update(point,self.units,dt)
+            if old!=point.capture_owner:
+                self.notices=['Capture point secured by '+('USA' if point.capture_owner==0 else 'Germany')]*2
 
     def capture_status(self):
-        owner='Neutral' if self.capture_owner is None else ('USA','Germany')[self.capture_owner]
-        if self.capture_contested:return f'{owner} | Contested'
-        if self.capture_side is not None:
-            remaining=math.ceil(120-self.capture_elapsed)
-            return f'{("USA","Germany")[self.capture_side]} capturing | {remaining//60:02}:{remaining%60:02}'
-        return f'{owner} | '+('Capture: 02:00' if self.capture_owner is None else 'Captured')
+        return CapturePoint.capture_status(self)
 
     def think(self):
         self.tactics.think()
 
     def image(self,u):
-        master=self.assets.objects['_hg_unitmaster_american' if u.side==0 else '_hg_unitmaster_german']['properties']
-        if u.state=='WIA':field='UM_ImageWoundedLegSt'
-        elif u.state=='KIA':field='UMImageDead'
-        elif u.carrying:
-            field='UM_ImageWoundedCarring' if u.path else 'UM_ImageWoundedCarringIdle'
-        elif self.time<u.anim_until:
-            if u.animation=='throw':field='UMImageLyThrowGr' if u.stance=='prone' else 'UMImageStThrowGr'
-            else:field='UMImageProneFirin' if u.stance=='prone' else 'UMImageStandingFi'
-        elif u.path:field='UMImageProneMovin' if u.mode=='crawl' else 'UMImageStandingMo' if u.mode=='run' else 'UMImageWalking'
-        elif u.stance=='prone':field='UMImageProneIdle'
-        elif u.stance=='crouch':field='UMImageKneel'
-        else:field='UMImageStIdle'
-        return master[field]['name'].casefold()
+        name,_=presentation.field(self,u)
+        return self.assets.unit_master(u.side)[name]['name'].casefold()
 
     def status(self,side,slot=0):
         own=self.owned(side,slot)

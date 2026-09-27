@@ -1,6 +1,6 @@
 # Restoration status
 
-CoC Restored+ uses the recovered Creation engine, 71 maps, soldier artwork, command buttons and sounds. The recovered files are kept unchanged in `game`.
+CoC Restored+ uses the recovered Creation engine, 81 named maps with 153 selectable map/mission combinations, soldier artwork, command buttons and sounds. The recovered files are kept unchanged in `game`. See [original assets: changed and kept](ASSET_RESTORATION.md) for the latest asset restoration and retained replacements.
 
 The [feature provenance audit](FEATURE_AUDIT.md) separates preserved material from verified reconstructions, approximations and requested changes. Reusing the original engine and artwork does not establish original gameplay behavior.
 

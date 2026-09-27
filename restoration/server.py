@@ -7,7 +7,7 @@ import threading
 import time
 from collections import deque
 from . import protocol
-from .assets import USER, STATUS, OBJECTIVE, OBJECTIVE_FLOOR, OBJECTIVE_FLAG, EFFECT_BASE, EFFECT_COUNT, SMOKE_IMAGE, DESTINATION_BASE, DESTINATION_EDGE_BASE, DESTINATION_FILL_BASE, DESTINATION_PIP_BASE
+from .assets import USER, STATUS, OBJECTIVE, OBJECTIVE_FLOOR, OBJECTIVE_FLAG, DEPLOYMENT_BASE, EFFECT_BASE, EFFECT_COUNT, SMOKE_IMAGE, DESTINATION_BASE, DESTINATION_EDGE_BASE, DESTINATION_FILL_BASE, DESTINATION_PIP_BASE
 from .simulation import Game
 from .roster import MAX_SLOTS
 from .room import RoomFeatures
@@ -253,7 +253,7 @@ class MatchServer(RoomFeatures):
             if button==1 and phase==1:
                 session['pressed_button']=None
             if world=='_HG_CommandDialog_Global' and button==1:
-                hit=self.assets.hud_action(x,y)
+                hit=self.assets.hud_action(x,y,self.game.winner is not None)
                 if phase==0:
                     session['pressed_button']=hit[0] if hit else None
                     return
@@ -262,6 +262,9 @@ class MatchServer(RoomFeatures):
                 if not hit:return
                 name,row=hit
                 session['clicked_button']=name;session['clicked_until']=time.monotonic()+.2
+                if name in ('Commander Assignment','Weapon Assignment','Chat'):
+                    self.emit(session,dict(type='ui',action={'Commander Assignment':'commanders','Weapon Assignment':'equipment','Chat':'chat'}[name]));return
+                if name=='Play Again':self.return_lobby(session);return
                 session['selected']=[row-1] if row else [0,1,2,3]
                 base=name.rstrip('1234')
                 action={'Interface_WalkTo':'walk','Interface_Run':'run','Interface_CrawlTo':'crawl','Interface_Assault':'assault',
@@ -306,7 +309,11 @@ class MatchServer(RoomFeatures):
             if action=='cancel':session['action']='walk';session['down']=None
             elif action=='select' and isinstance(event.get('indices'),list):session['selected']=[i for i in event['indices'] if type(i)==int and 0<=i<=3]
             elif action=='center':self.center(session)
-            elif action=='objective':self.center(session,self.game.objective)
+            elif action=='deployment':session['deployment']=not session.get('deployment',False)
+            elif action=='objective':
+                points=(self.game,*self.game.extra_objectives)
+                index=session.get('objective_index',0)%len(points);self.center(session,points[index].objective)
+                session['objective_index']=index+1
             elif action in ('walk','run','assault','crawl','grenade','smoke','fire','face','hold','free','stop','prone','stand','crouch','carry','retreat'):self.choose(session,action)
 
     def choose(self,session,action):
@@ -440,12 +447,18 @@ class MatchServer(RoomFeatures):
             self.center(session);session['recenter_at']=0
         if self.game.winner is not None and not session.get('debrief_shown'):
             self.show_debrief(session)
-        peer.update(OBJECTIVE,97,self.assets.world,4)
-        peer.update(OBJECTIVE_FLOOR,97,self.assets.world,4)
-        peer.update(OBJECTIVE_FLOOR,61,self.assets.capture_floor_image(self.game.capture_owner),4)
-        peer.update(OBJECTIVE_FLOOR,660,13 if self.game.capture_owner is None else 0)
-        peer.update(OBJECTIVE_FLAG,97,self.assets.world,4)
-        peer.update(OBJECTIVE_FLAG,61,self.assets.capture_flags[self.game.capture_owner] if self.game.capture_owner is not None else 0,4)
+        for index,point in enumerate((self.game,*self.game.extra_objectives)):
+            label,floor,flag=self.assets.capture_ids(index)
+            for uid in (label,floor,flag):peer.update(uid,97,self.assets.world,4)
+            peer.update(floor,61,self.assets.capture_floor_image(point.capture_owner),4)
+            peer.update(floor,660,13 if point.capture_owner is None else 0)
+            peer.update(flag,61,self.assets.capture_flags[point.capture_owner] if point.capture_owner is not None else 0,4)
+            if send_status:peer.update(label,95,point.capture_status(),3)
+        for index,(owner,x,y,img) in enumerate(self.game.deployment):
+            peer.update(DEPLOYMENT_BASE+index,97,self.assets.world if owner==side and (session.get('deployment') or not running) else 0,4)
+        for name in ('Play Again','Rotate Left','Rotate Right'):
+            show=(self.game.winner is not None) if name=='Play Again' else (self.game.winner is None)
+            peer.update(self.assets.ref(name),97,self.assets.hud if show else 0,4)
         names=self.player_names()
         for u in self.game.units:
             visible=u.uid in visibility[side] and not u.carried_by
@@ -504,8 +517,11 @@ class MatchServer(RoomFeatures):
         for kind,value in self.game.events:
             if kind=='shot':
                 u=self.game.by_id(value)
-                if u.uid in visibility[side] and sound!='Grenade':sound=u.weapon
+                if u.uid in visibility[side] and sound!='Grenade':
+                    sound='MG42 alternate' if u.weapon=='MG42' and int(self.game.time*10)%2 else u.weapon
             elif kind=='blast':sound='Grenade'
+            elif kind=='scream' and value in visibility[side] and sound!='Grenade':
+                sound='Scream'+str((value+int(self.game.time*10))%13)
         if sound:
             # The lost client module's DirectSound trigger is replaced by local playback.
             # Send a symbolic allow-listed name, never a remote filesystem path.
@@ -527,7 +543,6 @@ class MatchServer(RoomFeatures):
             if not running:text='Waiting for host to begin battle; vacant fireteams will use AI'
             command=f"Fireteam {slot+1} | Selected {','.join(str(i+1) for i in session['selected'])}: {session['action']}"
             peer.update(STATUS,95,text if self.game.winner is not None else command+' | '+self.game.notices[side],3)
-            peer.update(OBJECTIVE,95,self.game.capture_status(),3)
             peer.update(self.assets.ref('LClock'),95,f'{int(self.game.time)//60:02}:{int(self.game.time)%60:02}',3)
             for u in self.game.owned(side,slot):
                 i=str(u.number+1)

@@ -26,6 +26,10 @@ python tools/build_release.py --output dist/restored --work build/package
 
 The output contains **CoC Restored+.exe**, game data and its bundled runtime. Players do not need `launch.py` or Python. The package has no release number in its name.
 
+The build creates a guarded `game/engine.exe`, renames the game definitions to `game/enginedata.odf`, and places graphics, `oin` and `sound` directly under `game/models`. The native bridge redirects the original embedded paths. The original files in the source tree remain unchanged.
+
+`tools/runtime-exclusions.json` records the 268 audited files omitted from the player runtime, including duplicate maps, compressed sound copies, retired GameClub assets and development metadata. The build retains release documentation and license notices. It removes empty directories after applying exclusions. This replaces the earlier manual runtime cleanup with a repeatable build step.
+
 `compat/wing32.dll` is the local graphics compatibility library. Rebuild it with `tools/build_wing.py --llvm <LLVM-bin-directory>` when needed.
 
 The network compatibility identifier and recovered executable hash are internal checks. They are retained to prevent incompatible clients from connecting.

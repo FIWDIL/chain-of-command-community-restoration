@@ -1,10 +1,12 @@
 # What we check
 
-Automated tests cover all 71 map layouts, four-soldier ownership, matches with up to fourteen connections, weapon limits, movement, cover, ammunition, grenades, casualties, computer tactics, lobby side changes and chat.
+Automated tests cover all 81 named map layouts, the 153-entry mission catalog, four-soldier ownership, matches with up to fourteen connections, weapon limits, movement, cover, ammunition, grenades, casualties, computer tactics, lobby side changes and chat.
+
+There are now 71 automated tests. Added checks cover recovered animated UnitMaster references, stance frame advancement, cover-image selection, visible casualty art, independent mission objectives, deployment visibility, end-of-match button hit areas, the one-use launcher capability and preservation of original engine section bytes. A native fixture loaded the expanded model and displayed recovered casualty poses, deployment markings and restored HUD buttons. Not every clip, rotation or mission has had a visual playthrough. The 62-test description below records the preceding validation pass.
 
 Native Windows checks cover the actual recovered renderer, command buttons, selection, movement, window layout and messaging. Two clients have played together on one computer. Separate-computer and Internet play still need testing.
 
-The recovered files are checked against all 505 hashes in `original-manifest.json`. The packaged launcher must start a match without a Python installation or a source-tree dependency.
+The preserved source installation is checked against all 505 hashes in `original-manifest.json`. The player package omits audited unused files, renames the engine/data paths and adds the requested engine startup gate; its engine hash intentionally differs from the preserved original. The packaged launcher must start a match without a Python installation or a source-tree dependency.
 
 These checks establish the restoration's behavior. They do not prove that reconstructed combat rules match the lost original server, or that every map is visually perfect.
 
