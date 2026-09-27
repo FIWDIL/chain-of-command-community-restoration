@@ -1,5 +1,5 @@
-# DOWNLOAD HERE!
-[Download CoC Restored+ for Windows](https://github.com/Huckleberry87/chain-of-command-community-restoration/releases/latest/download/CoC-Restored-Windows.zip). Extract the entire ZIP, then open **CoC Restored+.exe**. Keep the `game` and `_internal` folders beside it. No Python installation is needed.
+#[Download for Windows here!](https://github.com/Huckleberry87/chain-of-command-community-restoration/releases/latest/download/CoC-Restored-Windows.zip). 
+Extract the entire ZIP, then open **CoC Restored+.exe**.
 
 ## Restoration
 
