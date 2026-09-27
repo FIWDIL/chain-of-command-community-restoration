@@ -1,7 +1,0 @@
-LIBRARY GDI32.dll
-EXPORTS
-CreateCompatibleDC
-CreateDIBSection
-BitBlt
-CreateHalftonePalette
-DeleteDC

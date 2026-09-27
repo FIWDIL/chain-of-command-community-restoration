@@ -1,0 +1,4 @@
+/game/** -text
+/_internal/** -text
+*.exe -text
+/_internal/frida/_frida.pyd filter=lfs diff=lfs merge=lfs -text
