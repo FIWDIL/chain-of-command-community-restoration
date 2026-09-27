@@ -1,4 +1,4 @@
-#[Download for Windows here!](https://github.com/Huckleberry87/chain-of-command-community-restoration/releases/latest/download/CoC-Restored-Windows.zip). 
+#[Download for Windows here!](https://github.com/FIWDIL/chain-of-command-community-restoration/releases/latest/download/CoC-Restored-Windows.zip).
 Extract the entire ZIP, then open **CoC Restored+.exe**.
 
 ## Restoration
