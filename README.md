@@ -1,5 +1,7 @@
 # CoC Restored+
 
+Free supported community restoration using the recovered Creation client, graphics archives and maps.
+
 Double-click **CoC Restored+.exe** to play. Keep the `game` and `_internal` folders beside it. No Python installation is needed for the packaged game.
 
 ## Play against the computer
@@ -38,7 +40,7 @@ See the [reference review](docs/RESTORATION_SOURCES.md) for inspected recordings
 
 See the repository's `docs` folder for gameplay notes, restoration details and test coverage. For help, include the map, mode and steps that caused the problem.
 
-The new restoration code is MIT-licensed. Recovered game files keep their separate copyright; see **THIRD_PARTY_NOTICES.md**.
+The MIT license applies only to the newly written restoration code. Original game files remain separately copyrighted. See [third-party notices](THIRD_PARTY_NOTICES.md). This is a community restoration, not an official 2AM service.
 
 ## If anyone has the following data or files, let me know!
 

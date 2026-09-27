@@ -1,6 +1,6 @@
 # Third-party notices
 
-Original Chain of Command / Creation executables and game data remain the property of their respective copyright holders. They are supplied in the free binary release, separately from the MIT-licensed restoration code. This notice does not place the original work in the public domain.
+Original Chain of Command / Creation executables and game data remain the property of their respective copyright holders. This notice does not place the original work in the public domain.
 
 Frida 17.18.0 supplies process-local input compatibility. Its Python bindings and core runtime use the wxWindows Library Licence 3.1, based on the GNU Library GPL with an additional binary-distribution exception. Source and build instructions are available from [Frida](https://github.com/frida/frida/tree/17.18.0), [frida-python](https://github.com/frida/frida-python), and [frida-core](https://github.com/frida/frida-core). No Frida binaries are modified. The packaged runtime remains a separately replaceable shared library; source execution using your own compatible Frida build is supported. License texts are included under `third-party-licenses` in the binary release.
 
