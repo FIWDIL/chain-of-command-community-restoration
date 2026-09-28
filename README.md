@@ -1,17 +1,17 @@
-#[Download for Windows here!](https://github.com/FIWDIL/chain-of-command-community-restoration/releases/latest/download/CoC-Restored-Windows.zip).
+# [Download for Windows here!](https://github.com/FIWDIL/chain-of-command-community-restoration/releases/latest/download/CoC-Restored-Windows.zip).
 Extract the entire ZIP, then open **CoC Restored+.exe**.
 
 ## Restoration
 
-First and foremost, this game is a restored version of a copywritten game by defunct game studio 2AM Games. The source files were grabbed from an archived website. The This is a partial reimplementation around the recovered engine, maps, sounds and artwork. Combat, movement, visibility, computer tactics and multiplayer service behavior have been newly implemented; much of that behavior is approximate rather than verified against the original. Persistent ranks and the original online service are not available.
+First and foremost, this game is a restored version of a copy-written game by defunct game studio 2AM Games. The source files were grabbed from an archived website. This is a partial re-implementation around the recovered engine, maps, sounds and artwork. Combat, movement, visibility, computer tactics and multiplayer service behavior have been newly implemented; much of that behavior is approximate rather than verified against the original. Persistent ranks and the original online service are not available.
 
 The MIT license applies only to the newly written restoration code. Original game files remain separately copyrighted. This is a community restoration, not an official 2AM service. I welcome any missing original source files or data, and I will happily add to the files here for all to enjoy.
 
-FIWDIL LLC, dba Cryptid Softworks makes no assumption of ownership for any part of these files, including where additional code/files were created. This is an open-source, free download for a small community that fondly remembers the game and wants to continue to enjoy it without needing a master server or gatekeeper. You can join the community at https://discord.gg/9ex7M7VK3sYou or reach out directly at info@cryptidsoftworks.com.
+FIWDIL LLC, dba Cryptid Softworks makes no claim of ownership for any part of these files, including where additional code/files were created by Cryptid Softworks. This is an open-source, free download for a small community that fondly remembers the game and wants to continue to enjoy it without needing a master server or gatekeeper. You can join the community at https://discord.gg/9ex7M7VK3sYou or reach out directly at info@cryptidsoftworks.com.
 
 ## Play against the computer
 
-Choose **Offline vs CPU**, select a map, fireteams per side and weapons, then click **Start match**. Each player controls four soldiers; CPU fireteams fill the other places. The map list includes 153 map/mission combinations.
+Choose **Offline vs CPU**, select a map, fire teams per side and weapons, then click **Start match**. Each player controls four soldiers; CPU fire teams fill the other places. The map list includes 153 map/mission combinations.
 
 ## Play with friends
 
@@ -36,6 +36,6 @@ The most useful contributions would be:
 - **Complete maps and scenarios**: original mission configurations, spawn points, objectives, timing, ammunition and weapon-cache quantities, plus any missing map variants.
 - **Original manuals and recordings**: help files, training manuals, screenshots or videos showing the command controls, assignment screens, debriefing, chat and lobby. Full installations from different periods would help distinguish original behavior from later community changes.
 
-Reports can be opened in [GitHub Issues](https://github.com/Huckleberry87/chain-of-command-community/issues), or you can send direct via email or via Discord (links above).
+Reports can be opened in [GitHub Issues](https://github.com/FIWDIL/chain-of-command-community-restoration/issues), or you can send direct via email or via Discord (links above).
 
 
