@@ -7,7 +7,7 @@ First and foremost, this game is a restored version of a copy-written game by de
 
 The MIT license applies only to the newly written restoration code. Original game files remain separately copyrighted. This is a community restoration, not an official 2AM service. I welcome any missing original source files or data, and I will happily add to the files here for all to enjoy.
 
-FIWDIL LLC, dba Cryptid Softworks makes no claim of ownership for any part of these files, including where additional code/files were created by Cryptid Softworks. This is an open-source, free download for a small community that fondly remembers the game and wants to continue to enjoy it without needing a master server or gatekeeper. You can join the community at https://discord.gg/9ex7M7VK3s or reach out directly at info@cryptidsoftworks.com.
+FIWDIL LLC, dba Cryptid Softworks makes no claim of ownership for any part of these files, including where additional code/files were created by Cryptid Softworks. This is an open-source, free download for a small community that fondly remembers the game and wants to continue to enjoy it without needing a master server or gatekeeper. You can [join the community](https://discord.gg/9ex7M7VK3s) or [reach out to us directly](mailto:info@cryptidsoftworks.com).
 
 ## Play against the computer
 
